@@ -1,0 +1,47 @@
+
+--------------------------------------------------
+Multilingual SER System v1.1
+--------------------------------------------------
+Run Name      : Run1
+Model         : WAV2VEC2_BASE
+Extract Mode  : disk
+Device        : gpu
+Dataset       : AESDD
+Epochs        : 20
+Data Dir      : ./data
+History Dir   : ./history
+Weights Dir   : ./weights
+Log Level     : debug
+Purge Cache   : False
+
+Timestamp : 2023-02-27 02:39:25.384728
+
+INFO >> Running on CUDA
+
+INFO >> Waiting for other process to finish processing
+INFO >> Waiting for other process to finish processing
+INFO >> Waiting for other process to finish processing
+INFO >> Waiting for other process to finish processing
+INFO >> Waiting for other process to finish processing
+INFO >> Waiting for other process to finish processing
+INFO >> Feature cache found for train split
+INFO >> Feature cache found for test split
+INFO >> Feature cache found for validation split
+
+INFO >> Training Classifier
+
+DEBUG >> Best state saved | Val Acc 31.313130259513855 | Test Acc 29.95169162750244
+
+INFO >> Epoch: 1 |   Train Loss: 1.612 | Train Acc: 22.15 |   Val Loss: 1.597 | Val Acc: 31.31 |   Test Loss: 1.600 | Tes Acc: 29.95
+INFO >> Epoch: 2 |   Train Loss: 1.578 | Train Acc: 41.95 |   Val Loss: 1.554 | Val Acc: 31.31 |   Test Loss: 1.566 | Tes Acc: 33.33
+DEBUG >> Best state saved | Val Acc 40.40403962135315 | Test Acc 40.57970941066742
+
+INFO >> Epoch: 3 |   Train Loss: 1.491 | Train Acc: 40.94 |   Val Loss: 1.438 | Val Acc: 40.40 |   Test Loss: 1.483 | Tes Acc: 40.58
+DEBUG >> Best state saved | Val Acc 41.41414165496826 | Test Acc 38.164252042770386
+
+INFO >> Epoch: 4 |   Train Loss: 1.322 | Train Acc: 52.68 |   Val Loss: 1.282 | Val Acc: 41.41 |   Test Loss: 1.357 | Tes Acc: 38.16
+INFO >> Epoch: 5 |   Train Loss: 1.136 | Train Acc: 61.07 |   Val Loss: 1.186 | Val Acc: 41.41 |   Test Loss: 1.296 | Tes Acc: 36.71
+DEBUG >> Best state saved | Val Acc 60.60606241226196 | Test Acc 48.3091801404953
+
+INFO >> Epoch: 6 |   Train Loss: 0.985 | Train Acc: 63.09 |   Val Loss: 0.911 | Val Acc: 60.61 |   Test Loss: 1.152 | Tes Acc: 48.31
+INFO >> Epoch: 7 |   Train Loss: 0.800 | Train Acc: 67.45 |   Val Loss: 0.941 | Val Acc: 57.58 |   Test Loss: 1.190 | Tes Acc: 49.76

@@ -1,0 +1,52 @@
+
+--------------------------------------------------
+Multilingual SER System v1.1
+--------------------------------------------------
+Run Name      : Run5
+Model         : WAV2VEC2_BASE
+Extract Mode  : disk
+Device        : gpu
+Dataset       : AESDD
+Epochs        : 20
+Data Dir      : ./data
+History Dir   : ./history
+Weights Dir   : ./weights
+Log Level     : debug
+Purge Cache   : False
+
+Timestamp : 2023-02-27 02:39:25.668233
+
+INFO >> Running on CUDA
+
+INFO >> Feature cache not found for train split
+INFO >> Feature cache not found for test split
+INFO >> Feature cache not found for validation split
+
+INFO >> Extracting Features
+
+DEBUG >> FX processing lock active
+
+
+INFO >> Time Taken: 06:00
+
+INFO >> Feature extraction complete
+
+DEBUG >> FX processing lock released
+
+INFO >> Training Classifier
+
+DEBUG >> Best state saved | Val Acc 43.43434274196625 | Test Acc 28.502416610717773
+
+INFO >> Epoch: 1 |   Train Loss: 1.628 | Train Acc: 18.46 |   Val Loss: 1.592 | Val Acc: 43.43 |   Test Loss: 1.597 | Tes Acc: 28.50
+INFO >> Epoch: 2 |   Train Loss: 1.575 | Train Acc: 36.24 |   Val Loss: 1.539 | Val Acc: 37.37 |   Test Loss: 1.560 | Tes Acc: 39.61
+DEBUG >> Best state saved | Val Acc 49.494948983192444 | Test Acc 42.02898442745209
+
+INFO >> Epoch: 3 |   Train Loss: 1.500 | Train Acc: 31.88 |   Val Loss: 1.381 | Val Acc: 49.49 |   Test Loss: 1.453 | Tes Acc: 42.03
+DEBUG >> Best state saved | Val Acc 66.66666865348816 | Test Acc 53.140097856521606
+
+INFO >> Epoch: 4 |   Train Loss: 1.282 | Train Acc: 53.02 |   Val Loss: 1.154 | Val Acc: 66.67 |   Test Loss: 1.298 | Tes Acc: 53.14
+INFO >> Epoch: 5 |   Train Loss: 1.028 | Train Acc: 65.77 |   Val Loss: 0.928 | Val Acc: 62.63 |   Test Loss: 1.177 | Tes Acc: 49.76
+INFO >> Epoch: 6 |   Train Loss: 0.863 | Train Acc: 71.14 |   Val Loss: 0.864 | Val Acc: 63.64 |   Test Loss: 1.051 | Tes Acc: 56.04
+DEBUG >> Best state saved | Val Acc 71.71717286109924 | Test Acc 54.10627722740173
+
+INFO >> Epoch: 7 |   Train Loss: 0.630 | Train Acc: 79.53 |   Val Loss: 0.682 | Val Acc: 71.72 |   Test Loss: 1.132 | Tes Acc: 54.11
