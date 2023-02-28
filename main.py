@@ -1,8 +1,9 @@
-# TODO: Make repo
-# TODO: Make gitignore
 # TODO: Add whisper
 # TODO: Add BYOL-a /BYOL-s
-# TODO: 
+# TODO: Add probing
+# TODO: Add weights to history itself
+# TODO: log gpu type and count
+# TODO: only make feature dir if em is idsk
 
 
 import os
@@ -13,6 +14,7 @@ from tqdm import tqdm
 from time import sleep
 from models.GE2E import GE2E
 from models.Dense import Dense
+from multiprocessing import Process
 
 from utils.data import DotDict
 from utils.logger import LEVELS as log_levels
@@ -21,20 +23,19 @@ from torcheval.metrics import MulticlassAccuracy
 from tqdm.contrib.logging import logging_redirect_tqdm
 from datasets import FeatureExtractorDataset, DiskModeClassifierDataset, MemoryModeClassifierDataset
 
-
 import torch
 import torchaudio
 from torch.utils.data import DataLoader
 
+
 VERSION = '1.1'
 
 FX_MODELS = ['WAV2VEC2_BASE','WAV2VEC2_LARGE',
-        'WAV2VEC2_BASE_XLSR','WAV2VEC2_LARGE_XLSR',
+        'WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M',
         'HUBERT_BASE', 'HUBERT_LARGE',
         'GE2E']
-
 FX_MODEL_MAP = {'WAV2VEC2_BASE':'WAV2VEC2_BASE','WAV2VEC2_LARGE':'WAV2VEC2_LARGE',
-        'WAV2VEC2_BASE_XLSR':'WAV2VEC2_XLSR53','WAV2VEC2_LARGE_XLSR':'WAV2VEC2_XLSR_300M',
+        'WAV2VEC2_LARGE_XLSR':'WAV2VEC2_XLSR53','WAV2VEC2_LARGE_XLSR300M':'WAV2VEC2_XLSR_300M',
         'HUBERT_BASE':'HUBERT_BASE', 'HUBERT_LARGE':'HUBERT_LARGE'}
 
 DATASETS = ['AESDD','CaFE','EmoDB','EMOVO','IEMOCAP','RAVDESS','ShEMO']
@@ -52,8 +53,8 @@ class Trainer:
         self.history_dir = os.path.join(config.history_dir, f'v{VERSION}',config.dataset, config.model, config.run_name)
         self.weights_dir = os.path.join(config.weights_dir, f'v{VERSION}',config.dataset, config.model, config.run_name)
         os.makedirs(self.feature_dir, exist_ok=True)
-        os.makedirs(self.history_dir)
-        os.makedirs(self.weights_dir)
+        os.makedirs(self.history_dir, exist_ok=True)
+        os.makedirs(self.weights_dir, exist_ok=True)
 
         # Setup logger
         log_file = os.path.join(self.history_dir, f'std.log')
@@ -68,7 +69,7 @@ class Trainer:
     
         # Setup device
         if self.config.device == 'gpu': 
-            self.device = "cuda" if torch.cuda.is_available() else "cpu"
+            self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         else: self.device = 'cpu'
         self.logger.info(f'Running on {str(self.device).upper()}')
         self.no_fmt_log()
@@ -95,6 +96,8 @@ class Trainer:
         max_len = max([len(key) for key in self.config.__dict__.keys()])+2
         for arg,val in self.config.__dict__.items():
             banner += ' '.join(arg.split('_')).title() + ' '*(max_len-len(arg))+': '+ str(val) + '\n'
+        try: banner += 'Job Id' + ' '*(max_len-len('Job Id'))+': '+ str(os.environ['SLURM_JOB_ID']) + '\n'
+        except: pass
 
         banner += f'\nTimestamp : {datetime.datetime.now()}\n'
         self.no_fmt_log(msg=banner)
@@ -122,7 +125,7 @@ class Trainer:
         
         train_batch_size = 32
         test_batch_size = 32
-        num_workers = 2
+        num_workers = self.config.num_workers
 
         test_loader = DataLoader(test_dataset, batch_size=test_batch_size, shuffle=False,
             num_workers=num_workers, collate_fn = test_dataset.data_collator)
@@ -143,7 +146,7 @@ class Trainer:
                 model.load_state_dict(checkpoint["model_state"])
             else:
                 bundle = getattr(torchaudio.pipelines, FX_MODEL_MAP[self.config.model])
-                model = bundle.get_model().to(self.device)
+                model = bundle.get_model()
         except:
             self.logger.exception(f"Could not load {self.config.model} feature extractor")
             exit(0)
@@ -225,16 +228,14 @@ class Trainer:
             test_dataset = DiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'test')
             train_dataset = DiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'train')
             val_dataset = DiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'validation')
-            num_workers = 2
         elif self.config.extract_mode=='memory':
             test_dataset = MemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'test')
             train_dataset = MemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'train')
             val_dataset = MemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'validation')
-            num_workers = 4
 
         train_batch_size = 32
         test_batch_size = 32
-        num_workers = 2
+        num_workers = self.config.num_workers
 
         test_loader = DataLoader(test_dataset, batch_size=test_batch_size, shuffle=False,
             num_workers=num_workers, collate_fn = test_dataset.data_collator)
@@ -269,7 +270,6 @@ class Trainer:
         accuracy = self.acc_metric.compute().item()*100
 
         self.acc_metric.reset()
-        
         return total_loss, accuracy
 
     
@@ -402,37 +402,48 @@ class Trainer:
         return self.history
         
 
+def multiprocess_pipeline(args):
+    trainer = Trainer(args)
+    trainer.train_pipeline()
+
+
 def get_args():
     """Parse input arguments"""
     parser = argparse.ArgumentParser("Multilingual SER System")
-    parser.add_argument("-r","--run_name", metavar="<str>", default="test",
+    parser.add_argument("-r","--run_name", metavar="<str>", default=["test"],  nargs='*', type=str,
                         help='Run Name') 
-    parser.add_argument("-m","--model", metavar="<str>", default="GE2E", 
+    parser.add_argument("-m","--model", metavar="<str>", default="GE2E", type=str,
                         choices=FX_MODELS, help=str(FX_MODELS))
-    parser.add_argument("-em","--extract_mode", metavar="<str>", default="memory",
+    parser.add_argument("-em","--extract_mode", metavar="<str>", default="memory", type=str,
                         choices=['disk','memory'], help='Disk mode will save the features \
                             to dish and then train, memory mode will process features while training') 
-    parser.add_argument("-dv","--device", metavar="<str>", default="gpu",
+    parser.add_argument("-dv","--device", metavar="<str>", default="gpu", type=str,
                         choices=['cpu','gpu'], help='Device to run on') 
-    parser.add_argument("-d","--dataset", metavar="<str>", default="EmoDB",
+    parser.add_argument("-d","--dataset", metavar="<str>", default="EmoDB", type=str,
                         choices=DATASETS, help=str(DATASETS))
     
     
-    parser.add_argument("-e","--epochs", metavar="<int>", default=20,
+    parser.add_argument("-e","--epochs", metavar="<int>", default=20, type=int,
                         help='Number of training epochs')
+    parser.add_argument("-nw","--num_workers", metavar="<int>", default=2, type=int,
+                        help='Number of dataloader workers')
 
-    parser.add_argument("-dd","--data_dir", metavar="<dir>", default="./data",
+
+    parser.add_argument("-dd","--data_dir", metavar="<dir>", default="./data", type=str,
                         help='Data directory')     
-    parser.add_argument("-hd","--history_dir", metavar="<dir>", default="./history",
+    parser.add_argument("-hd","--history_dir", metavar="<dir>", default="./history", type=str,
                         help='History directory')     
-    parser.add_argument("-wd","--weights_dir", metavar="<dir>", default="./weights",
+    parser.add_argument("-wd","--weights_dir", metavar="<dir>", default="./weights", type=str,
                         help='Weights directory')
 
 
-    parser.add_argument("-ll","--log_level", metavar="<str>", default="info", 
+    parser.add_argument("-ll","--log_level", metavar="<str>", default="info", type=str,
                         choices=list(log_levels.keys()), help=str(list(log_levels.keys())))
     parser.add_argument("-pc","--purge_cache", action="store_true", default=False,
-                        help='Purge cached features and extract them again')                                            
+                        help='Purge cached features and extract them again')  
+
+    parser.add_argument("-jn","--job_name", metavar='<str>', default='NA', type=str,
+                        help='SLURM Job Name for logging')                                            
 
     return parser.parse_args()
 
@@ -440,19 +451,26 @@ def get_args():
 if __name__ == '__main__':
     args = get_args()
 
-    # Test
-    if args.run_name =='test':
-        args.log_level='debug'
-        # args.epochs=3
-        # args.purge_cache = True
-        args.dataset = 'EMOVO'
-        args.model = 'WAV2VEC2_BASE'
-        args.history_dir = './test'
-        os.system(f"rm -rf {os.path.join(args.history_dir,f'v{VERSION}',args.dataset,args.model,args.run_name)}")
-        os.system(f"rm -rf {os.path.join(args.weights_dir,f'v{VERSION}',args.dataset,args.model,args.run_name)}")
+    if len(args.run_name) > 1:
+        runs = args.run_name
+        for run in runs:
+            args.run_name = run
+            p=Process(target=multiprocess_pipeline,args=(args,))
+            p.start()
+    else:
+        args.run_name = args.run_name[0]
 
+        # Test
+        if args.run_name =='test':
+            args.log_level='debug'
+            # args.epochs=3
+            # args.purge_cache = True
+            args.dataset = 'EMOVO'
+            args.model = 'WAV2VEC2_BASE'
+            args.history_dir = './test'
+            os.system(f"rm -rf {os.path.join(args.history_dir,f'v{VERSION}',args.dataset,args.model,args.run_name)}")
+            os.system(f"rm -rf {os.path.join(args.weights_dir,f'v{VERSION}',args.dataset,args.model,args.run_name)}")
 
-
-    # Train Classifier
-    trainer = Trainer(args)
-    trainer.train_pipeline()
+        # Train Classifier
+        trainer = Trainer(args)
+        trainer.train_pipeline()

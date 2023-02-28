@@ -1,10 +1,14 @@
+# TODO: Remove redundant squeeze unsqueeze
+
 import os
 import torch
 import torchaudio
 from torch.utils.data import Dataset
 from models.GE2E import CONFIG as GE2E_config
 
-GE2E_config= GE2E_config
+
+GE2E_config = GE2E_config
+
 
 class FeatureExtractorDataset(Dataset):
     
@@ -60,7 +64,6 @@ class FeatureExtractorDataset(Dataset):
                 collated_batch[idx] = torch.cat([sample[0], torch.zeros((max_seq_len - seq_lengths[idx]))])
 
         return collated_batch, file_paths
-
 
 
 class MemoryModeClassifierDataset(Dataset):
@@ -146,7 +149,6 @@ class MemoryModeClassifierDataset(Dataset):
         seq_lengths = torch.tensor(seq_lengths)
 
         return padded_features, seq_lengths, labels
-
 
 
 class DiskModeClassifierDataset(Dataset):
