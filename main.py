@@ -1,4 +1,3 @@
-# TODO: Add probing
 # TODO: Add whisper
 # TODO: Add BYOL-a /BYOL-s
 
@@ -9,31 +8,35 @@ import argparse
 import datetime
 from tqdm import tqdm
 from time import sleep
-from models.GE2E import GE2E
-from models.Dense import Dense
-from multiprocessing import Process
+from models.ge2e import GE2E
+from models.dense import Dense
+from models.probing import ProbingModel
 
 from utils.data import DotDict
 from utils.logger import LEVELS as log_levels
 from utils.logger import NoFmtLog, get_logger
 from torcheval.metrics import MulticlassAccuracy
 from tqdm.contrib.logging import logging_redirect_tqdm
-from datasets import FeatureExtractorDataset, GPUDiskModeClassifierDataset, CPUMemoryModeClassifierDataset
+from datasets import FeatureExtractorDataset, GPUDiskModeClassifierDataset, \
+    CPUMemoryModeClassifierDataset, GPUMemoryModeClassifierDataset
 
 import torch
 import torchaudio
 from torch.utils.data import DataLoader
 
 
-VERSION = '1.1'
+VERSION = '1.2'
 
 FX_MODELS = ['WAV2VEC2_BASE','WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M',
-        'HUBERT_BASE', 'HUBERT_LARGE',
+        'HUBERT_BASE', 'HUBERT_LARGE', 
         'GE2E']
+        
 FX_MODEL_MAP = {'WAV2VEC2_BASE':'WAV2VEC2_BASE','WAV2VEC2_LARGE':'WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR':'WAV2VEC2_XLSR53','WAV2VEC2_LARGE_XLSR300M':'WAV2VEC2_XLSR_300M',
         'HUBERT_BASE':'HUBERT_BASE', 'HUBERT_LARGE':'HUBERT_LARGE'}
+
+CLF_MODELS = ['DENSE','PROBING']
 
 DATASETS = ['AESDD','CaFE','EmoDB','EMOVO','IEMOCAP','RAVDESS','ShEMO']
 
@@ -45,10 +48,12 @@ class Trainer:
         self.config = config
 
         # Setup Directories
-        self.data_dir = os.path.join(config.data_dir, 'Audios', config.dataset)
-        self.feature_dir = os.path.join(config.data_dir, 'Features', config.dataset, self.config.model)
-        self.history_dir = os.path.join(config.history_dir, f'v{VERSION}',config.dataset, config.model, config.run_name)
-        self.weights_dir = os.path.join(config.weights_dir, f'v{VERSION}',config.dataset, config.model, config.run_name)
+        self.data_dir = os.path.join(self.config.data_dir, 'Audios', self.config.dataset)
+        self.feature_dir = os.path.join(self.config.data_dir, 'Features', self.config.dataset, self.config.fx_model)
+        self.history_dir = os.path.join(self.config.history_dir, f'v{VERSION}',self.config.dataset,
+            f'{self.config.fx_model}_{self.config.clf_model}', self.config.run_name)
+        self.weights_dir = os.path.join(self.config.weights_dir, f'v{VERSION}',self.config.dataset,
+            f'{self.config.fx_model}_{self.config.clf_model}', self.config.run_name)
 
         if self.config.extract_mode == 'disk': os.makedirs(self.feature_dir, exist_ok=True)
         os.makedirs(self.history_dir, exist_ok=True)
@@ -56,14 +61,11 @@ class Trainer:
 
         # Setup logger
         log_file = os.path.join(self.history_dir, f'std.log')
-        self.logger, self.no_fmt_logger = get_logger(config.run_name, config.log_level, log_file)
+        self.logger, self.no_fmt_logger = get_logger(self.config.run_name, self.config.log_level, log_file)
         self.no_fmt_log = NoFmtLog(self.no_fmt_logger)
 
         # Log configs
         self._print_banner()
-
-        # Config check
-        self._config_check()
     
         # Setup device
         if self.config.device == 'gpu': 
@@ -77,7 +79,7 @@ class Trainer:
         
         # Setup models
         self.fx_model = self._get_feature_extractor()
-        self.clf_model = Dense(self.config.model, len(self.dataset_info.label_map), self.device)
+        self.clf_model = self._get_classifier()
         
         # Setup metric
         self.acc_metric = MulticlassAccuracy(device=self.device)
@@ -94,35 +96,45 @@ class Trainer:
         max_len = max([len(key) for key in self.config.__dict__.keys()])+2
         for arg,val in self.config.__dict__.items():
             banner += ' '.join(arg.split('_')).title() + ' '*(max_len-len(arg))+': '+ str(val) + '\n'
+        try: banner += 'Job Id' + ' '*(max_len-len('Job Id'))+': '+ str(os.environ['SLURM_JOB_ID']) + '\n'
+        except: pass
         if torch.cuda.is_available() and self.config.device == 'gpu':
             banner += 'GPU' + ' '*(max_len-len('GPU'))+': '+ torch.cuda.get_device_name() + '\n'
             banner += 'GPU Count' + ' '*(max_len-len('GPU Count'))+': '+ str(torch.cuda.device_count()) + '\n'
-        try: banner += 'Job Id' + ' '*(max_len-len('Job Id'))+': '+ str(os.environ['SLURM_JOB_ID']) + '\n'
-        except: pass
-
         banner += f'\nTimestamp : {datetime.datetime.now()}\n'
         self.no_fmt_log(msg=banner)
-        
 
-    def _config_check(self):
-        # Check for model
-        if self.config.model not in FX_MODELS:
-            self.logger.critical(f': No implementation found for {self.config.model} feature extractor\n\
-                Available models: {FX_MODELS}')
-            raise NotImplementedError(f': No implementation found for {self.config.model} feature extractor\n\
-                Available models: {FX_MODELS}')
-        # Check for dataset
-        if self.config.dataset not in DATASETS:
-            self.logger.critical(f': No implementation found for {self.config.dataset} dataset\n\
-                Available datasets: {DATASETS}')
-            raise NotImplementedError(f': No implementation found for {self.config.dataset} dataset\n\
-                Available datasets: {DATASETS}')
+
+    def _get_feature_extractor(self):
+        # Load Model
+        try:
+            if self.config.fx_model == 'GE2E':
+                model = GE2E()
+                checkpoint = torch.load(os.path.join(self.config.weights_dir,'pretrained',self.config.fx_model+'_weights.pt'), 'cpu')
+                model.load_state_dict(checkpoint["model_state"])
+            else:
+                bundle = getattr(torchaudio.pipelines, FX_MODEL_MAP[self.config.fx_model])
+                model = bundle.get_model()
+        except:
+            self.logger.exception(f"Could not load {self.config.fx_model} feature extractor")
+            exit(0)
+        return model
+
+
+    def _get_classifier(self):
+        
+        if self.config.fx_model == 'GE2E' or self.config.clf_model == 'PROBING':
+            model = ProbingModel(self.config.fx_model, len(self.dataset_info.label_map))
+        elif self.config.clf_model == 'DENSE':
+            model = Dense(self.config.fx_model, len(self.dataset_info.label_map), self.device)
+           
+        return model
 
 
     def _get_fx_dataloaders(self):
-        test_dataset = FeatureExtractorDataset(self.config.model, self.data_dir, 'test')
-        train_dataset = FeatureExtractorDataset(self.config.model, self.data_dir, 'train')
-        val_dataset = FeatureExtractorDataset(self.config.model, self.data_dir, 'validation')
+        test_dataset = FeatureExtractorDataset(self.config.fx_model, self.data_dir, 'test')
+        train_dataset = FeatureExtractorDataset(self.config.fx_model, self.data_dir, 'train')
+        val_dataset = FeatureExtractorDataset(self.config.fx_model, self.data_dir, 'validation')
         
         train_batch_size = 32
         test_batch_size = 32
@@ -137,21 +149,36 @@ class Trainer:
 
         return DotDict(train=train_loader, test=test_loader, validation=val_loader)
 
+    
+    def _get_clf_dataloaders(self):
+        
+        if self.config.extract_mode=='gpu_disk':
+            test_dataset = GPUDiskModeClassifierDataset(self.config.fx_model, self.feature_dir, self.dataset_info, 'test')
+            train_dataset = GPUDiskModeClassifierDataset(self.config.fx_model, self.feature_dir, self.dataset_info, 'train')
+            val_dataset = GPUDiskModeClassifierDataset(self.config.fx_model, self.feature_dir, self.dataset_info, 'validation')
+        elif self.config.extract_mode=='cpu_memory':
+            test_dataset = CPUMemoryModeClassifierDataset(self.config.fx_model, self.fx_model, self.data_dir, self.dataset_info, 'test')
+            train_dataset = CPUMemoryModeClassifierDataset(self.config.fx_model, self.fx_model, self.data_dir, self.dataset_info, 'train')
+            val_dataset = CPUMemoryModeClassifierDataset(self.config.fx_model, self.fx_model, self.data_dir, self.dataset_info, 'validation')
+        elif self.config.extract_mode=='gpu_memory':
+            test_dataset = GPUMemoryModeClassifierDataset(self.config.fx_model, self.data_dir, self.dataset_info, 'test')
+            train_dataset = GPUMemoryModeClassifierDataset(self.config.fx_model, self.data_dir, self.dataset_info, 'train')
+            val_dataset = GPUMemoryModeClassifierDataset(self.config.fx_model, self.data_dir, self.dataset_info, 'validation')
 
-    def _get_feature_extractor(self):
-        # Load Model
-        try:
-            if self.config.model == 'GE2E':
-                model = GE2E()
-                checkpoint = torch.load(os.path.join(self.config.weights_dir,'pretrained',self.config.model+'_weights.pt'), 'cpu')
-                model.load_state_dict(checkpoint["model_state"])
-            else:
-                bundle = getattr(torchaudio.pipelines, FX_MODEL_MAP[self.config.model])
-                model = bundle.get_model()
-        except:
-            self.logger.exception(f"Could not load {self.config.model} feature extractor")
-            exit(0)
-        return model
+
+
+        train_batch_size = 32
+        test_batch_size = 32
+        num_workers = self.config.num_workers
+
+        test_loader = DataLoader(test_dataset, batch_size=test_batch_size, shuffle=False,
+            num_workers=num_workers, collate_fn = test_dataset.data_collator)
+        train_loader = DataLoader(train_dataset,batch_size=train_batch_size, shuffle=True,
+            num_workers=num_workers, collate_fn = train_dataset.data_collator)
+        val_loader = DataLoader(val_dataset, batch_size=test_batch_size, shuffle=False,
+            num_workers=num_workers, collate_fn = val_dataset.data_collator)
+
+        return DotDict(train=train_loader, test=test_loader, validation=val_loader)
 
 
     def _extract_features(self):
@@ -199,7 +226,7 @@ class Trainer:
                     for batch in dataloader:
                         input = batch[0].to(self.device)
                         with torch.inference_mode():
-                            if self.config.model == 'GE2E':
+                            if self.config.fx_model == 'GE2E':
                                 outputs = self.fx_model(input)
                             else:
                                 outputs, _ = self.fx_model.extract_features(input)
@@ -223,39 +250,14 @@ class Trainer:
             self.logger.debug('FX processing lock released')
 
 
-    def _get_clf_dataloaders(self):
-        
-        if self.config.extract_mode=='gpu_disk':
-            test_dataset = GPUDiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'test')
-            train_dataset = GPUDiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'train')
-            val_dataset = GPUDiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'validation')
-        elif self.config.extract_mode=='cpu_memory':
-            test_dataset = CPUMemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'test')
-            train_dataset = CPUMemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'train')
-            val_dataset = CPUMemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'validation')
-
-        train_batch_size = 32
-        test_batch_size = 32
-        num_workers = self.config.num_workers
-
-        test_loader = DataLoader(test_dataset, batch_size=test_batch_size, shuffle=False,
-            num_workers=num_workers, collate_fn = test_dataset.data_collator)
-        train_loader = DataLoader(train_dataset,batch_size=train_batch_size, shuffle=True,
-            num_workers=num_workers, collate_fn = train_dataset.data_collator)
-        val_loader = DataLoader(val_dataset, batch_size=test_batch_size, shuffle=False,
-            num_workers=num_workers, collate_fn = val_dataset.data_collator)
-
-        return DotDict(train=train_loader, test=test_loader, validation=val_loader)
-
-
-    def _train(self, model, dataloader, optimizer, criterion, progress_bar):
+    def _train(self, dataloader, optimizer, criterion, progress_bar):
         total_loss = 0.0
-        model.train()
+        self.clf_model.train()
         for batch in dataloader:
             batch = tuple(input.to(self.device) for input in batch)
 
             optimizer.zero_grad()
-            output = model(batch[0],batch[1])
+            output = self.clf_model(batch[0],batch[1])
 
             loss = criterion(output, batch[2])
             
@@ -274,14 +276,80 @@ class Trainer:
         return total_loss, accuracy
 
     
-    def _test(self, model, dataloader, criterion, progress_bar):
+    def _test(self, dataloader, criterion, progress_bar):
         total_loss = 0.0
-        model.eval()
+        self.clf_model.eval()
         for batch in dataloader:
             batch = tuple(input.to(self.device) for input in batch)
            
             with torch.inference_mode():
-                output = model(batch[0],batch[1])
+                output = self.clf_model(batch[0],batch[1])
+                loss = criterion(output, batch[2])
+
+            total_loss += loss.item()
+            self.acc_metric.update(output, batch[2])
+            
+            progress_bar.update(1)
+        
+        total_loss = total_loss / len(dataloader)
+        accuracy = self.acc_metric.compute().item()*100
+    
+        self.acc_metric.reset()
+
+        return total_loss, accuracy
+
+
+    def _gpu_train(self, dataloader, optimizer, criterion, progress_bar):
+        total_loss = 0.0
+        self.clf_model.train()
+        self.fx_model.eval()
+        for batch in dataloader:
+            batch = tuple(input.to(self.device) for input in batch)
+            
+            with torch.inference_mode():
+                if self.config.fx_model == 'GE2E':
+                    features = self.fx_model(batch[0])
+                else:
+                    features, _ = self.fx_model.extract_features(batch[0])
+                    features = torch.stack([*features],dim=1)
+            
+            features = torch.clone(features)
+
+            optimizer.zero_grad()
+            output = self.clf_model(features,batch[1])
+
+            loss = criterion(output, batch[2])
+            
+            loss.backward()
+            optimizer.step()
+            
+            total_loss += loss.item()
+            self.acc_metric.update(output, batch[2])
+
+            progress_bar.update(1)
+        
+        total_loss = total_loss / len(dataloader)
+        accuracy = self.acc_metric.compute().item()*100
+
+        self.acc_metric.reset()
+        return total_loss, accuracy
+
+
+    def _gpu_test(self, dataloader, criterion, progress_bar):
+        total_loss = 0.0
+        self.clf_model.eval()
+        self.fx_model.eval()
+        for batch in dataloader:
+            batch = tuple(input.to(self.device) for input in batch)
+           
+            with torch.inference_mode():
+                if self.config.fx_model == 'GE2E':
+                    features = self.fx_model(batch[0])
+                else:
+                    features, _ = self.fx_model.extract_features(batch[0])
+                    features = torch.stack([*features],dim=1)
+
+                output = self.clf_model(features,batch[1])
                 loss = criterion(output, batch[2])
 
             total_loss += loss.item()
@@ -314,23 +382,33 @@ class Trainer:
         # Set save paths
         best_model_path = os.path.join(self.weights_dir,'best_state.pt')
 
-        train_pbar = tqdm(desc='Training   ', unit=' batch', colour='#42A5F5',total= len(self.clf_dataloaders.train))
-        val_pbar   = tqdm(desc='Validation ', unit=' batch', colour='#E0E0E0',total= len(self.clf_dataloaders.validation))
-        test_pbar  = tqdm(desc='Testing    ', unit=' batch', colour='#EF5350',total= len(self.clf_dataloaders.test))
-        epoch_pbar = tqdm(desc='Epoch      ', unit=' epoch', colour='#43A047',total= self.config.epochs)
+        train_pbar = tqdm(desc='Training   ', unit=' batch', colour='#42A5F5', total=len(self.clf_dataloaders.train))
+        val_pbar   = tqdm(desc='Validation ', unit=' batch', colour='#E0E0E0', total=len(self.clf_dataloaders.validation))
+        test_pbar  = tqdm(desc='Testing    ', unit=' batch', colour='#EF5350', total=len(self.clf_dataloaders.test))
+        epoch_pbar = tqdm(desc='Epoch      ', unit=' epoch', colour='#43A047', total=self.config.epochs)
 
         # Train classifier
         self.clf_model.to(self.device)
+        if self.config.extract_mode=='gpu_memory': self.fx_model.to(self.device)
         best_model = DotDict(val_acc=-1, test_acc=0)
         with logging_redirect_tqdm(loggers=[self.logger, self.no_fmt_logger]):
             self.no_fmt_log()
             self.logger.info('Training Classifier')
             self.no_fmt_log()
             for epoch in range(1,self.config.epochs+1):
-                train_loss, train_acc = self._train(self.clf_model, self.clf_dataloaders.train, optimizer, criterion, train_pbar)
-                val_loss, val_acc = self._test(self.clf_model, self.clf_dataloaders.validation, criterion, val_pbar)
-                test_loss, test_acc = self._test(self.clf_model, self.clf_dataloaders.test, criterion, test_pbar)
-                
+                if self.config.extract_mode=='cpu_memory' or self.config.extract_mode=='gpu_disk':
+                    train_loss, train_acc = self._train(self.clf_dataloaders.train, optimizer, criterion, train_pbar)
+                    val_loss, val_acc = self._test(self.clf_dataloaders.validation, criterion, val_pbar)
+                    test_loss, test_acc = self._test(self.clf_dataloaders.test, criterion, test_pbar)
+                elif self.config.extract_mode=='gpu_memory':
+                    train_loss, train_acc = self._gpu_train(self.clf_dataloaders.train, optimizer, criterion, train_pbar)
+                    val_loss, val_acc = self._gpu_test(self.clf_dataloaders.validation, criterion, val_pbar)
+                    test_loss, test_acc = self._gpu_test(self.clf_dataloaders.test, criterion, test_pbar)
+
+                epoch_pbar.update(1)
+                self.logger.info('Epoch: %s |   Train Loss: %.3f | Train Acc: %.2f |   Val Loss: %.3f | Val Acc: %.2f |   Test Loss: %.3f | Tes Acc: %.2f' \
+                                %(epoch, train_loss, train_acc, val_loss, val_acc, test_loss, test_acc))
+
                 if val_acc > best_model.val_acc:
                     best_model.val_acc = val_acc
                     best_model.test_acc = test_acc
@@ -342,18 +420,14 @@ class Trainer:
                         optimizer_state=optimizer.state_dict())
                     torch.save(state,best_model_path)
                     self.logger.debug(f'Best state saved | Val Acc {val_acc} | Test Acc {test_acc}')
-                    self.no_fmt_log()
-                    
+                    self.no_fmt_log(level='debug')
+
                 self.history.train_loss.append(train_loss)
                 self.history.train_acc.append(train_acc)
                 self.history.val_loss.append(val_loss)
                 self.history.val_acc.append(val_acc)
                 self.history.test_loss.append(test_loss)
                 self.history.test_acc.append(test_acc)
-
-                epoch_pbar.update(1)
-                self.logger.info('Epoch: %s |   Train Loss: %.3f | Train Acc: %.2f |   Val Loss: %.3f | Val Acc: %.2f |   Test Loss: %.3f | Tes Acc: %.2f' \
-                                %(epoch, train_loss, train_acc, val_loss, val_acc, test_loss, test_acc))
 
                 train_pbar.reset()
                 val_pbar.reset()
@@ -373,11 +447,11 @@ class Trainer:
         self.logger.info(f'Time Taken: {epoch_pbar.format_interval(time_taken)}')
         self.no_fmt_log()
 
-        self.logger.info(f'Best Val Acc : {best_model.val_acc} | Best Test A : {best_model.test_acc}')
+        self.logger.info(f'Best Val Acc : {best_model.val_acc} | Best Test Acc : {best_model.test_acc}')
         self.no_fmt_log()
 
         # Agg weights
-        if self.config.model != 'GE2E':
+        if self.config.fx_model != 'GE2E' and self.config.clf_model == 'DENSE':
             agg_weights = ' '.join([str(weight[0]) for weight in self.clf_model.aggr.state_dict()['weight'][0].detach().cpu().tolist()])
             self.logger.info(f'Agg. Weights : \n{agg_weights}\n')
             agg_weight_path = os.path.join(self.history_dir, 'agg_weights.pt')
@@ -403,28 +477,27 @@ class Trainer:
         return self.history
         
 
-def multiprocess_pipeline(args):
-    trainer = Trainer(args)
-    trainer.train_pipeline()
-
 
 def get_args():
     """Parse input arguments"""
-    parser = argparse.ArgumentParser("Multilingual SER System")
-    parser.add_argument("-r","--run_name", metavar="<str>", default=["test"],  nargs='*', type=str,
+    parser = argparse.ArgumentParser(f'Multilingual SER System v{VERSION}')
+
+    parser.add_argument("-r","--run_name", metavar="<str>", default="test", type=str,
                         help='Run Name') 
-    parser.add_argument("-m","--model", metavar="<str>", default="GE2E", type=str,
+    parser.add_argument("-m","--fx_model", metavar="<str>", default="GE2E", type=str,
                         choices=FX_MODELS, help=str(FX_MODELS))
-    parser.add_argument("-em","--extract_mode", metavar="<str>", default="memory", type=str,
-                        choices=['gpu_disk','cpu_memory'], help='GPU Disk mode will extract features on GPU and will save the features \
-                            to disk and then training will continue using disk cache, \
+    parser.add_argument("-cm","--clf_model", metavar="<str>", default="PROBING", type=str,
+                        choices=CLF_MODELS, help=str(CLF_MODELS))
+    parser.add_argument("-em","--extract_mode", metavar="<str>", default="cpu_memory", type=str,
+                        choices=['gpu_disk','gpu_memory','cpu_memory'], help='GPU Disk mode will extract features on GPU and will save the features \
+                            to disk and then training will continue using disk cache, GPU Memory mode will extract features and train the model both on GPU,\
                             CPU Memory mode will extract features on CPU and run while training on GPU') 
-    parser.add_argument("-dv","--device", metavar="<str>", default="gpu", type=str,
-                        choices=['cpu','gpu'], help='Device to run on') 
     parser.add_argument("-d","--dataset", metavar="<str>", default="EmoDB", type=str,
                         choices=DATASETS, help=str(DATASETS))
-    
-    
+
+
+    parser.add_argument("-dv","--device", metavar="<str>", default="gpu", type=str,
+                        choices=['cpu','gpu'], help='Device to run on') 
     parser.add_argument("-e","--epochs", metavar="<int>", default=20, type=int,
                         help='Number of training epochs')
     parser.add_argument("-nw","--num_workers", metavar="<int>", default=2, type=int,
@@ -443,8 +516,7 @@ def get_args():
                         choices=list(log_levels.keys()), help=str(list(log_levels.keys())))
     parser.add_argument("-pc","--purge_cache", action="store_true", default=False,
                         help='Purge cached features and extract them again')  
-
-    parser.add_argument("-jn","--job_name", metavar='<str>', default='NA', type=str,
+    parser.add_argument("-jn","--job_name", metavar='<str>', default='Manual_Run', type=str,
                         help='SLURM Job Name for logging')                                            
 
     return parser.parse_args()
@@ -452,27 +524,21 @@ def get_args():
 
 if __name__ == '__main__':
     args = get_args()
+        
+    # Test
+    if args.run_name =='test':
+        # args.epochs=3
+        args.dataset = 'IEMOCAP'
+        args.fx_model = 'WAV2VEC2_LARGE'
+        args.clf_model = 'DENSE'
+        args.extract_mode ='gpu_memory'
+        args.history_dir = './test/history'
+        args.weights_dir = './test/weights'
+        os.system('rm -rf ./test')
+        os.system('mkdir test')
+        os.system('mkdir test/weights')
+        os.system('ln -s /scratch/as14229/Projects/Multilingual-Speech-Emotion-Recognition-System/weights/pretrained test/weights/pretrained')
 
-    if len(args.run_name) > 1:
-        runs = args.run_name
-        for run in runs:
-            args.run_name = run
-            p=Process(target=multiprocess_pipeline,args=(args,))
-            p.start()
-    else:
-        args.run_name = args.run_name[0]
-
-        # Test
-        if args.run_name =='test':
-            args.log_level='debug'
-            # args.epochs=3
-            # args.purge_cache = True
-            args.dataset = 'EMOVO'
-            args.model = 'WAV2VEC2_BASE'
-            args.history_dir = './test'
-            os.system(f"rm -rf {os.path.join(args.history_dir,f'v{VERSION}',args.dataset,args.model,args.run_name)}")
-            os.system(f"rm -rf {os.path.join(args.weights_dir,f'v{VERSION}',args.dataset,args.model,args.run_name)}")
-
-        # Train Classifier
-        trainer = Trainer(args)
-        trainer.train_pipeline()
+    # Train Classifier
+    trainer = Trainer(args)
+    trainer.train_pipeline()

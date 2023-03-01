@@ -11,6 +11,7 @@ LEVELS = {
 names = set()
 no_fmt_logger = None
 
+
 class DispatchingFormatter:
     """Dispatch formatter for logger and it's sub logger."""
     def __init__(self, formatters, default_formatter):
@@ -64,7 +65,7 @@ def __setup_custom_logger(name: str, level:str, logfile:str=None) -> logging.Log
     if no_fmt_logger == None:
         names.add(name+'_no_fmt_logger')
         no_fmt_logger = logging.getLogger(name+'_no_fmt_logger')
-        no_fmt_logger.setLevel(logging.DEBUG)
+        no_fmt_logger.setLevel(LEVELS[level.lower()])
         no_fmt_logger.addHandler(stream_handler)
         no_fmt_logger.addHandler(file_handler)
 
@@ -82,9 +83,10 @@ class NoFmtLog:
     def __init__(self,logger) -> None:
         self.logger = logger
 
-    def __call__(self,num_new_line:int=1,msg:str=''):
+    def __call__(self,num_new_line:int=1,msg:str='',level='info'):
+        logger = getattr(self.logger,level)
         if msg:
-            self.logger.info(msg)
+            logger(msg)
         else:
-            for i in range(num_new_line):
-                self.logger.info(msg)
+            for _ in range(num_new_line):
+                logger(msg)
