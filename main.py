@@ -1,9 +1,6 @@
+# TODO: Add probing
 # TODO: Add whisper
 # TODO: Add BYOL-a /BYOL-s
-# TODO: Add probing
-# TODO: Add weights to history itself
-# TODO: log gpu type and count
-# TODO: only make feature dir if em is idsk
 
 
 import os
@@ -21,7 +18,7 @@ from utils.logger import LEVELS as log_levels
 from utils.logger import NoFmtLog, get_logger
 from torcheval.metrics import MulticlassAccuracy
 from tqdm.contrib.logging import logging_redirect_tqdm
-from datasets import FeatureExtractorDataset, DiskModeClassifierDataset, MemoryModeClassifierDataset
+from datasets import FeatureExtractorDataset, GPUDiskModeClassifierDataset, CPUMemoryModeClassifierDataset
 
 import torch
 import torchaudio
@@ -52,7 +49,8 @@ class Trainer:
         self.feature_dir = os.path.join(config.data_dir, 'Features', config.dataset, self.config.model)
         self.history_dir = os.path.join(config.history_dir, f'v{VERSION}',config.dataset, config.model, config.run_name)
         self.weights_dir = os.path.join(config.weights_dir, f'v{VERSION}',config.dataset, config.model, config.run_name)
-        os.makedirs(self.feature_dir, exist_ok=True)
+
+        if self.config.extract_mode == 'disk': os.makedirs(self.feature_dir, exist_ok=True)
         os.makedirs(self.history_dir, exist_ok=True)
         os.makedirs(self.weights_dir, exist_ok=True)
 
@@ -96,6 +94,9 @@ class Trainer:
         max_len = max([len(key) for key in self.config.__dict__.keys()])+2
         for arg,val in self.config.__dict__.items():
             banner += ' '.join(arg.split('_')).title() + ' '*(max_len-len(arg))+': '+ str(val) + '\n'
+        if torch.cuda.is_available() and self.config.device == 'gpu':
+            banner += 'GPU' + ' '*(max_len-len('GPU'))+': '+ torch.cuda.get_device_name() + '\n'
+            banner += 'GPU Count' + ' '*(max_len-len('GPU Count'))+': '+ str(torch.cuda.device_count()) + '\n'
         try: banner += 'Job Id' + ' '*(max_len-len('Job Id'))+': '+ str(os.environ['SLURM_JOB_ID']) + '\n'
         except: pass
 
@@ -224,14 +225,14 @@ class Trainer:
 
     def _get_clf_dataloaders(self):
         
-        if self.config.extract_mode=='disk':
-            test_dataset = DiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'test')
-            train_dataset = DiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'train')
-            val_dataset = DiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'validation')
-        elif self.config.extract_mode=='memory':
-            test_dataset = MemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'test')
-            train_dataset = MemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'train')
-            val_dataset = MemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'validation')
+        if self.config.extract_mode=='gpu_disk':
+            test_dataset = GPUDiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'test')
+            train_dataset = GPUDiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'train')
+            val_dataset = GPUDiskModeClassifierDataset(self.config.model, self.feature_dir, self.dataset_info, 'validation')
+        elif self.config.extract_mode=='cpu_memory':
+            test_dataset = CPUMemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'test')
+            train_dataset = CPUMemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'train')
+            val_dataset = CPUMemoryModeClassifierDataset(self.config.model, self.fx_model, self.device, self.data_dir, self.dataset_info, 'validation')
 
         train_batch_size = 32
         test_batch_size = 32
@@ -298,7 +299,7 @@ class Trainer:
 
     def train_pipeline(self):
         
-        if self.config.extract_mode=='disk':
+        if self.config.extract_mode=='gpu_disk':
             # Extract Features
             self.fx_dataloaders = self._get_fx_dataloaders()
             self._extract_features()
@@ -415,8 +416,9 @@ def get_args():
     parser.add_argument("-m","--model", metavar="<str>", default="GE2E", type=str,
                         choices=FX_MODELS, help=str(FX_MODELS))
     parser.add_argument("-em","--extract_mode", metavar="<str>", default="memory", type=str,
-                        choices=['disk','memory'], help='Disk mode will save the features \
-                            to dish and then train, memory mode will process features while training') 
+                        choices=['gpu_disk','cpu_memory'], help='GPU Disk mode will extract features on GPU and will save the features \
+                            to disk and then training will continue using disk cache, \
+                            CPU Memory mode will extract features on CPU and run while training on GPU') 
     parser.add_argument("-dv","--device", metavar="<str>", default="gpu", type=str,
                         choices=['cpu','gpu'], help='Device to run on') 
     parser.add_argument("-d","--dataset", metavar="<str>", default="EmoDB", type=str,

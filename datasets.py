@@ -66,7 +66,7 @@ class FeatureExtractorDataset(Dataset):
         return collated_batch, file_paths
 
 
-class MemoryModeClassifierDataset(Dataset):
+class CPUMemoryModeClassifierDataset(Dataset):
 
     def __init__(self, fx_model_name, fx_model, device, data_dir, datainfo, split):
         self.data_dir = os.path.join(data_dir,split)
@@ -151,7 +151,7 @@ class MemoryModeClassifierDataset(Dataset):
         return padded_features, seq_lengths, labels
 
 
-class DiskModeClassifierDataset(Dataset):
+class GPUDiskModeClassifierDataset(Dataset):
 
     def __init__(self, fx_model_name, data_dir, datainfo, split):
         self.data_dir = os.path.join(data_dir,split)
