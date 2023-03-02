@@ -1,103 +1,0 @@
-
---------------------------------------------------
-Multilingual SER System v1.2
---------------------------------------------------
-Run Name      : Run1
-Fx Model      : WAVLM_BASE
-Clf Model     : DENSE
-Extract Mode  : gpu_memory
-Dataset       : IEMOCAP
-Device        : gpu
-Epochs        : 20
-Num Workers   : 2
-Data Dir      : ./data
-History Dir   : ./history
-Weights Dir   : ./weights
-Log Level     : debug
-Purge Cache   : False
-Job Name      : Job7
-Job Id        : 30659179
-GPU           : Quadro RTX 8000
-GPU Count     : 1
-
-Timestamp : 2023-03-01 04:49:18.020504
-
-INFO >> Running on CUDA
-
-Training   :   0%|[38;2;66;165;245m          [0m| 0/107 [00:00<?, ? batch/s]
-Validation :   0%|[38;2;224;224;224m          [0m| 0/32 [00:00<?, ? batch/s][A
-
-Testing    :   0%|[38;2;239;83;80m          [0m| 0/36 [00:00<?, ? batch/s][A[A
-
-
-Epoch      :   0%|[38;2;67;160;71m          [0m| 0/20 [00:00<?, ? epoch/s][A[A[A                                                        
-
-
-                                                       [A[A[A
-
-                                                       [A[A
-                                                       [A
-Training   :   0%|[38;2;66;165;245m          [0m| 0/107 [00:00<?, ? batch/s]
-
-
-Epoch      :   0%|[38;2;67;160;71m          [0m| 0/20 [00:00<?, ? epoch/s][A[A[A
-
-Testing    :   0%|[38;2;239;83;80m          [0m| 0/36 [00:00<?, ? batch/s][A[A
-Validation :   0%|[38;2;224;224;224m          [0m| 0/32 [00:00<?, ? batch/s][A                                                        
-
-
-                                                       [A[A[A
-
-                                                       [A[A
-                                                       [AINFO >> Training Classifier
-Training   :   0%|[38;2;66;165;245m          [0m| 0/107 [00:00<?, ? batch/s]
-
-
-Epoch      :   0%|[38;2;67;160;71m          [0m| 0/20 [00:00<?, ? epoch/s][A[A[A
-
-Testing    :   0%|[38;2;239;83;80m          [0m| 0/36 [00:00<?, ? batch/s][A[A
-Validation :   0%|[38;2;224;224;224m          [0m| 0/32 [00:00<?, ? batch/s][A                                                        
-
-
-                                                       [A[A[A
-
-                                                       [A[A
-                                                       [A
-Training   :   0%|[38;2;66;165;245m          [0m| 0/107 [00:00<?, ? batch/s]
-
-
-Epoch      :   0%|[38;2;67;160;71m          [0m| 0/20 [00:00<?, ? epoch/s][A[A[A
-
-Testing    :   0%|[38;2;239;83;80m          [0m| 0/36 [00:00<?, ? batch/s][A[A
-Validation :   0%|[38;2;224;224;224m          [0m| 0/32 [00:00<?, ? batch/s][A/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torch/nn/modules/activation.py:1144: UserWarning: Converting mask without torch.bool dtype to bool; this will negatively affect performance. Prefer to use a boolean mask directly. (Triggered internally at ../aten/src/ATen/native/transformers/attention.cpp:150.)
-  return torch._native_multi_head_attention(
-Traceback (most recent call last):
-  File "main.py", line 546, in <module>
-    trainer.train_pipeline()
-  File "main.py", line 406, in train_pipeline
-    train_loss, train_acc = self._gpu_train(self.clf_dataloaders.train, optimizer, criterion, train_pbar)
-  File "main.py", line 315, in _gpu_train
-    features, _ = self.fx_model.extract_features(batch[0])
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torchaudio/models/wav2vec2/model.py", line 84, in extract_features
-    x = self.encoder.extract_features(x, lengths, num_layers)
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torchaudio/models/wav2vec2/components.py", line 525, in extract_features
-    return self.transformer.get_intermediate_outputs(x, attention_mask=masks, num_layers=num_layers)
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torchaudio/models/wav2vec2/components.py", line 474, in get_intermediate_outputs
-    x, _ = layer(x, attention_mask)  # Ignore position_bias
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torchaudio/models/wav2vec2/components.py", line 405, in forward
-    x, position_bias = self.attention(
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torchaudio/models/wav2vec2/wavlm_attention.py", line 185, in forward
-    attn_output, _ = self.attention(
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/scratch/as14229/envs_dirs/MSERS/lib/python3.8/site-packages/torch/nn/modules/activation.py", line 1144, in forward
-    return torch._native_multi_head_attention(
-RuntimeError: Mask shape should match input. mask: [384, 692, 692] input: [32, 12, 692, 692]
-Training   :   0%|[38;2;66;165;245m          [0m| 0/107 [00:03<?, ? batch/s]
-Validation :   0%|[38;2;224;224;224m          [0m| 0/32 [00:03<?, ? batch/s]
-Testing    :   0%|[38;2;239;83;80m          [0m| 0/36 [00:03<?, ? batch/s]
-Epoch      :   0%|[38;2;67;160;71m          [0m| 0/20 [00:03<?, ? epoch/s]
