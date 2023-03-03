@@ -21,7 +21,7 @@ class ProbingModel(nn.Module):
         self.linear1 = nn.Linear(in_features = feature_dim, out_features = hidden_dim)
         self.linear2 = nn.Linear(in_features = hidden_dim, out_features = num_labels)
 
-    def forward(self, x, lengths, layer):
+    def forward(self, x, lengths, layer=0):
         """
         padded_x: (B,T) padded LongTensor
         """
@@ -32,6 +32,6 @@ class ProbingModel(nn.Module):
             x = torch.mean(x, dim = 1)
 
         x = F.relu(self.linear1(x))
-        logits = self.linear(x)
+        logits = self.linear2(x)
 
         return logits

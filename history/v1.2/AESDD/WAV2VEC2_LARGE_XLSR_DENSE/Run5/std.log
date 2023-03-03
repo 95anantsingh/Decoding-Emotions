@@ -1,77 +1,117 @@
 
 --------------------------------------------------
-Multilingual SER System v1.1
+Multilingual SER System v1.2
 --------------------------------------------------
 Run Name      : Run5
-Model         : WAV2VEC2_LARGE_XLSR
-Extract Mode  : disk
-Device        : gpu
+Fx Model      : WAV2VEC2_LARGE_XLSR
+Clf Model     : DENSE
+Extract Mode  : gpu_memory
 Dataset       : AESDD
-Epochs        : 20
+Device        : gpu
+Epochs        : 50
+Num Workers   : 2
 Data Dir      : ./data
 History Dir   : ./history
 Weights Dir   : ./weights
 Log Level     : debug
 Purge Cache   : False
+Job Name      : Job29
+Job Id        : 30703579
+GPU           : Quadro RTX 8000
+GPU Count     : 1
 
-Timestamp : 2023-02-27 07:01:52.615964
+Timestamp : 2023-03-02 18:35:40.517628
 
 INFO >> Running on CUDA
 
 
-INFO >> Feature cache found for train split
-INFO >> Feature cache found for test split
-INFO >> Feature cache found for validation split
-
 INFO >> Training Classifier
 
-DEBUG >> Best state saved | Val Acc 20.202019810676575 | Test Acc 20.28985470533371
+INFO >> Epoch: 1 |   Train Loss: 62.081 | Train Acc: 19.80 |   Val Loss: 14.851 | Val Acc: 20.20 |   Test Loss: 16.263 | Tes Acc: 19.81
+DEBUG >> Best state saved | Val Acc 20.202019810676575 | Test Acc 19.806763529777527
 
-INFO >> Epoch: 1 |   Train Loss: 1.988 | Train Acc: 15.44 |   Val Loss: 1.571 | Val Acc: 20.20 |   Test Loss: 1.604 | Tes Acc: 20.29
-INFO >> Epoch: 2 |   Train Loss: 1.629 | Train Acc: 24.16 |   Val Loss: 1.712 | Val Acc: 20.20 |   Test Loss: 1.659 | Tes Acc: 19.32
-DEBUG >> Best state saved | Val Acc 21.212121844291687 | Test Acc 26.0869562625885
+INFO >> Epoch: 2 |   Train Loss: 9.008 | Train Acc: 21.14 |   Val Loss: 4.858 | Val Acc: 20.20 |   Test Loss: 4.397 | Tes Acc: 20.77
+INFO >> Epoch: 3 |   Train Loss: 5.024 | Train Acc: 19.80 |   Val Loss: 3.430 | Val Acc: 20.20 |   Test Loss: 3.461 | Tes Acc: 19.81
+INFO >> Epoch: 4 |   Train Loss: 2.792 | Train Acc: 15.44 |   Val Loss: 2.447 | Val Acc: 20.20 |   Test Loss: 2.551 | Tes Acc: 19.81
+INFO >> Epoch: 5 |   Train Loss: 2.369 | Train Acc: 21.48 |   Val Loss: 2.438 | Val Acc: 20.20 |   Test Loss: 2.514 | Tes Acc: 20.77
+INFO >> Epoch: 6 |   Train Loss: 2.193 | Train Acc: 18.79 |   Val Loss: 1.801 | Val Acc: 19.19 |   Test Loss: 1.956 | Tes Acc: 19.32
+INFO >> Epoch: 7 |   Train Loss: 2.543 | Train Acc: 21.48 |   Val Loss: 1.760 | Val Acc: 20.20 |   Test Loss: 1.814 | Tes Acc: 19.81
+INFO >> Epoch: 8 |   Train Loss: 2.076 | Train Acc: 22.48 |   Val Loss: 2.568 | Val Acc: 20.20 |   Test Loss: 2.554 | Tes Acc: 20.29
+INFO >> Epoch: 9 |   Train Loss: 2.439 | Train Acc: 17.79 |   Val Loss: 2.718 | Val Acc: 20.20 |   Test Loss: 2.742 | Tes Acc: 20.29
+INFO >> Epoch: 10 |   Train Loss: 2.226 | Train Acc: 19.80 |   Val Loss: 3.476 | Val Acc: 19.19 |   Test Loss: 3.245 | Tes Acc: 20.29
+INFO >> Epoch: 11 |   Train Loss: 2.215 | Train Acc: 23.15 |   Val Loss: 1.922 | Val Acc: 22.22 |   Test Loss: 1.876 | Tes Acc: 23.19
+DEBUG >> Best state saved | Val Acc 22.22222238779068 | Test Acc 23.188406229019165
 
-INFO >> Epoch: 3 |   Train Loss: 1.593 | Train Acc: 25.17 |   Val Loss: 1.558 | Val Acc: 21.21 |   Test Loss: 1.558 | Tes Acc: 26.09
-DEBUG >> Best state saved | Val Acc 31.313130259513855 | Test Acc 33.81642401218414
+INFO >> Epoch: 12 |   Train Loss: 2.527 | Train Acc: 20.13 |   Val Loss: 2.344 | Val Acc: 20.20 |   Test Loss: 2.264 | Tes Acc: 20.29
+INFO >> Epoch: 13 |   Train Loss: 2.204 | Train Acc: 20.47 |   Val Loss: 1.945 | Val Acc: 20.20 |   Test Loss: 2.110 | Tes Acc: 21.26
+INFO >> Epoch: 14 |   Train Loss: 2.160 | Train Acc: 17.11 |   Val Loss: 1.768 | Val Acc: 28.28 |   Test Loss: 1.733 | Tes Acc: 23.67
+DEBUG >> Best state saved | Val Acc 28.282827138900757 | Test Acc 23.671497404575348
 
-INFO >> Epoch: 4 |   Train Loss: 1.501 | Train Acc: 36.58 |   Val Loss: 1.464 | Val Acc: 31.31 |   Test Loss: 1.456 | Tes Acc: 33.82
-DEBUG >> Best state saved | Val Acc 46.464645862579346 | Test Acc 32.85024166107178
+INFO >> Epoch: 15 |   Train Loss: 1.900 | Train Acc: 21.14 |   Val Loss: 1.672 | Val Acc: 20.20 |   Test Loss: 1.640 | Tes Acc: 20.77
+INFO >> Epoch: 16 |   Train Loss: 1.687 | Train Acc: 27.52 |   Val Loss: 1.615 | Val Acc: 25.25 |   Test Loss: 1.618 | Tes Acc: 27.05
+INFO >> Epoch: 17 |   Train Loss: 2.103 | Train Acc: 33.56 |   Val Loss: 2.559 | Val Acc: 21.21 |   Test Loss: 2.915 | Tes Acc: 19.32
+INFO >> Epoch: 18 |   Train Loss: 1.897 | Train Acc: 22.82 |   Val Loss: 1.663 | Val Acc: 29.29 |   Test Loss: 1.629 | Tes Acc: 26.57
+DEBUG >> Best state saved | Val Acc 29.29292917251587 | Test Acc 26.570048928260803
 
-INFO >> Epoch: 5 |   Train Loss: 1.410 | Train Acc: 42.62 |   Val Loss: 1.447 | Val Acc: 46.46 |   Test Loss: 1.507 | Tes Acc: 32.85
-INFO >> Epoch: 6 |   Train Loss: 1.295 | Train Acc: 42.95 |   Val Loss: 1.311 | Val Acc: 40.40 |   Test Loss: 1.424 | Tes Acc: 35.75
-DEBUG >> Best state saved | Val Acc 53.535354137420654 | Test Acc 48.3091801404953
+INFO >> Epoch: 19 |   Train Loss: 1.558 | Train Acc: 32.21 |   Val Loss: 1.561 | Val Acc: 29.29 |   Test Loss: 1.617 | Tes Acc: 23.67
+INFO >> Epoch: 20 |   Train Loss: 1.440 | Train Acc: 34.23 |   Val Loss: 2.960 | Val Acc: 23.23 |   Test Loss: 3.520 | Tes Acc: 23.19
+INFO >> Epoch: 21 |   Train Loss: 1.877 | Train Acc: 32.21 |   Val Loss: 2.081 | Val Acc: 26.26 |   Test Loss: 1.681 | Tes Acc: 31.40
+INFO >> Epoch: 22 |   Train Loss: 1.447 | Train Acc: 43.96 |   Val Loss: 1.473 | Val Acc: 28.28 |   Test Loss: 1.541 | Tes Acc: 30.43
+INFO >> Epoch: 23 |   Train Loss: 1.313 | Train Acc: 39.93 |   Val Loss: 1.641 | Val Acc: 34.34 |   Test Loss: 1.580 | Tes Acc: 32.37
+DEBUG >> Best state saved | Val Acc 34.34343338012695 | Test Acc 32.367148995399475
 
-INFO >> Epoch: 7 |   Train Loss: 1.236 | Train Acc: 47.32 |   Val Loss: 1.098 | Val Acc: 53.54 |   Test Loss: 1.235 | Tes Acc: 48.31
-INFO >> Epoch: 8 |   Train Loss: 1.120 | Train Acc: 52.35 |   Val Loss: 1.259 | Val Acc: 47.47 |   Test Loss: 1.398 | Tes Acc: 41.06
+INFO >> Epoch: 24 |   Train Loss: 1.264 | Train Acc: 47.99 |   Val Loss: 1.463 | Val Acc: 37.37 |   Test Loss: 1.472 | Tes Acc: 33.33
+DEBUG >> Best state saved | Val Acc 37.37373650074005 | Test Acc 33.33333432674408
+
+INFO >> Epoch: 25 |   Train Loss: 1.284 | Train Acc: 45.97 |   Val Loss: 1.580 | Val Acc: 43.43 |   Test Loss: 1.621 | Tes Acc: 32.85
+DEBUG >> Best state saved | Val Acc 43.43434274196625 | Test Acc 32.85024166107178
+
+INFO >> Epoch: 26 |   Train Loss: 1.307 | Train Acc: 45.97 |   Val Loss: 1.556 | Val Acc: 32.32 |   Test Loss: 1.641 | Tes Acc: 31.88
+INFO >> Epoch: 27 |   Train Loss: 1.267 | Train Acc: 43.96 |   Val Loss: 1.382 | Val Acc: 42.42 |   Test Loss: 1.505 | Tes Acc: 31.88
+INFO >> Epoch: 28 |   Train Loss: 1.197 | Train Acc: 50.00 |   Val Loss: 1.471 | Val Acc: 38.38 |   Test Loss: 1.534 | Tes Acc: 36.71
+INFO >> Epoch: 29 |   Train Loss: 1.070 | Train Acc: 57.38 |   Val Loss: 1.399 | Val Acc: 42.42 |   Test Loss: 1.366 | Tes Acc: 44.93
+INFO >> Epoch: 30 |   Train Loss: 1.063 | Train Acc: 57.38 |   Val Loss: 1.374 | Val Acc: 43.43 |   Test Loss: 1.514 | Tes Acc: 38.65
+INFO >> Epoch: 31 |   Train Loss: 0.976 | Train Acc: 57.38 |   Val Loss: 1.427 | Val Acc: 38.38 |   Test Loss: 1.514 | Tes Acc: 38.16
+INFO >> Epoch: 32 |   Train Loss: 0.961 | Train Acc: 61.74 |   Val Loss: 1.452 | Val Acc: 53.54 |   Test Loss: 1.543 | Tes Acc: 45.89
+DEBUG >> Best state saved | Val Acc 53.535354137420654 | Test Acc 45.89371979236603
+
+INFO >> Epoch: 33 |   Train Loss: 0.847 | Train Acc: 67.45 |   Val Loss: 1.444 | Val Acc: 36.36 |   Test Loss: 1.494 | Tes Acc: 42.51
+INFO >> Epoch: 34 |   Train Loss: 0.868 | Train Acc: 65.44 |   Val Loss: 1.243 | Val Acc: 53.54 |   Test Loss: 1.425 | Tes Acc: 47.83
+INFO >> Epoch: 35 |   Train Loss: 0.785 | Train Acc: 68.46 |   Val Loss: 1.146 | Val Acc: 59.60 |   Test Loss: 1.302 | Tes Acc: 54.11
+DEBUG >> Best state saved | Val Acc 59.59596037864685 | Test Acc 54.10627722740173
+
+INFO >> Epoch: 36 |   Train Loss: 0.703 | Train Acc: 77.52 |   Val Loss: 1.757 | Val Acc: 41.41 |   Test Loss: 1.778 | Tes Acc: 40.58
+INFO >> Epoch: 37 |   Train Loss: 0.679 | Train Acc: 76.17 |   Val Loss: 1.313 | Val Acc: 53.54 |   Test Loss: 1.438 | Tes Acc: 51.69
+INFO >> Epoch: 38 |   Train Loss: 0.634 | Train Acc: 77.52 |   Val Loss: 1.227 | Val Acc: 54.55 |   Test Loss: 1.462 | Tes Acc: 50.24
+INFO >> Epoch: 39 |   Train Loss: 0.598 | Train Acc: 75.84 |   Val Loss: 1.246 | Val Acc: 57.58 |   Test Loss: 1.436 | Tes Acc: 50.72
+INFO >> Epoch: 40 |   Train Loss: 0.563 | Train Acc: 79.87 |   Val Loss: 1.601 | Val Acc: 46.46 |   Test Loss: 1.685 | Tes Acc: 50.24
+INFO >> Epoch: 41 |   Train Loss: 0.453 | Train Acc: 87.58 |   Val Loss: 1.129 | Val Acc: 62.63 |   Test Loss: 1.362 | Tes Acc: 55.07
 DEBUG >> Best state saved | Val Acc 62.62626051902771 | Test Acc 55.07246255874634
 
-INFO >> Epoch: 9 |   Train Loss: 1.040 | Train Acc: 57.72 |   Val Loss: 0.802 | Val Acc: 62.63 |   Test Loss: 1.190 | Tes Acc: 55.07
-DEBUG >> Best state saved | Val Acc 70.70707082748413 | Test Acc 50.24154782295227
+INFO >> Epoch: 42 |   Train Loss: 0.469 | Train Acc: 85.23 |   Val Loss: 1.495 | Val Acc: 55.56 |   Test Loss: 1.601 | Tes Acc: 56.52
+INFO >> Epoch: 43 |   Train Loss: 0.387 | Train Acc: 88.93 |   Val Loss: 1.106 | Val Acc: 64.65 |   Test Loss: 1.453 | Tes Acc: 59.90
+DEBUG >> Best state saved | Val Acc 64.64646458625793 | Test Acc 59.90338325500488
 
-INFO >> Epoch: 10 |   Train Loss: 1.034 | Train Acc: 55.37 |   Val Loss: 0.801 | Val Acc: 70.71 |   Test Loss: 1.231 | Tes Acc: 50.24
-INFO >> Epoch: 11 |   Train Loss: 0.808 | Train Acc: 65.77 |   Val Loss: 0.989 | Val Acc: 55.56 |   Test Loss: 1.270 | Tes Acc: 47.34
-INFO >> Epoch: 12 |   Train Loss: 0.799 | Train Acc: 67.11 |   Val Loss: 0.952 | Val Acc: 60.61 |   Test Loss: 1.226 | Tes Acc: 50.24
-INFO >> Epoch: 13 |   Train Loss: 0.616 | Train Acc: 77.18 |   Val Loss: 1.465 | Val Acc: 40.40 |   Test Loss: 1.366 | Tes Acc: 50.72
-INFO >> Epoch: 14 |   Train Loss: 0.589 | Train Acc: 75.17 |   Val Loss: 1.763 | Val Acc: 36.36 |   Test Loss: 1.652 | Tes Acc: 45.41
-INFO >> Epoch: 15 |   Train Loss: 0.592 | Train Acc: 75.84 |   Val Loss: 1.189 | Val Acc: 47.47 |   Test Loss: 1.587 | Tes Acc: 49.28
-DEBUG >> Best state saved | Val Acc 72.72727489471436 | Test Acc 57.48792290687561
+INFO >> Epoch: 44 |   Train Loss: 0.350 | Train Acc: 88.26 |   Val Loss: 1.935 | Val Acc: 59.60 |   Test Loss: 1.692 | Tes Acc: 55.56
+INFO >> Epoch: 45 |   Train Loss: 0.337 | Train Acc: 88.93 |   Val Loss: 1.148 | Val Acc: 68.69 |   Test Loss: 1.533 | Tes Acc: 60.39
+DEBUG >> Best state saved | Val Acc 68.6868667602539 | Test Acc 60.386472940444946
 
-INFO >> Epoch: 16 |   Train Loss: 0.425 | Train Acc: 81.88 |   Val Loss: 0.850 | Val Acc: 72.73 |   Test Loss: 1.216 | Tes Acc: 57.49
-DEBUG >> Best state saved | Val Acc 75.75757503509521 | Test Acc 57.971012592315674
+INFO >> Epoch: 46 |   Train Loss: 0.291 | Train Acc: 89.93 |   Val Loss: 0.939 | Val Acc: 74.75 |   Test Loss: 1.712 | Tes Acc: 61.35
+DEBUG >> Best state saved | Val Acc 74.7474730014801 | Test Acc 61.35265827178955
 
-INFO >> Epoch: 17 |   Train Loss: 0.392 | Train Acc: 87.25 |   Val Loss: 0.421 | Val Acc: 75.76 |   Test Loss: 1.190 | Tes Acc: 57.97
-INFO >> Epoch: 18 |   Train Loss: 0.530 | Train Acc: 76.85 |   Val Loss: 0.432 | Val Acc: 75.76 |   Test Loss: 1.341 | Tes Acc: 65.22
-INFO >> Epoch: 19 |   Train Loss: 0.296 | Train Acc: 88.59 |   Val Loss: 0.658 | Val Acc: 66.67 |   Test Loss: 1.080 | Tes Acc: 63.77
-INFO >> Epoch: 20 |   Train Loss: 0.205 | Train Acc: 94.97 |   Val Loss: 0.638 | Val Acc: 71.72 |   Test Loss: 0.938 | Tes Acc: 70.53
+INFO >> Epoch: 47 |   Train Loss: 0.272 | Train Acc: 92.95 |   Val Loss: 1.388 | Val Acc: 62.63 |   Test Loss: 1.697 | Tes Acc: 59.42
+INFO >> Epoch: 48 |   Train Loss: 0.197 | Train Acc: 95.64 |   Val Loss: 1.933 | Val Acc: 59.60 |   Test Loss: 1.992 | Tes Acc: 58.45
+INFO >> Epoch: 49 |   Train Loss: 0.173 | Train Acc: 96.64 |   Val Loss: 2.290 | Val Acc: 59.60 |   Test Loss: 1.899 | Tes Acc: 57.97
+INFO >> Epoch: 50 |   Train Loss: 0.168 | Train Acc: 95.30 |   Val Loss: 2.052 | Val Acc: 59.60 |   Test Loss: 2.113 | Tes Acc: 59.90
 
 
-INFO >> Time Taken: 2:58:58
+INFO >> Time Taken: 19:52
 
-INFO >> Best Val Acc : 75.75757503509521 | Best Test A : 57.971012592315674
+INFO >> Best Val Acc : 74.7474730014801 | Best Test Acc : 61.35265827178955
 
 INFO >> Agg. Weights : 
--0.24541500210762024 0.06912535429000854 -0.2582581043243408 -0.19907508790493011 -0.28074634075164795 0.04567165672779083 -0.2598334848880768 -0.19652041792869568 -0.07944054156541824 0.025447672232985497 0.04404066130518913 -0.05767018347978592 -0.15200665593147278 -0.03796849772334099 -0.05951593071222305 0.04424649477005005 0.12153641879558563 0.2704779803752899 0.19855144619941711 0.16646462678909302 0.24539701640605927 0.04327835515141487 0.14589646458625793 -0.188121035695076
+0.06346653401851654 -0.10014453530311584 -0.39017167687416077 -0.2712525427341461 -0.38860541582107544 -0.39552754163742065 -0.10571489483118057 -0.3409644365310669 -0.025964509695768356 -0.3155013918876648 -0.31253960728645325 -0.3415401875972748 -0.09153027087450027 -0.32344940304756165 -0.15510159730911255 -0.027499744668602943 -0.19348005950450897 -0.3498862385749817 -0.24391056597232819 -0.2114522010087967 0.12156692147254944 -0.06496807932853699 0.00405142130330205 0.03609929606318474
 
-DEBUG >> Last state saved | Val Acc 71.71717286109924 | Test Acc 70.53139805793762
+DEBUG >> Last state saved | Val Acc 59.59596037864685 | Test Acc 59.90338325500488
 
-INFO >> History saved (./history/v1.1/AESDD/WAV2VEC2_LARGE_XLSR/Run5/history.pt)
+INFO >> History saved (./history/v1.2/AESDD/WAV2VEC2_LARGE_XLSR_DENSE/Run5/history.pt)

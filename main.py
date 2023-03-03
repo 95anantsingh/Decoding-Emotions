@@ -25,7 +25,7 @@ import torchaudio
 from torch.utils.data import DataLoader
 
 
-VERSION = '1.2'
+VERSION = '1.3'
 
 FX_MODELS = ['WAV2VEC2_BASE','WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M',
@@ -101,6 +101,7 @@ class Trainer:
         if torch.cuda.is_available() and self.config.device == 'gpu':
             banner += 'GPU' + ' '*(max_len-len('GPU'))+': '+ torch.cuda.get_device_name() + '\n'
             banner += 'GPU Count' + ' '*(max_len-len('GPU Count'))+': '+ str(torch.cuda.device_count()) + '\n'
+            banner += 'GPU Memory' + ' '*(max_len-len('GPU Memory'))+': '+ str(round(torch.cuda.get_device_properties(0).total_memory/1024/1024/1024,2)) + ' GB\n'
         banner += f'\nTimestamp : {datetime.datetime.now()}\n'
         self.no_fmt_log(msg=banner)
 
@@ -365,6 +366,54 @@ class Trainer:
         return total_loss, accuracy
 
 
+    def _gpu_probing_train(self):
+        # my_dataloader, models, criterion, optimizers, train_flag = True
+        
+
+        all_predictions = {}
+        all_labels = {}
+        for m in range(len(models)):
+            all_predictions[m] = []
+            all_labels[m] = []
+
+            if train_flag:
+                models[m].train()
+            else:
+                models[m].eval()
+        
+
+        for i, (data, labels, lengths) in enumerate(my_dataloader):
+            for m in range(len(models)):
+                optimizers[m].zero_grad()
+
+            #send data to device
+            data = data.to(device)
+            labels = labels.to(device)
+
+            #train model
+            for m in range(len(models)):
+                logits = models[m](data, m, lengths, device)
+                if train_flag:
+                    loss = criterion(logits, labels)
+                    loss.backward()
+                    optimizers[m].step()
+
+                #store predictions
+                predictions = torch.argmax(logits, dim = 1).detach().cpu().tolist()
+                labels_store = labels.detach().cpu().tolist()
+                all_predictions[m].extend(predictions)
+                all_labels[m].extend(labels_store)
+
+
+        all_accuracies = []
+        for m in range(len(models)):
+            accuracy = accuracy_score(all_labels[m], all_predictions[m])
+            all_accuracies.append(accuracy)
+            print('Train' if train_flag else 'Test', '| Layer :', m,  ' | Accuracy :', accuracy)
+
+        return models, all_accuracies
+
+
     def train_pipeline(self):
         
         if self.config.extract_mode=='gpu_disk':
@@ -382,9 +431,9 @@ class Trainer:
         # Set save paths
         best_model_path = os.path.join(self.weights_dir,'best_state.pt')
 
-        train_pbar = tqdm(desc='Training   ', unit=' batch', colour='#42A5F5', total=len(self.clf_dataloaders.train))
+        train_pbar = tqdm(desc='Training   ', unit=' batch', colour='#EF5350', total=len(self.clf_dataloaders.train))
         val_pbar   = tqdm(desc='Validation ', unit=' batch', colour='#E0E0E0', total=len(self.clf_dataloaders.validation))
-        test_pbar  = tqdm(desc='Testing    ', unit=' batch', colour='#EF5350', total=len(self.clf_dataloaders.test))
+        test_pbar  = tqdm(desc='Testing    ', unit=' batch', colour='#42A5F5', total=len(self.clf_dataloaders.test))
         epoch_pbar = tqdm(desc='Epoch      ', unit=' epoch', colour='#43A047', total=self.config.epochs)
 
         # Train classifier
@@ -484,7 +533,7 @@ def get_args():
 
     parser.add_argument("-r","--run_name", metavar="<str>", default="test", type=str,
                         help='Run Name') 
-    parser.add_argument("-m","--fx_model", metavar="<str>", default="GE2E", type=str,
+    parser.add_argument("-fm","--fx_model", metavar="<str>", default="GE2E", type=str,
                         choices=FX_MODELS, help=str(FX_MODELS))
     parser.add_argument("-cm","--clf_model", metavar="<str>", default="PROBING", type=str,
                         choices=CLF_MODELS, help=str(CLF_MODELS))
@@ -527,13 +576,16 @@ if __name__ == '__main__':
         
     # Test
     if args.run_name =='test':
-        # args.epochs=3
-        args.dataset = 'IEMOCAP'
-        args.fx_model = 'WAV2VEC2_LARGE'
-        args.clf_model = 'DENSE'
+
+        args.dataset = 'AESDD'
+        args.fx_model = 'GE2E'
+        args.clf_model = 'PROBING'
         args.extract_mode ='gpu_memory'
         args.history_dir = './test/history'
         args.weights_dir = './test/weights'
+
+        args.epochs = 10
+
         os.system('rm -rf ./test')
         os.system('mkdir test')
         os.system('mkdir test/weights')
