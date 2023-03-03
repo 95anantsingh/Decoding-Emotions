@@ -1,28 +1,23 @@
 # TODO: Add whisper
 # TODO: Add BYOL-a /BYOL-s
 
-
 import os
 import json
 import argparse
 import datetime
 from tqdm import tqdm
 from time import sleep
-from models.ge2e import GE2E
-from models.dense import Dense
-from models.probing import ProbingModel
-
-from utils.data import DotDict
-from utils.logger import LEVELS as log_levels
-from utils.logger import NoFmtLog, get_logger
-from torcheval.metrics import MulticlassAccuracy
+from copy import deepcopy
+from models import GE2E, Dense, ProbingModel
 from tqdm.contrib.logging import logging_redirect_tqdm
+from utils import DotDict, NoFmtLog, get_logger, log_levels
 from datasets import FeatureExtractorDataset, GPUDiskModeClassifierDataset, \
     CPUMemoryModeClassifierDataset, GPUMemoryModeClassifierDataset
 
 import torch
 import torchaudio
 from torch.utils.data import DataLoader
+from torcheval.metrics import MulticlassAccuracy
 
 
 VERSION = '1.3'
@@ -366,52 +361,89 @@ class Trainer:
         return total_loss, accuracy
 
 
-    def _gpu_probing_train(self):
-        # my_dataloader, models, criterion, optimizers, train_flag = True
+    def _gpu_probing_train(self, models, dataloader, optimizers, criterion, progress_bar):
+        num_layers = len(models)
+        total_losses = [0.0]*num_layers
+        acc_metrics = []
+
+        for layer in range(num_layers): 
+            models[layer].train()
+            metric = deepcopy(self.acc_metric)
+            acc_metrics.append(metric)
+
+        self.fx_model.eval()
+        for batch in dataloader:
+            batch = tuple(input.to(self.device) for input in batch)
+            
+            with torch.inference_mode():
+                if self.config.fx_model == 'GE2E':
+                    features = self.fx_model(batch[0])
+                else:
+                    features, _ = self.fx_model.extract_features(batch[0])
+                    features = torch.stack([*features],dim=1)
+
+            features = torch.clone(features)
+
+            for layer in range(num_layers):
+                optimizers[layer].zero_grad()
+                output = models[layer](features,batch[1],layer)
+
+                loss = criterion(output, batch[2])
+                
+                loss.backward()
+                optimizers[layer].step()
+                
+                total_losses[layer] += loss.item()
+                acc_metrics[layer].update(output, batch[2])
+
+                progress_bar.update(1)
         
+        accuracies = []
+        for layer in range(num_layers):
+            total_losses[layer] = total_losses[layer] / len(dataloader)
+            accuracies.append(acc_metrics[layer].compute().item()*100) 
 
-        all_predictions = {}
-        all_labels = {}
-        for m in range(len(models)):
-            all_predictions[m] = []
-            all_labels[m] = []
+        self.acc_metric.reset()
+        return total_losses, accuracies
 
-            if train_flag:
-                models[m].train()
-            else:
-                models[m].eval()
+
+    def _gpu_probing_test(self, models, dataloader, criterion, progress_bar):
+        num_layers = len(models)
+        total_losses = [0.0]*num_layers
+        acc_metrics = []
+
+        for layer in range(num_layers): 
+            models[layer].eval()
+            metric = deepcopy(self.acc_metric)
+            acc_metrics.append(metric)
+
+        self.fx_model.eval()
+        for batch in dataloader:
+            batch = tuple(input.to(self.device) for input in batch)
+            
+            with torch.inference_mode():
+                if self.config.fx_model == 'GE2E':
+                    features = self.fx_model(batch[0])
+                else:
+                    features, _ = self.fx_model.extract_features(batch[0])
+                    features = torch.stack([*features],dim=1)
+
+                for layer in range(num_layers):
+                    output = models[layer](features,batch[1],layer)
+                    loss = criterion(output, batch[2])
+                    
+                    total_losses[layer] += loss.item()
+                    acc_metrics[layer].update(output, batch[2])
+
+                    progress_bar.update(1)
         
+        accuracies = []
+        for layer in range(num_layers):
+            total_losses[layer] = total_losses[layer] / len(dataloader)
+            accuracies.append(acc_metrics[layer].compute().item()*100) 
 
-        for i, (data, labels, lengths) in enumerate(my_dataloader):
-            for m in range(len(models)):
-                optimizers[m].zero_grad()
-
-            #send data to device
-            data = data.to(device)
-            labels = labels.to(device)
-
-            #train model
-            for m in range(len(models)):
-                logits = models[m](data, m, lengths, device)
-                if train_flag:
-                    loss = criterion(logits, labels)
-                    loss.backward()
-                    optimizers[m].step()
-
-                #store predictions
-                predictions = torch.argmax(logits, dim = 1).detach().cpu().tolist()
-                labels_store = labels.detach().cpu().tolist()
-                all_predictions[m].extend(predictions)
-                all_labels[m].extend(labels_store)
-
-
-        all_accuracies = []
-        for m in range(len(models)):
-            accuracy = accuracy_score(all_labels[m], all_predictions[m])
-            all_accuracies.append(accuracy)
-            print('Train' if train_flag else 'Test', '| Layer :', m,  ' | Accuracy :', accuracy)
-
-        return models, all_accuracies
+        self.acc_metric.reset()
+        return total_losses, accuracies
 
 
     def train_pipeline(self):
@@ -424,9 +456,8 @@ class Trainer:
         # Setup classifier dataloaders
         self.clf_dataloaders = self._get_clf_dataloaders()
 
-        # Setup
+        # Setup criterion
         criterion = torch.nn.CrossEntropyLoss()
-        optimizer = torch.optim.Adam(self.clf_model.parameters(), lr=0.001)
 
         # Set save paths
         best_model_path = os.path.join(self.weights_dir,'best_state.pt')
@@ -439,37 +470,81 @@ class Trainer:
         # Train classifier
         self.clf_model.to(self.device)
         if self.config.extract_mode=='gpu_memory': self.fx_model.to(self.device)
-        best_model = DotDict(val_acc=-1, test_acc=0)
+        
         with logging_redirect_tqdm(loggers=[self.logger, self.no_fmt_logger]):
             self.no_fmt_log()
             self.logger.info('Training Classifier')
             self.no_fmt_log()
+
+            if self.config.clf_model=='PROBING' and self.config.fx_model!='GE2E':
+                models, optimizers = [], []
+                if 'BASE' in self.config.fx_model: num_layers = 12
+                elif 'LARGE' in self.config.fx_model:  num_layers = 24
+                for _ in range(num_layers):
+                    model = deepcopy(self.clf_model)
+                    optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+                    models.append(model)
+                    optimizers.append(optimizer)
+
+                train_pbar.unit = ' step'
+                val_pbar.unit = ' step'
+                test_pbar.unit = ' step'
+                train_pbar.total *= num_layers
+                val_pbar.total *= num_layers
+                test_pbar.total *= num_layers
+                train_pbar.refresh()
+                val_pbar.refresh()
+                test_pbar.refresh()
+                best_model = DotDict(val_acc=[-1]*num_layers, test_acc=[0]*num_layers)
+            else:
+                optimizer = torch.optim.Adam(self.clf_model.parameters(), lr=0.001)
+                best_model = DotDict(val_acc=-1, test_acc=0)
+                
+
             for epoch in range(1,self.config.epochs+1):
-                if self.config.extract_mode=='cpu_memory' or self.config.extract_mode=='gpu_disk':
-                    train_loss, train_acc = self._train(self.clf_dataloaders.train, optimizer, criterion, train_pbar)
-                    val_loss, val_acc = self._test(self.clf_dataloaders.validation, criterion, val_pbar)
-                    test_loss, test_acc = self._test(self.clf_dataloaders.test, criterion, test_pbar)
-                elif self.config.extract_mode=='gpu_memory':
-                    train_loss, train_acc = self._gpu_train(self.clf_dataloaders.train, optimizer, criterion, train_pbar)
-                    val_loss, val_acc = self._gpu_test(self.clf_dataloaders.validation, criterion, val_pbar)
-                    test_loss, test_acc = self._gpu_test(self.clf_dataloaders.test, criterion, test_pbar)
+                
+                if self.config.clf_model=='PROBING' and self.config.fx_model!='GE2E':
+                    train_loss, train_acc = self._gpu_probing_train(models, self.clf_dataloaders.train, optimizers, criterion, train_pbar)
+                    val_loss, val_acc = self._gpu_probing_test(models, self.clf_dataloaders.validation, criterion, val_pbar)
+                    test_loss, test_acc = self._gpu_probing_test(models, self.clf_dataloaders.test, criterion, test_pbar)
 
-                epoch_pbar.update(1)
-                self.logger.info('Epoch: %s |   Train Loss: %.3f | Train Acc: %.2f |   Val Loss: %.3f | Val Acc: %.2f |   Test Loss: %.3f | Tes Acc: %.2f' \
-                                %(epoch, train_loss, train_acc, val_loss, val_acc, test_loss, test_acc))
+                    epoch_pbar.update(1)
 
-                if val_acc > best_model.val_acc:
-                    best_model.val_acc = val_acc
-                    best_model.test_acc = test_acc
-                    state = dict(
-                        epoch=epoch,
-                        val_acc=val_acc,
-                        test_acc=test_acc,
-                        model_state=self.clf_model.state_dict(),
-                        optimizer_state=optimizer.state_dict())
-                    torch.save(state,best_model_path)
-                    self.logger.debug(f'Best state saved | Val Acc {val_acc} | Test Acc {test_acc}')
-                    self.no_fmt_log(level='debug')
+                    for layer in range(num_layers):
+                        pretty_space = ' '*(2-len(str(layer+1)))
+                        self.logger.info('Epoch: %s  |  Layer: %s%s  |  Train Loss: %.3f | Train Acc: %.2f  |  Val Loss: %.3f | Val Acc: %.2f  |  Test Loss: %.3f | Tes Acc: %.2f' \
+                                    %(epoch, pretty_space, layer+1, train_loss[layer], train_acc[layer], val_loss[layer], val_acc[layer], test_loss[layer], test_acc[layer]))
+                        if val_acc[layer] > best_model.val_acc[layer]:
+                            best_model.val_acc[layer] = val_acc[layer]
+                            best_model.test_acc[layer] = test_acc[layer]
+                    self.no_fmt_log()                   
+
+                else:
+                    if self.config.extract_mode=='gpu_memory':
+                        train_loss, train_acc = self._gpu_train(self.clf_dataloaders.train, optimizer, criterion, train_pbar)
+                        val_loss, val_acc = self._gpu_test(self.clf_dataloaders.validation, criterion, val_pbar)
+                        test_loss, test_acc = self._gpu_test(self.clf_dataloaders.test, criterion, test_pbar)
+                    elif self.config.extract_mode=='cpu_memory' or self.config.extract_mode=='gpu_disk':
+                        train_loss, train_acc = self._train(self.clf_dataloaders.train, optimizer, criterion, train_pbar)
+                        val_loss, val_acc = self._test(self.clf_dataloaders.validation, criterion, val_pbar)
+                        test_loss, test_acc = self._test(self.clf_dataloaders.test, criterion, test_pbar)
+
+                    epoch_pbar.update(1)
+                    self.logger.info('Epoch: %s  |  Train Loss: %.3f | Train Acc: %.2f  |  Val Loss: %.3f | Val Acc: %.2f  |  Test Loss: %.3f | Tes Acc: %.2f' \
+                                    %(epoch, train_loss, train_acc, val_loss, val_acc, test_loss, test_acc))
+
+                    if val_acc > best_model.val_acc:
+                        best_model.val_acc = val_acc
+                        best_model.test_acc = test_acc
+                        state = dict(
+                            epoch=epoch,
+                            val_acc=val_acc,
+                            test_acc=test_acc,
+                            model_state=self.clf_model.state_dict(),
+                            optimizer_state=optimizer.state_dict())
+                        torch.save(state,best_model_path)
+                        self.logger.debug(f'Best state saved | Val Acc {val_acc} | Test Acc {test_acc}')
+                        self.no_fmt_log(level='debug')
 
                 self.history.train_loss.append(train_loss)
                 self.history.train_acc.append(train_acc)
@@ -496,26 +571,48 @@ class Trainer:
         self.logger.info(f'Time Taken: {epoch_pbar.format_interval(time_taken)}')
         self.no_fmt_log()
 
-        self.logger.info(f'Best Val Acc : {best_model.val_acc} | Best Test Acc : {best_model.test_acc}')
-        self.no_fmt_log()
+        if self.config.clf_model=='PROBING' and self.config.fx_model!='GE2E':
+            
+            for layer in range(num_layers):
+                self.logger.info('Layer: %s  |  Best Val Acc: %.2f  |  Best Test Acc: %.2f' \
+                                    %(layer+1, best_model.val_acc[layer], best_model.test_acc[layer]))
+            self.no_fmt_log()
 
-        # Agg weights
-        if self.config.fx_model != 'GE2E' and self.config.clf_model == 'DENSE':
-            agg_weights = ' '.join([str(weight[0]) for weight in self.clf_model.aggr.state_dict()['weight'][0].detach().cpu().tolist()])
-            self.logger.info(f'Agg. Weights : \n{agg_weights}\n')
-            agg_weight_path = os.path.join(self.history_dir, 'agg_weights.pt')
-            torch.save(agg_weights,agg_weight_path)
+            # Save last state
+            last_state_path = os.path.join(self.weights_dir, 'last_states.pt')
+            states=[]
+            for layer in range(num_layers):
+                
+                state = dict(
+                    epoch=epoch,
+                    val_acc=val_acc[layer],
+                    test_acc=test_acc[layer],
+                    model_state=models[layer].state_dict(),
+                    optimizer_state=optimizers[layer].state_dict())
+                states.append(state)
+            torch.save(states,last_state_path)
+            self.logger.debug(f'Last state saved')
+        else:
+            self.logger.info(f'Best Val Acc : {best_model.val_acc} | Best Test Acc : {best_model.test_acc}')
+            self.no_fmt_log()
 
-        # Save last state
-        last_state_path = os.path.join(self.weights_dir, 'last_state.pt')
-        state = dict(
-            epoch=epoch,
-            val_acc=val_acc,
-            test_acc=test_acc,
-            model_state=self.clf_model.state_dict(),
-            optimizer_state=optimizer.state_dict())
-        torch.save(state,last_state_path)
-        self.logger.debug(f'Last state saved | Val Acc {val_acc} | Test Acc {test_acc}')
+            # Agg weights
+            if self.config.fx_model != 'GE2E' and self.config.clf_model == 'DENSE':
+                agg_weights = ' '.join([str(weight[0]) for weight in self.clf_model.aggr.state_dict()['weight'][0].detach().cpu().tolist()])
+                self.logger.info(f'Agg. Weights : \n{agg_weights}\n')
+                agg_weight_path = os.path.join(self.history_dir, 'agg_weights.pt')
+                torch.save(agg_weights,agg_weight_path)
+
+            # Save last state
+            last_state_path = os.path.join(self.weights_dir, 'last_state.pt')
+            state = dict(
+                epoch=epoch,
+                val_acc=val_acc,
+                test_acc=test_acc,
+                model_state=self.clf_model.state_dict(),
+                optimizer_state=optimizer.state_dict())
+            torch.save(state,last_state_path)
+            self.logger.debug(f'Last state saved | Val Acc {val_acc} | Test Acc {test_acc}')
 
         # Save history
         history_path = os.path.join(self.history_dir, 'history.pt')
@@ -525,7 +622,6 @@ class Trainer:
 
         return self.history
         
-
 
 def get_args():
     """Parse input arguments"""
@@ -577,14 +673,16 @@ if __name__ == '__main__':
     # Test
     if args.run_name =='test':
 
-        args.dataset = 'AESDD'
-        args.fx_model = 'GE2E'
+        args.dataset = 'IEMOCAP'
+        # args.fx_model = 'HUBERT_BASE'
+        args.fx_model = 'WAV2VEC2_LARGE_XLSR300M'
         args.clf_model = 'PROBING'
         args.extract_mode ='gpu_memory'
         args.history_dir = './test/history'
         args.weights_dir = './test/weights'
+        args.log_level='debug'
 
-        args.epochs = 10
+        args.epochs = 2
 
         os.system('rm -rf ./test')
         os.system('mkdir test')

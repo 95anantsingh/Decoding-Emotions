@@ -3,11 +3,9 @@
 import os
 import torch
 import torchaudio
+from models import GE2E_config
 from torch.utils.data import Dataset
-from models.ge2e import CONFIG as GE2E_config
 
-
-GE2E_config = GE2E_config
 
 
 class FeatureExtractorDataset(Dataset):

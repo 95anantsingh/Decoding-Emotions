@@ -25,7 +25,6 @@ class ProbingModel(nn.Module):
         """
         padded_x: (B,T) padded LongTensor
         """
-        # batch_size, n_layers, seq_len, n_features = x.size(0), x.size(1), x.size(2), x.size(3)
         
         if self.fx_model != 'GE2E':
             x = x[:, layer, :, :]
