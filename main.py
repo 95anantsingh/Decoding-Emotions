@@ -56,6 +56,7 @@ class Trainer:
 
         # Setup logger
         log_file = os.path.join(self.history_dir, f'std.log')
+        if os.path.isfile(log_file) : os.system(f'rm {log_file}')
         self.logger, self.no_fmt_logger = get_logger(self.config.run_name, self.config.log_level, log_file)
         self.no_fmt_log = NoFmtLog(self.no_fmt_logger)
 
