@@ -8,7 +8,7 @@ import datetime
 from tqdm import tqdm
 from time import sleep
 from copy import deepcopy
-from models import GE2E, Dense, ProbingModel
+from models import GE2E, Dense, ProbingModel, ProbingDense
 from tqdm.contrib.logging import logging_redirect_tqdm
 from utils import DotDict, NoFmtLog, get_logger, log_levels
 from datasets import FeatureExtractorDataset, GPUDiskModeClassifierDataset, \
@@ -20,18 +20,18 @@ from torch.utils.data import DataLoader
 from torcheval.metrics import MulticlassAccuracy
 
 
-VERSION = '1.3'
+VERSION = '1.4'
 
 FX_MODELS = ['WAV2VEC2_BASE','WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M',
         'HUBERT_BASE', 'HUBERT_LARGE', 
-        'GE2E']
+        ]
         
 FX_MODEL_MAP = {'WAV2VEC2_BASE':'WAV2VEC2_BASE','WAV2VEC2_LARGE':'WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR':'WAV2VEC2_XLSR53','WAV2VEC2_LARGE_XLSR300M':'WAV2VEC2_XLSR_300M',
         'HUBERT_BASE':'HUBERT_BASE', 'HUBERT_LARGE':'HUBERT_LARGE'}
 
-CLF_MODELS = ['DENSE','PROBING']
+CLF_MODELS = ['DENSE','PROBING','PROBING_DENSE']
 
 DATASETS = ['AESDD','CaFE','EmoDB','EMOVO','IEMOCAP','RAVDESS','ShEMO']
 
@@ -46,9 +46,9 @@ class Trainer:
         self.data_dir = os.path.join(self.config.data_dir, 'Audios', self.config.dataset)
         self.feature_dir = os.path.join(self.config.data_dir, 'Features', self.config.dataset, self.config.fx_model)
         self.history_dir = os.path.join(self.config.history_dir, f'v{VERSION}',self.config.dataset,
-            f'{self.config.fx_model}_{self.config.clf_model}', self.config.run_name)
+            f'FX_{self.config.fx_model}_CLF_{self.config.clf_model}', self.config.run_name)
         self.weights_dir = os.path.join(self.config.weights_dir, f'v{VERSION}',self.config.dataset,
-            f'{self.config.fx_model}_{self.config.clf_model}', self.config.run_name)
+            f'FX_{self.config.fx_model}_CLF_{self.config.clf_model}', self.config.run_name)
 
         if self.config.extract_mode == 'disk': os.makedirs(self.feature_dir, exist_ok=True)
         os.makedirs(self.history_dir, exist_ok=True)
@@ -120,8 +120,10 @@ class Trainer:
 
     def _get_classifier(self):
         
-        if self.config.fx_model == 'GE2E' or self.config.clf_model == 'PROBING':
+        if self.config.clf_model == 'PROBING': # orself.config.fx_model == 'GE2E'
             model = ProbingModel(self.config.fx_model, len(self.dataset_info.label_map))
+        elif self.config.clf_model == 'PROBING_DENSE':
+            model = ProbingDense(self.config.fx_model, len(self.dataset_info.label_map), self.device)
         elif self.config.clf_model == 'DENSE':
             model = Dense(self.config.fx_model, len(self.dataset_info.label_map), self.device)
            
@@ -325,6 +327,8 @@ class Trainer:
 
             progress_bar.update(1)
         
+        progress_bar.refresh()
+
         total_loss = total_loss / len(dataloader)
         accuracy = self.acc_metric.compute().item()*100
 
@@ -354,6 +358,8 @@ class Trainer:
             
             progress_bar.update(1)
         
+        progress_bar.refresh()
+
         total_loss = total_loss / len(dataloader)
         accuracy = self.acc_metric.compute().item()*100
     
@@ -372,16 +378,18 @@ class Trainer:
             metric = deepcopy(self.acc_metric)
             acc_metrics.append(metric)
 
+        self.pos_conv = None
+        def custom_hook(module, input_, output):  self.pos_conv = output
+        try: handle = self.fx_model.encoder.transformer.pos_conv_embed.register_forward_hook(custom_hook)
+        except: handle = self.fx_model.model.encoder.transformer.pos_conv_embed.register_forward_hook(custom_hook)
+
         self.fx_model.eval()
         for batch in dataloader:
             batch = tuple(input.to(self.device) for input in batch)
             
             with torch.inference_mode():
-                if self.config.fx_model == 'GE2E':
-                    features = self.fx_model(batch[0])
-                else:
-                    features, _ = self.fx_model.extract_features(batch[0])
-                    features = torch.stack([*features],dim=1)
+                features, _ = self.fx_model.extract_features(batch[0])
+                features = torch.stack([self.pos_conv]+[*features],dim=1)
 
             features = torch.clone(features)
 
@@ -399,10 +407,14 @@ class Trainer:
 
                 progress_bar.update(1)
         
+        progress_bar.refresh()
+
         accuracies = []
         for layer in range(num_layers):
             total_losses[layer] = total_losses[layer] / len(dataloader)
             accuracies.append(acc_metrics[layer].compute().item()*100) 
+
+        handle.remove()
 
         self.acc_metric.reset()
         return total_losses, accuracies
@@ -418,16 +430,18 @@ class Trainer:
             metric = deepcopy(self.acc_metric)
             acc_metrics.append(metric)
 
+        self.pos_conv = None
+        def custom_hook(module, input_, output):  self.pos_conv = output
+        try: handle = self.fx_model.encoder.transformer.pos_conv_embed.register_forward_hook(custom_hook)
+        except: handle = self.fx_model.model.encoder.transformer.pos_conv_embed.register_forward_hook(custom_hook)
+
         self.fx_model.eval()
         for batch in dataloader:
             batch = tuple(input.to(self.device) for input in batch)
             
             with torch.inference_mode():
-                if self.config.fx_model == 'GE2E':
-                    features = self.fx_model(batch[0])
-                else:
-                    features, _ = self.fx_model.extract_features(batch[0])
-                    features = torch.stack([*features],dim=1)
+                features, _ = self.fx_model.extract_features(batch[0])
+                features = torch.stack([self.pos_conv]+[*features],dim=1)
 
                 for layer in range(num_layers):
                     output = models[layer](features,batch[1],layer)
@@ -438,10 +452,14 @@ class Trainer:
 
                     progress_bar.update(1)
         
+        progress_bar.refresh()
+
         accuracies = []
         for layer in range(num_layers):
             total_losses[layer] = total_losses[layer] / len(dataloader)
             accuracies.append(acc_metrics[layer].compute().item()*100) 
+
+        handle.remove()
 
         self.acc_metric.reset()
         return total_losses, accuracies
@@ -477,10 +495,10 @@ class Trainer:
             self.logger.info('Training Classifier')
             self.no_fmt_log()
 
-            if self.config.clf_model=='PROBING' and self.config.fx_model!='GE2E':
+            if self.config.clf_model=='PROBING' or self.config.clf_model=='PROBING_DENSE': #and self.config.fx_model!='GE2E':
                 models, optimizers = [], []
-                if 'BASE' in self.config.fx_model: num_layers = 12
-                elif 'LARGE' in self.config.fx_model:  num_layers = 24
+                if 'BASE' in self.config.fx_model: num_layers = 13
+                elif 'LARGE' in self.config.fx_model:  num_layers = 25
                 for _ in range(num_layers):
                     model = deepcopy(self.clf_model)
                     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -504,11 +522,11 @@ class Trainer:
 
             for epoch in range(1,self.config.epochs+1):
                 
-                if self.config.clf_model=='PROBING' and self.config.fx_model!='GE2E':
+                if self.config.clf_model=='PROBING' or self.config.clf_model=='PROBING_DENSE': #and self.config.fx_model!='GE2E':
                     train_loss, train_acc = self._gpu_probing_train(models, self.clf_dataloaders.train, optimizers, criterion, train_pbar)
                     val_loss, val_acc = self._gpu_probing_test(models, self.clf_dataloaders.validation, criterion, val_pbar)
                     test_loss, test_acc = self._gpu_probing_test(models, self.clf_dataloaders.test, criterion, test_pbar)
-
+                    
                     epoch_pbar.update(1)
 
                     for layer in range(num_layers):
@@ -572,11 +590,12 @@ class Trainer:
         self.logger.info(f'Time Taken: {epoch_pbar.format_interval(time_taken)}')
         self.no_fmt_log()
 
-        if self.config.clf_model=='PROBING' and self.config.fx_model!='GE2E':
+        if self.config.clf_model=='PROBING' or self.config.clf_model=='PROBING_DENSE': #and self.config.fx_model!='GE2E':
             
             for layer in range(num_layers):
-                self.logger.info('Layer: %s  |  Best Val Acc: %.2f  |  Best Test Acc: %.2f' \
-                                    %(layer+1, best_model.val_acc[layer], best_model.test_acc[layer]))
+                pretty_space = ' '*(2-len(str(layer+1)))
+                self.logger.info('Layer: %s%s  |  Best Val Acc: %.2f  |  Best Test Acc: %.2f' \
+                                    %(pretty_space, layer+1, best_model.val_acc[layer], best_model.test_acc[layer]))
             self.no_fmt_log()
 
             # Save last state
@@ -674,16 +693,18 @@ if __name__ == '__main__':
     # Test
     if args.run_name =='test':
 
-        args.dataset = 'IEMOCAP'
+        args.dataset = 'EMOVO'
         # args.fx_model = 'HUBERT_BASE'
-        args.fx_model = 'WAV2VEC2_LARGE_XLSR300M'
-        args.clf_model = 'PROBING'
+        #' ['WAV2VEC2_BASE','WAV2VEC2_LARGE','WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M','HUBERT_BASE','HUBERT_LARGE']
+        args.fx_model = 'HUBERT_LARGE'
+        args.clf_model = 'PROBING_DENSE'
         args.extract_mode ='gpu_memory'
         args.history_dir = './test/history'
         args.weights_dir = './test/weights'
         args.log_level='debug'
+        args.num_workers=3
 
-        args.epochs = 2
+        args.epochs = 1
 
         os.system('rm -rf ./test')
         os.system('mkdir test')
