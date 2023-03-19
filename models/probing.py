@@ -15,20 +15,17 @@ class ProbingModel(nn.Module):
             feature_dim = 768
         elif 'LARGE' in fx_model_name:
             feature_dim = 1024
-        elif self.fx_model == 'GE2E':
-            feature_dim = 256
             
         self.linear1 = nn.Linear(in_features = feature_dim, out_features = hidden_dim)
         self.linear2 = nn.Linear(in_features = hidden_dim, out_features = num_labels)
 
-    def forward(self, x, lengths, layer=0):
+    def forward(self, x, lengths,layer=0):
         """
         padded_x: (B,T) padded LongTensor
         """
-        
-        if self.fx_model != 'GE2E':
-            x = x[:, layer, :, :]
-            x = torch.mean(x, dim = 1)
+     
+        x = x[:, layer, :, :]
+        x = torch.mean(x, dim = 1)
 
         x = F.relu(self.linear1(x))
         logits = self.linear2(x)
