@@ -20,16 +20,18 @@ from torch.utils.data import DataLoader
 from torcheval.metrics import MulticlassAccuracy
 
 
-VERSION = '1.4'
+VERSION = '1.5'
 
 FX_MODELS = ['WAV2VEC2_BASE','WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M',
         'HUBERT_BASE', 'HUBERT_LARGE', 
+        'WAV2VEC2_ASR_LARGE_960H', 'HUBERT_ASR_LARGE'
         ]
         
 FX_MODEL_MAP = {'WAV2VEC2_BASE':'WAV2VEC2_BASE','WAV2VEC2_LARGE':'WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR':'WAV2VEC2_XLSR53','WAV2VEC2_LARGE_XLSR300M':'WAV2VEC2_XLSR_300M',
-        'HUBERT_BASE':'HUBERT_BASE', 'HUBERT_LARGE':'HUBERT_LARGE'}
+        'HUBERT_BASE':'HUBERT_BASE', 'HUBERT_LARGE':'HUBERT_LARGE',
+        'WAV2VEC2_ASR_LARGE_960H':'WAV2VEC2_ASR_LARGE_960H', 'HUBERT_ASR_LARGE':'HUBERT_ASR_LARGE'}
 
 CLF_MODELS = ['DENSE','PROBING','PROBING_DENSE']
 
@@ -695,9 +697,9 @@ if __name__ == '__main__':
 
         args.dataset = 'EMOVO'
         # args.fx_model = 'HUBERT_BASE'
-        #' ['WAV2VEC2_BASE','WAV2VEC2_LARGE','WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M','HUBERT_BASE','HUBERT_LARGE']
-        args.fx_model = 'HUBERT_LARGE'
-        args.clf_model = 'PROBING_DENSE'
+        #' ['WAV2VEC2_BASE','WAV2VEC2_LARGE','WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M','HUBERT_BASE','HUBERT_LARGE','WAV2VEC2_ASR_LARGE_960H', 'HUBERT_ASR_LARGE']
+        args.fx_model = 'WAV2VEC2_ASR_LARGE_960H'
+        args.clf_model = 'DENSE'
         args.extract_mode ='gpu_memory'
         args.history_dir = './test/history'
         args.weights_dir = './test/weights'
