@@ -1,0 +1,870 @@
+
+--------------------------------------------------
+Multilingual SER System v1.5
+--------------------------------------------------
+Run Name      : Run2
+Fx Model      : WAV2VEC2_LARGE
+Clf Model     : CM_PROBING_DENSE
+Extract Mode  : gpu_memory
+Dataset       : IEMOCAP
+Device        : gpu
+Epochs        : 30
+Num Workers   : 3
+Data Dir      : ./data
+History Dir   : ./history
+Weights Dir   : ./weights
+Log Level     : debug
+Purge Cache   : False
+Job Name      : Job9
+Job Id        : 31710840
+GPU           : Quadro RTX 8000
+GPU Count     : 1
+GPU Memory    : 44.49 GB
+
+Timestamp : 2023-04-07 02:47:38.321634
+
+INFO >> Running on CUDA
+
+
+INFO >> Training Classifier
+
+INFO >> Epoch: 1  |  Layer: 01  |  Train Loss: 1.215 | Train Acc: 43.28  |  Val Loss: 1.081 | Val Acc: 52.11  |  Test Loss: 1.219 | Tes Acc: 48.57
+INFO >> Epoch: 1  |  Layer: 02  |  Train Loss: 1.185 | Train Acc: 46.03  |  Val Loss: 1.022 | Val Acc: 53.51  |  Test Loss: 1.192 | Tes Acc: 47.68
+INFO >> Epoch: 1  |  Layer: 03  |  Train Loss: 1.178 | Train Acc: 45.68  |  Val Loss: 1.006 | Val Acc: 54.22  |  Test Loss: 1.176 | Tes Acc: 47.42
+INFO >> Epoch: 1  |  Layer: 04  |  Train Loss: 1.171 | Train Acc: 46.35  |  Val Loss: 0.997 | Val Acc: 54.12  |  Test Loss: 1.169 | Tes Acc: 48.22
+INFO >> Epoch: 1  |  Layer: 05  |  Train Loss: 1.163 | Train Acc: 47.76  |  Val Loss: 1.001 | Val Acc: 54.22  |  Test Loss: 1.190 | Tes Acc: 46.70
+INFO >> Epoch: 1  |  Layer: 06  |  Train Loss: 1.164 | Train Acc: 47.49  |  Val Loss: 0.987 | Val Acc: 53.82  |  Test Loss: 1.172 | Tes Acc: 47.33
+INFO >> Epoch: 1  |  Layer: 07  |  Train Loss: 1.157 | Train Acc: 47.91  |  Val Loss: 0.980 | Val Acc: 54.32  |  Test Loss: 1.144 | Tes Acc: 49.47
+INFO >> Epoch: 1  |  Layer: 08  |  Train Loss: 1.158 | Train Acc: 48.55  |  Val Loss: 0.975 | Val Acc: 54.22  |  Test Loss: 1.154 | Tes Acc: 48.13
+INFO >> Epoch: 1  |  Layer: 09  |  Train Loss: 1.153 | Train Acc: 48.46  |  Val Loss: 0.965 | Val Acc: 54.52  |  Test Loss: 1.143 | Tes Acc: 48.57
+INFO >> Epoch: 1  |  Layer: 10  |  Train Loss: 1.150 | Train Acc: 48.75  |  Val Loss: 0.956 | Val Acc: 54.82  |  Test Loss: 1.133 | Tes Acc: 49.38
+INFO >> Epoch: 1  |  Layer: 11  |  Train Loss: 1.144 | Train Acc: 48.90  |  Val Loss: 0.945 | Val Acc: 55.32  |  Test Loss: 1.124 | Tes Acc: 49.29
+INFO >> Epoch: 1  |  Layer: 12  |  Train Loss: 1.151 | Train Acc: 48.02  |  Val Loss: 0.944 | Val Acc: 54.52  |  Test Loss: 1.116 | Tes Acc: 49.64
+INFO >> Epoch: 1  |  Layer: 13  |  Train Loss: 1.155 | Train Acc: 48.81  |  Val Loss: 0.932 | Val Acc: 56.43  |  Test Loss: 1.112 | Tes Acc: 50.36
+INFO >> Epoch: 1  |  Layer: 14  |  Train Loss: 1.154 | Train Acc: 48.14  |  Val Loss: 0.938 | Val Acc: 55.32  |  Test Loss: 1.114 | Tes Acc: 49.47
+INFO >> Epoch: 1  |  Layer: 15  |  Train Loss: 1.157 | Train Acc: 47.99  |  Val Loss: 0.948 | Val Acc: 56.33  |  Test Loss: 1.128 | Tes Acc: 49.20
+INFO >> Epoch: 1  |  Layer: 16  |  Train Loss: 1.158 | Train Acc: 48.05  |  Val Loss: 0.955 | Val Acc: 54.42  |  Test Loss: 1.118 | Tes Acc: 49.55
+INFO >> Epoch: 1  |  Layer: 17  |  Train Loss: 1.163 | Train Acc: 47.61  |  Val Loss: 0.937 | Val Acc: 56.22  |  Test Loss: 1.091 | Tes Acc: 49.47
+INFO >> Epoch: 1  |  Layer: 18  |  Train Loss: 1.156 | Train Acc: 48.32  |  Val Loss: 0.948 | Val Acc: 55.32  |  Test Loss: 1.109 | Tes Acc: 48.84
+INFO >> Epoch: 1  |  Layer: 19  |  Train Loss: 1.161 | Train Acc: 47.41  |  Val Loss: 0.943 | Val Acc: 54.62  |  Test Loss: 1.103 | Tes Acc: 49.55
+INFO >> Epoch: 1  |  Layer: 20  |  Train Loss: 1.162 | Train Acc: 48.34  |  Val Loss: 0.931 | Val Acc: 56.12  |  Test Loss: 1.087 | Tes Acc: 50.45
+INFO >> Epoch: 1  |  Layer: 21  |  Train Loss: 1.154 | Train Acc: 48.58  |  Val Loss: 0.947 | Val Acc: 55.32  |  Test Loss: 1.116 | Tes Acc: 49.47
+INFO >> Epoch: 1  |  Layer: 22  |  Train Loss: 1.166 | Train Acc: 47.52  |  Val Loss: 0.960 | Val Acc: 55.12  |  Test Loss: 1.111 | Tes Acc: 48.57
+INFO >> Epoch: 1  |  Layer: 23  |  Train Loss: 1.157 | Train Acc: 48.11  |  Val Loss: 0.951 | Val Acc: 54.92  |  Test Loss: 1.107 | Tes Acc: 48.93
+INFO >> Epoch: 1  |  Layer: 24  |  Train Loss: 1.167 | Train Acc: 47.20  |  Val Loss: 0.964 | Val Acc: 54.42  |  Test Loss: 1.119 | Tes Acc: 48.04
+INFO >> Epoch: 1  |  Layer: 25  |  Train Loss: 1.170 | Train Acc: 46.94  |  Val Loss: 0.956 | Val Acc: 54.82  |  Test Loss: 1.097 | Tes Acc: 49.11
+
+INFO >> Epoch: 2  |  Layer: 01  |  Train Loss: 1.093 | Train Acc: 50.81  |  Val Loss: 1.071 | Val Acc: 52.21  |  Test Loss: 1.219 | Tes Acc: 47.06
+INFO >> Epoch: 2  |  Layer: 02  |  Train Loss: 1.024 | Train Acc: 54.76  |  Val Loss: 0.940 | Val Acc: 56.43  |  Test Loss: 1.173 | Tes Acc: 51.07
+INFO >> Epoch: 2  |  Layer: 03  |  Train Loss: 1.008 | Train Acc: 54.97  |  Val Loss: 0.920 | Val Acc: 58.43  |  Test Loss: 1.143 | Tes Acc: 52.50
+INFO >> Epoch: 2  |  Layer: 04  |  Train Loss: 0.986 | Train Acc: 56.55  |  Val Loss: 0.908 | Val Acc: 58.33  |  Test Loss: 1.137 | Tes Acc: 52.23
+INFO >> Epoch: 2  |  Layer: 05  |  Train Loss: 0.978 | Train Acc: 57.63  |  Val Loss: 0.894 | Val Acc: 60.84  |  Test Loss: 1.112 | Tes Acc: 53.74
+INFO >> Epoch: 2  |  Layer: 06  |  Train Loss: 0.959 | Train Acc: 58.63  |  Val Loss: 0.873 | Val Acc: 60.84  |  Test Loss: 1.097 | Tes Acc: 54.37
+INFO >> Epoch: 2  |  Layer: 07  |  Train Loss: 0.955 | Train Acc: 58.22  |  Val Loss: 0.884 | Val Acc: 58.73  |  Test Loss: 1.102 | Tes Acc: 54.99
+INFO >> Epoch: 2  |  Layer: 08  |  Train Loss: 0.943 | Train Acc: 58.78  |  Val Loss: 0.870 | Val Acc: 60.34  |  Test Loss: 1.079 | Tes Acc: 55.26
+INFO >> Epoch: 2  |  Layer: 09  |  Train Loss: 0.936 | Train Acc: 59.36  |  Val Loss: 0.856 | Val Acc: 62.35  |  Test Loss: 1.064 | Tes Acc: 58.02
+INFO >> Epoch: 2  |  Layer: 10  |  Train Loss: 0.917 | Train Acc: 59.83  |  Val Loss: 0.852 | Val Acc: 61.65  |  Test Loss: 1.060 | Tes Acc: 56.86
+INFO >> Epoch: 2  |  Layer: 11  |  Train Loss: 0.915 | Train Acc: 60.65  |  Val Loss: 0.853 | Val Acc: 61.24  |  Test Loss: 1.045 | Tes Acc: 55.53
+INFO >> Epoch: 2  |  Layer: 12  |  Train Loss: 0.917 | Train Acc: 60.27  |  Val Loss: 0.828 | Val Acc: 62.65  |  Test Loss: 1.039 | Tes Acc: 57.93
+INFO >> Epoch: 2  |  Layer: 13  |  Train Loss: 0.907 | Train Acc: 61.47  |  Val Loss: 0.829 | Val Acc: 61.85  |  Test Loss: 1.053 | Tes Acc: 57.75
+INFO >> Epoch: 2  |  Layer: 14  |  Train Loss: 0.904 | Train Acc: 61.44  |  Val Loss: 0.838 | Val Acc: 60.94  |  Test Loss: 1.056 | Tes Acc: 57.04
+INFO >> Epoch: 2  |  Layer: 15  |  Train Loss: 0.909 | Train Acc: 61.03  |  Val Loss: 0.830 | Val Acc: 61.65  |  Test Loss: 1.046 | Tes Acc: 57.58
+INFO >> Epoch: 2  |  Layer: 16  |  Train Loss: 0.919 | Train Acc: 61.27  |  Val Loss: 0.832 | Val Acc: 61.95  |  Test Loss: 1.047 | Tes Acc: 57.66
+INFO >> Epoch: 2  |  Layer: 17  |  Train Loss: 0.911 | Train Acc: 61.47  |  Val Loss: 0.823 | Val Acc: 62.15  |  Test Loss: 1.042 | Tes Acc: 58.65
+INFO >> Epoch: 2  |  Layer: 18  |  Train Loss: 0.912 | Train Acc: 60.86  |  Val Loss: 0.832 | Val Acc: 62.35  |  Test Loss: 1.030 | Tes Acc: 58.29
+INFO >> Epoch: 2  |  Layer: 19  |  Train Loss: 0.910 | Train Acc: 61.44  |  Val Loss: 0.829 | Val Acc: 62.15  |  Test Loss: 1.039 | Tes Acc: 58.47
+INFO >> Epoch: 2  |  Layer: 20  |  Train Loss: 0.908 | Train Acc: 61.24  |  Val Loss: 0.827 | Val Acc: 62.35  |  Test Loss: 1.036 | Tes Acc: 58.65
+INFO >> Epoch: 2  |  Layer: 21  |  Train Loss: 0.910 | Train Acc: 61.03  |  Val Loss: 0.840 | Val Acc: 61.55  |  Test Loss: 1.034 | Tes Acc: 57.84
+INFO >> Epoch: 2  |  Layer: 22  |  Train Loss: 0.921 | Train Acc: 60.62  |  Val Loss: 0.845 | Val Acc: 60.74  |  Test Loss: 1.040 | Tes Acc: 58.02
+INFO >> Epoch: 2  |  Layer: 23  |  Train Loss: 0.921 | Train Acc: 60.71  |  Val Loss: 0.842 | Val Acc: 61.14  |  Test Loss: 1.035 | Tes Acc: 57.58
+INFO >> Epoch: 2  |  Layer: 24  |  Train Loss: 0.924 | Train Acc: 60.56  |  Val Loss: 0.859 | Val Acc: 60.64  |  Test Loss: 1.045 | Tes Acc: 56.60
+INFO >> Epoch: 2  |  Layer: 25  |  Train Loss: 0.926 | Train Acc: 60.21  |  Val Loss: 0.846 | Val Acc: 60.74  |  Test Loss: 1.055 | Tes Acc: 57.66
+
+INFO >> Epoch: 3  |  Layer: 01  |  Train Loss: 1.055 | Train Acc: 52.36  |  Val Loss: 0.963 | Val Acc: 55.52  |  Test Loss: 1.109 | Tes Acc: 54.10
+INFO >> Epoch: 3  |  Layer: 02  |  Train Loss: 0.958 | Train Acc: 59.21  |  Val Loss: 0.887 | Val Acc: 60.84  |  Test Loss: 1.097 | Tes Acc: 58.11
+INFO >> Epoch: 3  |  Layer: 03  |  Train Loss: 0.933 | Train Acc: 60.53  |  Val Loss: 0.873 | Val Acc: 61.45  |  Test Loss: 1.060 | Tes Acc: 58.29
+INFO >> Epoch: 3  |  Layer: 04  |  Train Loss: 0.905 | Train Acc: 61.79  |  Val Loss: 0.851 | Val Acc: 62.55  |  Test Loss: 1.025 | Tes Acc: 59.80
+INFO >> Epoch: 3  |  Layer: 05  |  Train Loss: 0.892 | Train Acc: 62.26  |  Val Loss: 0.849 | Val Acc: 62.85  |  Test Loss: 1.007 | Tes Acc: 61.59
+INFO >> Epoch: 3  |  Layer: 06  |  Train Loss: 0.872 | Train Acc: 63.05  |  Val Loss: 0.846 | Val Acc: 62.55  |  Test Loss: 0.983 | Tes Acc: 61.50
+INFO >> Epoch: 3  |  Layer: 07  |  Train Loss: 0.869 | Train Acc: 63.11  |  Val Loss: 0.825 | Val Acc: 64.36  |  Test Loss: 1.009 | Tes Acc: 62.75
+INFO >> Epoch: 3  |  Layer: 08  |  Train Loss: 0.850 | Train Acc: 64.49  |  Val Loss: 0.829 | Val Acc: 64.16  |  Test Loss: 0.976 | Tes Acc: 63.28
+INFO >> Epoch: 3  |  Layer: 09  |  Train Loss: 0.842 | Train Acc: 64.66  |  Val Loss: 0.820 | Val Acc: 64.96  |  Test Loss: 0.986 | Tes Acc: 64.53
+INFO >> Epoch: 3  |  Layer: 10  |  Train Loss: 0.828 | Train Acc: 65.37  |  Val Loss: 0.814 | Val Acc: 65.26  |  Test Loss: 0.983 | Tes Acc: 64.08
+INFO >> Epoch: 3  |  Layer: 11  |  Train Loss: 0.824 | Train Acc: 66.01  |  Val Loss: 0.793 | Val Acc: 66.16  |  Test Loss: 0.972 | Tes Acc: 65.60
+INFO >> Epoch: 3  |  Layer: 12  |  Train Loss: 0.822 | Train Acc: 65.87  |  Val Loss: 0.791 | Val Acc: 66.16  |  Test Loss: 0.989 | Tes Acc: 64.97
+INFO >> Epoch: 3  |  Layer: 13  |  Train Loss: 0.817 | Train Acc: 66.10  |  Val Loss: 0.774 | Val Acc: 67.37  |  Test Loss: 1.003 | Tes Acc: 65.15
+INFO >> Epoch: 3  |  Layer: 14  |  Train Loss: 0.813 | Train Acc: 66.54  |  Val Loss: 0.770 | Val Acc: 66.57  |  Test Loss: 1.021 | Tes Acc: 63.55
+INFO >> Epoch: 3  |  Layer: 15  |  Train Loss: 0.815 | Train Acc: 66.01  |  Val Loss: 0.773 | Val Acc: 65.96  |  Test Loss: 1.001 | Tes Acc: 64.88
+INFO >> Epoch: 3  |  Layer: 16  |  Train Loss: 0.823 | Train Acc: 65.75  |  Val Loss: 0.769 | Val Acc: 67.87  |  Test Loss: 0.998 | Tes Acc: 64.44
+INFO >> Epoch: 3  |  Layer: 17  |  Train Loss: 0.816 | Train Acc: 66.13  |  Val Loss: 0.769 | Val Acc: 67.27  |  Test Loss: 1.008 | Tes Acc: 64.53
+INFO >> Epoch: 3  |  Layer: 18  |  Train Loss: 0.823 | Train Acc: 65.72  |  Val Loss: 0.775 | Val Acc: 66.97  |  Test Loss: 1.004 | Tes Acc: 64.71
+INFO >> Epoch: 3  |  Layer: 19  |  Train Loss: 0.818 | Train Acc: 66.16  |  Val Loss: 0.776 | Val Acc: 66.77  |  Test Loss: 1.017 | Tes Acc: 64.97
+INFO >> Epoch: 3  |  Layer: 20  |  Train Loss: 0.820 | Train Acc: 66.10  |  Val Loss: 0.769 | Val Acc: 67.57  |  Test Loss: 1.029 | Tes Acc: 63.64
+INFO >> Epoch: 3  |  Layer: 21  |  Train Loss: 0.823 | Train Acc: 65.92  |  Val Loss: 0.772 | Val Acc: 66.97  |  Test Loss: 1.023 | Tes Acc: 64.35
+INFO >> Epoch: 3  |  Layer: 22  |  Train Loss: 0.833 | Train Acc: 65.43  |  Val Loss: 0.777 | Val Acc: 66.87  |  Test Loss: 1.006 | Tes Acc: 63.90
+INFO >> Epoch: 3  |  Layer: 23  |  Train Loss: 0.835 | Train Acc: 65.25  |  Val Loss: 0.772 | Val Acc: 67.57  |  Test Loss: 1.002 | Tes Acc: 64.17
+INFO >> Epoch: 3  |  Layer: 24  |  Train Loss: 0.838 | Train Acc: 64.90  |  Val Loss: 0.781 | Val Acc: 66.57  |  Test Loss: 1.010 | Tes Acc: 63.64
+INFO >> Epoch: 3  |  Layer: 25  |  Train Loss: 0.835 | Train Acc: 65.31  |  Val Loss: 0.782 | Val Acc: 67.07  |  Test Loss: 1.013 | Tes Acc: 63.37
+
+INFO >> Epoch: 4  |  Layer: 01  |  Train Loss: 1.017 | Train Acc: 55.35  |  Val Loss: 0.937 | Val Acc: 57.83  |  Test Loss: 1.236 | Tes Acc: 50.36
+INFO >> Epoch: 4  |  Layer: 02  |  Train Loss: 0.912 | Train Acc: 60.74  |  Val Loss: 0.861 | Val Acc: 62.65  |  Test Loss: 1.142 | Tes Acc: 57.22
+INFO >> Epoch: 4  |  Layer: 03  |  Train Loss: 0.877 | Train Acc: 62.97  |  Val Loss: 0.829 | Val Acc: 63.65  |  Test Loss: 1.083 | Tes Acc: 60.25
+INFO >> Epoch: 4  |  Layer: 04  |  Train Loss: 0.853 | Train Acc: 64.28  |  Val Loss: 0.813 | Val Acc: 65.96  |  Test Loss: 1.053 | Tes Acc: 59.45
+INFO >> Epoch: 4  |  Layer: 05  |  Train Loss: 0.839 | Train Acc: 64.96  |  Val Loss: 0.797 | Val Acc: 66.97  |  Test Loss: 1.015 | Tes Acc: 61.32
+INFO >> Epoch: 4  |  Layer: 06  |  Train Loss: 0.823 | Train Acc: 65.60  |  Val Loss: 0.782 | Val Acc: 66.67  |  Test Loss: 0.989 | Tes Acc: 62.92
+INFO >> Epoch: 4  |  Layer: 07  |  Train Loss: 0.818 | Train Acc: 65.81  |  Val Loss: 0.777 | Val Acc: 67.97  |  Test Loss: 0.993 | Tes Acc: 62.57
+INFO >> Epoch: 4  |  Layer: 08  |  Train Loss: 0.800 | Train Acc: 66.69  |  Val Loss: 0.765 | Val Acc: 68.07  |  Test Loss: 0.973 | Tes Acc: 64.17
+INFO >> Epoch: 4  |  Layer: 09  |  Train Loss: 0.794 | Train Acc: 67.01  |  Val Loss: 0.760 | Val Acc: 68.37  |  Test Loss: 0.976 | Tes Acc: 64.88
+INFO >> Epoch: 4  |  Layer: 10  |  Train Loss: 0.775 | Train Acc: 67.77  |  Val Loss: 0.742 | Val Acc: 68.88  |  Test Loss: 0.992 | Tes Acc: 63.81
+INFO >> Epoch: 4  |  Layer: 11  |  Train Loss: 0.773 | Train Acc: 67.54  |  Val Loss: 0.737 | Val Acc: 68.98  |  Test Loss: 0.980 | Tes Acc: 64.80
+INFO >> Epoch: 4  |  Layer: 12  |  Train Loss: 0.770 | Train Acc: 67.74  |  Val Loss: 0.735 | Val Acc: 70.08  |  Test Loss: 0.988 | Tes Acc: 65.06
+INFO >> Epoch: 4  |  Layer: 13  |  Train Loss: 0.765 | Train Acc: 67.98  |  Val Loss: 0.724 | Val Acc: 69.98  |  Test Loss: 0.971 | Tes Acc: 65.42
+INFO >> Epoch: 4  |  Layer: 14  |  Train Loss: 0.757 | Train Acc: 68.62  |  Val Loss: 0.717 | Val Acc: 70.08  |  Test Loss: 0.988 | Tes Acc: 64.17
+INFO >> Epoch: 4  |  Layer: 15  |  Train Loss: 0.761 | Train Acc: 68.47  |  Val Loss: 0.718 | Val Acc: 70.48  |  Test Loss: 0.983 | Tes Acc: 64.88
+INFO >> Epoch: 4  |  Layer: 16  |  Train Loss: 0.766 | Train Acc: 67.98  |  Val Loss: 0.716 | Val Acc: 70.18  |  Test Loss: 0.982 | Tes Acc: 64.62
+INFO >> Epoch: 4  |  Layer: 17  |  Train Loss: 0.760 | Train Acc: 67.95  |  Val Loss: 0.712 | Val Acc: 70.18  |  Test Loss: 0.987 | Tes Acc: 64.88
+INFO >> Epoch: 4  |  Layer: 18  |  Train Loss: 0.767 | Train Acc: 67.74  |  Val Loss: 0.722 | Val Acc: 69.78  |  Test Loss: 0.979 | Tes Acc: 64.26
+INFO >> Epoch: 4  |  Layer: 19  |  Train Loss: 0.766 | Train Acc: 67.54  |  Val Loss: 0.716 | Val Acc: 69.58  |  Test Loss: 0.985 | Tes Acc: 65.15
+INFO >> Epoch: 4  |  Layer: 20  |  Train Loss: 0.766 | Train Acc: 67.59  |  Val Loss: 0.715 | Val Acc: 70.78  |  Test Loss: 0.975 | Tes Acc: 65.24
+INFO >> Epoch: 4  |  Layer: 21  |  Train Loss: 0.769 | Train Acc: 67.62  |  Val Loss: 0.726 | Val Acc: 69.38  |  Test Loss: 1.012 | Tes Acc: 63.90
+INFO >> Epoch: 4  |  Layer: 22  |  Train Loss: 0.778 | Train Acc: 67.07  |  Val Loss: 0.726 | Val Acc: 69.68  |  Test Loss: 0.995 | Tes Acc: 63.73
+INFO >> Epoch: 4  |  Layer: 23  |  Train Loss: 0.780 | Train Acc: 66.57  |  Val Loss: 0.727 | Val Acc: 69.88  |  Test Loss: 0.973 | Tes Acc: 64.88
+INFO >> Epoch: 4  |  Layer: 24  |  Train Loss: 0.785 | Train Acc: 66.69  |  Val Loss: 0.735 | Val Acc: 69.38  |  Test Loss: 1.011 | Tes Acc: 62.57
+INFO >> Epoch: 4  |  Layer: 25  |  Train Loss: 0.781 | Train Acc: 66.83  |  Val Loss: 0.731 | Val Acc: 69.78  |  Test Loss: 1.010 | Tes Acc: 63.99
+
+INFO >> Epoch: 5  |  Layer: 01  |  Train Loss: 1.002 | Train Acc: 56.05  |  Val Loss: 0.950 | Val Acc: 57.83  |  Test Loss: 1.199 | Tes Acc: 51.78
+INFO >> Epoch: 5  |  Layer: 02  |  Train Loss: 0.878 | Train Acc: 62.70  |  Val Loss: 0.891 | Val Acc: 61.04  |  Test Loss: 1.135 | Tes Acc: 55.53
+INFO >> Epoch: 5  |  Layer: 03  |  Train Loss: 0.838 | Train Acc: 65.05  |  Val Loss: 0.880 | Val Acc: 62.85  |  Test Loss: 1.151 | Tes Acc: 55.79
+INFO >> Epoch: 5  |  Layer: 04  |  Train Loss: 0.809 | Train Acc: 66.28  |  Val Loss: 0.876 | Val Acc: 61.85  |  Test Loss: 1.157 | Tes Acc: 56.24
+INFO >> Epoch: 5  |  Layer: 05  |  Train Loss: 0.795 | Train Acc: 67.13  |  Val Loss: 0.836 | Val Acc: 63.65  |  Test Loss: 1.124 | Tes Acc: 57.22
+INFO >> Epoch: 5  |  Layer: 06  |  Train Loss: 0.780 | Train Acc: 68.12  |  Val Loss: 0.816 | Val Acc: 63.96  |  Test Loss: 1.109 | Tes Acc: 57.58
+INFO >> Epoch: 5  |  Layer: 07  |  Train Loss: 0.771 | Train Acc: 68.33  |  Val Loss: 0.802 | Val Acc: 64.66  |  Test Loss: 1.100 | Tes Acc: 59.80
+INFO >> Epoch: 5  |  Layer: 08  |  Train Loss: 0.758 | Train Acc: 69.35  |  Val Loss: 0.793 | Val Acc: 64.86  |  Test Loss: 1.112 | Tes Acc: 58.56
+INFO >> Epoch: 5  |  Layer: 09  |  Train Loss: 0.753 | Train Acc: 69.29  |  Val Loss: 0.779 | Val Acc: 65.86  |  Test Loss: 1.079 | Tes Acc: 58.91
+INFO >> Epoch: 5  |  Layer: 10  |  Train Loss: 0.734 | Train Acc: 70.11  |  Val Loss: 0.780 | Val Acc: 66.16  |  Test Loss: 1.102 | Tes Acc: 58.73
+INFO >> Epoch: 5  |  Layer: 11  |  Train Loss: 0.730 | Train Acc: 70.26  |  Val Loss: 0.756 | Val Acc: 66.47  |  Test Loss: 1.065 | Tes Acc: 60.96
+INFO >> Epoch: 5  |  Layer: 12  |  Train Loss: 0.728 | Train Acc: 70.17  |  Val Loss: 0.765 | Val Acc: 66.27  |  Test Loss: 1.090 | Tes Acc: 60.61
+INFO >> Epoch: 5  |  Layer: 13  |  Train Loss: 0.723 | Train Acc: 70.29  |  Val Loss: 0.750 | Val Acc: 66.87  |  Test Loss: 1.081 | Tes Acc: 60.78
+INFO >> Epoch: 5  |  Layer: 14  |  Train Loss: 0.717 | Train Acc: 70.96  |  Val Loss: 0.747 | Val Acc: 67.17  |  Test Loss: 1.092 | Tes Acc: 61.14
+INFO >> Epoch: 5  |  Layer: 15  |  Train Loss: 0.718 | Train Acc: 70.88  |  Val Loss: 0.752 | Val Acc: 66.16  |  Test Loss: 1.098 | Tes Acc: 59.89
+INFO >> Epoch: 5  |  Layer: 16  |  Train Loss: 0.719 | Train Acc: 70.88  |  Val Loss: 0.737 | Val Acc: 67.17  |  Test Loss: 1.068 | Tes Acc: 61.14
+INFO >> Epoch: 5  |  Layer: 17  |  Train Loss: 0.714 | Train Acc: 70.91  |  Val Loss: 0.742 | Val Acc: 66.37  |  Test Loss: 1.077 | Tes Acc: 61.05
+INFO >> Epoch: 5  |  Layer: 18  |  Train Loss: 0.721 | Train Acc: 70.20  |  Val Loss: 0.739 | Val Acc: 66.47  |  Test Loss: 1.054 | Tes Acc: 61.32
+INFO >> Epoch: 5  |  Layer: 19  |  Train Loss: 0.721 | Train Acc: 70.61  |  Val Loss: 0.739 | Val Acc: 66.97  |  Test Loss: 1.053 | Tes Acc: 60.61
+INFO >> Epoch: 5  |  Layer: 20  |  Train Loss: 0.721 | Train Acc: 70.38  |  Val Loss: 0.744 | Val Acc: 66.57  |  Test Loss: 1.080 | Tes Acc: 61.14
+INFO >> Epoch: 5  |  Layer: 21  |  Train Loss: 0.723 | Train Acc: 70.14  |  Val Loss: 0.755 | Val Acc: 65.96  |  Test Loss: 1.085 | Tes Acc: 59.54
+INFO >> Epoch: 5  |  Layer: 22  |  Train Loss: 0.732 | Train Acc: 69.00  |  Val Loss: 0.733 | Val Acc: 67.87  |  Test Loss: 1.031 | Tes Acc: 61.41
+INFO >> Epoch: 5  |  Layer: 23  |  Train Loss: 0.735 | Train Acc: 69.24  |  Val Loss: 0.745 | Val Acc: 66.37  |  Test Loss: 1.051 | Tes Acc: 61.32
+INFO >> Epoch: 5  |  Layer: 24  |  Train Loss: 0.739 | Train Acc: 69.06  |  Val Loss: 0.740 | Val Acc: 66.87  |  Test Loss: 1.040 | Tes Acc: 61.05
+INFO >> Epoch: 5  |  Layer: 25  |  Train Loss: 0.735 | Train Acc: 69.67  |  Val Loss: 0.754 | Val Acc: 66.57  |  Test Loss: 1.082 | Tes Acc: 60.25
+
+INFO >> Epoch: 6  |  Layer: 01  |  Train Loss: 0.993 | Train Acc: 57.60  |  Val Loss: 0.979 | Val Acc: 55.02  |  Test Loss: 1.272 | Tes Acc: 46.88
+INFO >> Epoch: 6  |  Layer: 02  |  Train Loss: 0.848 | Train Acc: 63.93  |  Val Loss: 0.816 | Val Acc: 64.36  |  Test Loss: 1.058 | Tes Acc: 58.47
+INFO >> Epoch: 6  |  Layer: 03  |  Train Loss: 0.811 | Train Acc: 65.81  |  Val Loss: 0.788 | Val Acc: 65.66  |  Test Loss: 1.009 | Tes Acc: 61.94
+INFO >> Epoch: 6  |  Layer: 04  |  Train Loss: 0.785 | Train Acc: 67.39  |  Val Loss: 0.767 | Val Acc: 66.97  |  Test Loss: 0.991 | Tes Acc: 62.66
+INFO >> Epoch: 6  |  Layer: 05  |  Train Loss: 0.765 | Train Acc: 67.95  |  Val Loss: 0.759 | Val Acc: 67.57  |  Test Loss: 0.981 | Tes Acc: 63.90
+INFO >> Epoch: 6  |  Layer: 06  |  Train Loss: 0.749 | Train Acc: 69.18  |  Val Loss: 0.740 | Val Acc: 69.38  |  Test Loss: 0.973 | Tes Acc: 63.81
+INFO >> Epoch: 6  |  Layer: 07  |  Train Loss: 0.740 | Train Acc: 69.44  |  Val Loss: 0.732 | Val Acc: 69.38  |  Test Loss: 0.972 | Tes Acc: 63.10
+INFO >> Epoch: 6  |  Layer: 08  |  Train Loss: 0.724 | Train Acc: 70.38  |  Val Loss: 0.727 | Val Acc: 69.28  |  Test Loss: 0.985 | Tes Acc: 63.73
+INFO >> Epoch: 6  |  Layer: 09  |  Train Loss: 0.720 | Train Acc: 70.50  |  Val Loss: 0.726 | Val Acc: 69.18  |  Test Loss: 0.991 | Tes Acc: 64.53
+INFO >> Epoch: 6  |  Layer: 10  |  Train Loss: 0.698 | Train Acc: 71.55  |  Val Loss: 0.712 | Val Acc: 70.48  |  Test Loss: 1.002 | Tes Acc: 64.80
+INFO >> Epoch: 6  |  Layer: 11  |  Train Loss: 0.695 | Train Acc: 71.46  |  Val Loss: 0.723 | Val Acc: 70.28  |  Test Loss: 1.022 | Tes Acc: 65.24
+INFO >> Epoch: 6  |  Layer: 12  |  Train Loss: 0.694 | Train Acc: 71.73  |  Val Loss: 0.722 | Val Acc: 70.18  |  Test Loss: 1.039 | Tes Acc: 65.51
+INFO >> Epoch: 6  |  Layer: 13  |  Train Loss: 0.682 | Train Acc: 72.08  |  Val Loss: 0.701 | Val Acc: 70.98  |  Test Loss: 1.024 | Tes Acc: 64.97
+INFO >> Epoch: 6  |  Layer: 14  |  Train Loss: 0.678 | Train Acc: 72.08  |  Val Loss: 0.696 | Val Acc: 70.28  |  Test Loss: 1.024 | Tes Acc: 66.76
+INFO >> Epoch: 6  |  Layer: 15  |  Train Loss: 0.680 | Train Acc: 72.14  |  Val Loss: 0.699 | Val Acc: 70.38  |  Test Loss: 1.031 | Tes Acc: 65.24
+INFO >> Epoch: 6  |  Layer: 16  |  Train Loss: 0.682 | Train Acc: 71.99  |  Val Loss: 0.696 | Val Acc: 71.18  |  Test Loss: 1.022 | Tes Acc: 66.22
+INFO >> Epoch: 6  |  Layer: 17  |  Train Loss: 0.679 | Train Acc: 71.99  |  Val Loss: 0.688 | Val Acc: 71.69  |  Test Loss: 1.016 | Tes Acc: 66.76
+INFO >> Epoch: 6  |  Layer: 18  |  Train Loss: 0.692 | Train Acc: 71.49  |  Val Loss: 0.713 | Val Acc: 69.78  |  Test Loss: 1.033 | Tes Acc: 65.78
+INFO >> Epoch: 6  |  Layer: 19  |  Train Loss: 0.688 | Train Acc: 71.81  |  Val Loss: 0.704 | Val Acc: 70.18  |  Test Loss: 1.026 | Tes Acc: 66.22
+INFO >> Epoch: 6  |  Layer: 20  |  Train Loss: 0.685 | Train Acc: 72.31  |  Val Loss: 0.684 | Val Acc: 72.39  |  Test Loss: 0.995 | Tes Acc: 66.84
+INFO >> Epoch: 6  |  Layer: 21  |  Train Loss: 0.691 | Train Acc: 71.99  |  Val Loss: 0.699 | Val Acc: 71.79  |  Test Loss: 1.000 | Tes Acc: 66.40
+INFO >> Epoch: 6  |  Layer: 22  |  Train Loss: 0.701 | Train Acc: 71.26  |  Val Loss: 0.719 | Val Acc: 69.78  |  Test Loss: 1.029 | Tes Acc: 65.15
+INFO >> Epoch: 6  |  Layer: 23  |  Train Loss: 0.703 | Train Acc: 71.46  |  Val Loss: 0.711 | Val Acc: 70.28  |  Test Loss: 1.024 | Tes Acc: 64.71
+INFO >> Epoch: 6  |  Layer: 24  |  Train Loss: 0.707 | Train Acc: 70.96  |  Val Loss: 0.718 | Val Acc: 70.18  |  Test Loss: 1.024 | Tes Acc: 64.97
+INFO >> Epoch: 6  |  Layer: 25  |  Train Loss: 0.703 | Train Acc: 71.05  |  Val Loss: 0.692 | Val Acc: 71.79  |  Test Loss: 0.996 | Tes Acc: 65.69
+
+INFO >> Epoch: 7  |  Layer: 01  |  Train Loss: 0.961 | Train Acc: 59.10  |  Val Loss: 0.919 | Val Acc: 59.14  |  Test Loss: 1.107 | Tes Acc: 54.63
+INFO >> Epoch: 7  |  Layer: 02  |  Train Loss: 0.823 | Train Acc: 66.25  |  Val Loss: 0.851 | Val Acc: 63.45  |  Test Loss: 1.047 | Tes Acc: 59.18
+INFO >> Epoch: 7  |  Layer: 03  |  Train Loss: 0.782 | Train Acc: 67.89  |  Val Loss: 0.836 | Val Acc: 64.16  |  Test Loss: 0.969 | Tes Acc: 63.19
+INFO >> Epoch: 7  |  Layer: 04  |  Train Loss: 0.757 | Train Acc: 69.32  |  Val Loss: 0.808 | Val Acc: 66.06  |  Test Loss: 0.944 | Tes Acc: 65.24
+INFO >> Epoch: 7  |  Layer: 05  |  Train Loss: 0.738 | Train Acc: 70.26  |  Val Loss: 0.788 | Val Acc: 66.27  |  Test Loss: 0.912 | Tes Acc: 66.76
+INFO >> Epoch: 7  |  Layer: 06  |  Train Loss: 0.721 | Train Acc: 70.64  |  Val Loss: 0.784 | Val Acc: 65.46  |  Test Loss: 0.888 | Tes Acc: 67.11
+INFO >> Epoch: 7  |  Layer: 07  |  Train Loss: 0.714 | Train Acc: 70.67  |  Val Loss: 0.778 | Val Acc: 66.27  |  Test Loss: 0.890 | Tes Acc: 67.91
+INFO >> Epoch: 7  |  Layer: 08  |  Train Loss: 0.700 | Train Acc: 71.11  |  Val Loss: 0.762 | Val Acc: 66.87  |  Test Loss: 0.877 | Tes Acc: 67.02
+INFO >> Epoch: 7  |  Layer: 09  |  Train Loss: 0.696 | Train Acc: 71.78  |  Val Loss: 0.756 | Val Acc: 67.27  |  Test Loss: 0.883 | Tes Acc: 67.56
+INFO >> Epoch: 7  |  Layer: 10  |  Train Loss: 0.672 | Train Acc: 72.66  |  Val Loss: 0.731 | Val Acc: 69.38  |  Test Loss: 0.879 | Tes Acc: 68.27
+INFO >> Epoch: 7  |  Layer: 11  |  Train Loss: 0.670 | Train Acc: 72.58  |  Val Loss: 0.722 | Val Acc: 69.88  |  Test Loss: 0.875 | Tes Acc: 68.18
+INFO >> Epoch: 7  |  Layer: 12  |  Train Loss: 0.669 | Train Acc: 72.63  |  Val Loss: 0.719 | Val Acc: 69.58  |  Test Loss: 0.890 | Tes Acc: 67.38
+INFO >> Epoch: 7  |  Layer: 13  |  Train Loss: 0.660 | Train Acc: 73.01  |  Val Loss: 0.715 | Val Acc: 68.67  |  Test Loss: 0.891 | Tes Acc: 67.20
+INFO >> Epoch: 7  |  Layer: 14  |  Train Loss: 0.652 | Train Acc: 73.37  |  Val Loss: 0.704 | Val Acc: 68.88  |  Test Loss: 0.905 | Tes Acc: 67.65
+INFO >> Epoch: 7  |  Layer: 15  |  Train Loss: 0.651 | Train Acc: 73.40  |  Val Loss: 0.705 | Val Acc: 69.08  |  Test Loss: 0.887 | Tes Acc: 68.00
+INFO >> Epoch: 7  |  Layer: 16  |  Train Loss: 0.653 | Train Acc: 73.72  |  Val Loss: 0.697 | Val Acc: 69.68  |  Test Loss: 0.872 | Tes Acc: 68.45
+INFO >> Epoch: 7  |  Layer: 17  |  Train Loss: 0.650 | Train Acc: 73.81  |  Val Loss: 0.707 | Val Acc: 69.68  |  Test Loss: 0.876 | Tes Acc: 68.63
+INFO >> Epoch: 7  |  Layer: 18  |  Train Loss: 0.660 | Train Acc: 73.31  |  Val Loss: 0.694 | Val Acc: 70.78  |  Test Loss: 0.873 | Tes Acc: 68.72
+INFO >> Epoch: 7  |  Layer: 19  |  Train Loss: 0.656 | Train Acc: 73.25  |  Val Loss: 0.706 | Val Acc: 69.88  |  Test Loss: 0.869 | Tes Acc: 68.09
+INFO >> Epoch: 7  |  Layer: 20  |  Train Loss: 0.658 | Train Acc: 73.13  |  Val Loss: 0.721 | Val Acc: 68.98  |  Test Loss: 0.891 | Tes Acc: 67.38
+INFO >> Epoch: 7  |  Layer: 21  |  Train Loss: 0.661 | Train Acc: 73.04  |  Val Loss: 0.712 | Val Acc: 69.28  |  Test Loss: 0.870 | Tes Acc: 68.00
+INFO >> Epoch: 7  |  Layer: 22  |  Train Loss: 0.671 | Train Acc: 72.63  |  Val Loss: 0.707 | Val Acc: 70.08  |  Test Loss: 0.876 | Tes Acc: 68.18
+INFO >> Epoch: 7  |  Layer: 23  |  Train Loss: 0.671 | Train Acc: 72.58  |  Val Loss: 0.708 | Val Acc: 69.88  |  Test Loss: 0.859 | Tes Acc: 68.45
+INFO >> Epoch: 7  |  Layer: 24  |  Train Loss: 0.675 | Train Acc: 72.28  |  Val Loss: 0.715 | Val Acc: 69.18  |  Test Loss: 0.864 | Tes Acc: 68.45
+INFO >> Epoch: 7  |  Layer: 25  |  Train Loss: 0.670 | Train Acc: 72.66  |  Val Loss: 0.722 | Val Acc: 69.98  |  Test Loss: 0.875 | Tes Acc: 67.29
+
+INFO >> Epoch: 8  |  Layer: 01  |  Train Loss: 0.936 | Train Acc: 59.92  |  Val Loss: 0.955 | Val Acc: 55.92  |  Test Loss: 1.138 | Tes Acc: 54.28
+INFO >> Epoch: 8  |  Layer: 02  |  Train Loss: 0.786 | Train Acc: 67.59  |  Val Loss: 0.819 | Val Acc: 64.36  |  Test Loss: 1.017 | Tes Acc: 63.55
+INFO >> Epoch: 8  |  Layer: 03  |  Train Loss: 0.744 | Train Acc: 69.47  |  Val Loss: 0.794 | Val Acc: 65.86  |  Test Loss: 0.972 | Tes Acc: 64.80
+INFO >> Epoch: 8  |  Layer: 04  |  Train Loss: 0.722 | Train Acc: 69.85  |  Val Loss: 0.768 | Val Acc: 67.97  |  Test Loss: 0.967 | Tes Acc: 64.71
+INFO >> Epoch: 8  |  Layer: 05  |  Train Loss: 0.703 | Train Acc: 70.70  |  Val Loss: 0.759 | Val Acc: 68.27  |  Test Loss: 0.961 | Tes Acc: 64.88
+INFO >> Epoch: 8  |  Layer: 06  |  Train Loss: 0.685 | Train Acc: 71.64  |  Val Loss: 0.742 | Val Acc: 68.57  |  Test Loss: 0.959 | Tes Acc: 65.69
+INFO >> Epoch: 8  |  Layer: 07  |  Train Loss: 0.678 | Train Acc: 72.08  |  Val Loss: 0.725 | Val Acc: 68.98  |  Test Loss: 0.957 | Tes Acc: 66.04
+INFO >> Epoch: 8  |  Layer: 08  |  Train Loss: 0.666 | Train Acc: 72.60  |  Val Loss: 0.719 | Val Acc: 68.98  |  Test Loss: 0.955 | Tes Acc: 66.13
+INFO >> Epoch: 8  |  Layer: 09  |  Train Loss: 0.666 | Train Acc: 72.22  |  Val Loss: 0.705 | Val Acc: 69.58  |  Test Loss: 0.968 | Tes Acc: 66.04
+INFO >> Epoch: 8  |  Layer: 10  |  Train Loss: 0.638 | Train Acc: 73.92  |  Val Loss: 0.693 | Val Acc: 71.99  |  Test Loss: 0.959 | Tes Acc: 66.49
+INFO >> Epoch: 8  |  Layer: 11  |  Train Loss: 0.636 | Train Acc: 74.01  |  Val Loss: 0.690 | Val Acc: 71.89  |  Test Loss: 0.948 | Tes Acc: 67.11
+INFO >> Epoch: 8  |  Layer: 12  |  Train Loss: 0.634 | Train Acc: 74.04  |  Val Loss: 0.682 | Val Acc: 72.49  |  Test Loss: 0.954 | Tes Acc: 67.56
+INFO >> Epoch: 8  |  Layer: 13  |  Train Loss: 0.626 | Train Acc: 74.54  |  Val Loss: 0.676 | Val Acc: 72.19  |  Test Loss: 0.943 | Tes Acc: 67.83
+INFO >> Epoch: 8  |  Layer: 14  |  Train Loss: 0.619 | Train Acc: 74.66  |  Val Loss: 0.667 | Val Acc: 72.69  |  Test Loss: 0.965 | Tes Acc: 66.04
+INFO >> Epoch: 8  |  Layer: 15  |  Train Loss: 0.617 | Train Acc: 74.71  |  Val Loss: 0.677 | Val Acc: 72.79  |  Test Loss: 0.944 | Tes Acc: 66.04
+INFO >> Epoch: 8  |  Layer: 16  |  Train Loss: 0.619 | Train Acc: 74.83  |  Val Loss: 0.668 | Val Acc: 72.49  |  Test Loss: 0.939 | Tes Acc: 66.13
+INFO >> Epoch: 8  |  Layer: 17  |  Train Loss: 0.614 | Train Acc: 75.12  |  Val Loss: 0.673 | Val Acc: 72.29  |  Test Loss: 0.940 | Tes Acc: 67.02
+INFO >> Epoch: 8  |  Layer: 18  |  Train Loss: 0.628 | Train Acc: 74.42  |  Val Loss: 0.680 | Val Acc: 71.89  |  Test Loss: 0.949 | Tes Acc: 66.58
+INFO >> Epoch: 8  |  Layer: 19  |  Train Loss: 0.624 | Train Acc: 74.98  |  Val Loss: 0.692 | Val Acc: 71.08  |  Test Loss: 0.933 | Tes Acc: 66.04
+INFO >> Epoch: 8  |  Layer: 20  |  Train Loss: 0.625 | Train Acc: 74.74  |  Val Loss: 0.679 | Val Acc: 70.98  |  Test Loss: 0.939 | Tes Acc: 66.13
+INFO >> Epoch: 8  |  Layer: 21  |  Train Loss: 0.627 | Train Acc: 75.10  |  Val Loss: 0.674 | Val Acc: 71.59  |  Test Loss: 0.931 | Tes Acc: 67.29
+INFO >> Epoch: 8  |  Layer: 22  |  Train Loss: 0.639 | Train Acc: 74.16  |  Val Loss: 0.685 | Val Acc: 71.99  |  Test Loss: 0.932 | Tes Acc: 67.38
+INFO >> Epoch: 8  |  Layer: 23  |  Train Loss: 0.636 | Train Acc: 73.72  |  Val Loss: 0.677 | Val Acc: 71.49  |  Test Loss: 0.919 | Tes Acc: 67.29
+INFO >> Epoch: 8  |  Layer: 24  |  Train Loss: 0.644 | Train Acc: 73.40  |  Val Loss: 0.686 | Val Acc: 71.89  |  Test Loss: 0.926 | Tes Acc: 67.38
+INFO >> Epoch: 8  |  Layer: 25  |  Train Loss: 0.639 | Train Acc: 74.04  |  Val Loss: 0.680 | Val Acc: 72.09  |  Test Loss: 0.931 | Tes Acc: 67.20
+
+INFO >> Epoch: 9  |  Layer: 01  |  Train Loss: 0.932 | Train Acc: 59.48  |  Val Loss: 0.900 | Val Acc: 60.04  |  Test Loss: 1.122 | Tes Acc: 54.46
+INFO >> Epoch: 9  |  Layer: 02  |  Train Loss: 0.776 | Train Acc: 67.48  |  Val Loss: 0.837 | Val Acc: 63.86  |  Test Loss: 0.998 | Tes Acc: 63.28
+INFO >> Epoch: 9  |  Layer: 03  |  Train Loss: 0.727 | Train Acc: 70.35  |  Val Loss: 0.821 | Val Acc: 64.16  |  Test Loss: 0.957 | Tes Acc: 64.97
+INFO >> Epoch: 9  |  Layer: 04  |  Train Loss: 0.708 | Train Acc: 71.29  |  Val Loss: 0.781 | Val Acc: 66.47  |  Test Loss: 0.945 | Tes Acc: 66.04
+INFO >> Epoch: 9  |  Layer: 05  |  Train Loss: 0.687 | Train Acc: 72.11  |  Val Loss: 0.759 | Val Acc: 67.97  |  Test Loss: 0.949 | Tes Acc: 65.86
+INFO >> Epoch: 9  |  Layer: 06  |  Train Loss: 0.666 | Train Acc: 72.49  |  Val Loss: 0.736 | Val Acc: 68.47  |  Test Loss: 0.960 | Tes Acc: 65.42
+INFO >> Epoch: 9  |  Layer: 07  |  Train Loss: 0.660 | Train Acc: 72.58  |  Val Loss: 0.724 | Val Acc: 68.78  |  Test Loss: 0.963 | Tes Acc: 65.69
+INFO >> Epoch: 9  |  Layer: 08  |  Train Loss: 0.647 | Train Acc: 72.84  |  Val Loss: 0.717 | Val Acc: 68.57  |  Test Loss: 0.970 | Tes Acc: 65.42
+INFO >> Epoch: 9  |  Layer: 09  |  Train Loss: 0.648 | Train Acc: 73.22  |  Val Loss: 0.711 | Val Acc: 68.98  |  Test Loss: 0.972 | Tes Acc: 65.69
+INFO >> Epoch: 9  |  Layer: 10  |  Train Loss: 0.613 | Train Acc: 74.60  |  Val Loss: 0.697 | Val Acc: 69.48  |  Test Loss: 0.961 | Tes Acc: 66.76
+INFO >> Epoch: 9  |  Layer: 11  |  Train Loss: 0.611 | Train Acc: 74.71  |  Val Loss: 0.697 | Val Acc: 69.58  |  Test Loss: 0.978 | Tes Acc: 66.40
+INFO >> Epoch: 9  |  Layer: 12  |  Train Loss: 0.612 | Train Acc: 74.07  |  Val Loss: 0.699 | Val Acc: 71.18  |  Test Loss: 0.982 | Tes Acc: 67.11
+INFO >> Epoch: 9  |  Layer: 13  |  Train Loss: 0.600 | Train Acc: 75.15  |  Val Loss: 0.686 | Val Acc: 71.39  |  Test Loss: 0.987 | Tes Acc: 67.11
+INFO >> Epoch: 9  |  Layer: 14  |  Train Loss: 0.591 | Train Acc: 75.12  |  Val Loss: 0.685 | Val Acc: 71.29  |  Test Loss: 1.003 | Tes Acc: 66.58
+INFO >> Epoch: 9  |  Layer: 15  |  Train Loss: 0.587 | Train Acc: 75.24  |  Val Loss: 0.681 | Val Acc: 70.98  |  Test Loss: 0.983 | Tes Acc: 66.67
+INFO >> Epoch: 9  |  Layer: 16  |  Train Loss: 0.591 | Train Acc: 74.86  |  Val Loss: 0.679 | Val Acc: 72.39  |  Test Loss: 0.982 | Tes Acc: 66.49
+INFO >> Epoch: 9  |  Layer: 17  |  Train Loss: 0.587 | Train Acc: 75.56  |  Val Loss: 0.681 | Val Acc: 71.49  |  Test Loss: 0.972 | Tes Acc: 66.76
+INFO >> Epoch: 9  |  Layer: 18  |  Train Loss: 0.604 | Train Acc: 74.71  |  Val Loss: 0.680 | Val Acc: 71.89  |  Test Loss: 0.998 | Tes Acc: 65.60
+INFO >> Epoch: 9  |  Layer: 19  |  Train Loss: 0.597 | Train Acc: 74.69  |  Val Loss: 0.688 | Val Acc: 71.18  |  Test Loss: 0.992 | Tes Acc: 65.78
+INFO >> Epoch: 9  |  Layer: 20  |  Train Loss: 0.597 | Train Acc: 74.71  |  Val Loss: 0.686 | Val Acc: 71.29  |  Test Loss: 0.988 | Tes Acc: 66.13
+INFO >> Epoch: 9  |  Layer: 21  |  Train Loss: 0.601 | Train Acc: 75.12  |  Val Loss: 0.684 | Val Acc: 71.49  |  Test Loss: 0.990 | Tes Acc: 66.40
+INFO >> Epoch: 9  |  Layer: 22  |  Train Loss: 0.614 | Train Acc: 74.57  |  Val Loss: 0.683 | Val Acc: 71.18  |  Test Loss: 0.991 | Tes Acc: 65.95
+INFO >> Epoch: 9  |  Layer: 23  |  Train Loss: 0.608 | Train Acc: 74.57  |  Val Loss: 0.676 | Val Acc: 71.69  |  Test Loss: 0.954 | Tes Acc: 67.29
+INFO >> Epoch: 9  |  Layer: 24  |  Train Loss: 0.621 | Train Acc: 73.89  |  Val Loss: 0.688 | Val Acc: 71.08  |  Test Loss: 0.984 | Tes Acc: 65.95
+INFO >> Epoch: 9  |  Layer: 25  |  Train Loss: 0.616 | Train Acc: 74.16  |  Val Loss: 0.687 | Val Acc: 70.98  |  Test Loss: 0.986 | Tes Acc: 66.31
+
+INFO >> Epoch: 10  |  Layer: 01  |  Train Loss: 0.915 | Train Acc: 61.73  |  Val Loss: 0.863 | Val Acc: 62.75  |  Test Loss: 1.168 | Tes Acc: 55.53
+INFO >> Epoch: 10  |  Layer: 02  |  Train Loss: 0.740 | Train Acc: 69.79  |  Val Loss: 0.808 | Val Acc: 64.36  |  Test Loss: 1.109 | Tes Acc: 59.63
+INFO >> Epoch: 10  |  Layer: 03  |  Train Loss: 0.695 | Train Acc: 71.52  |  Val Loss: 0.790 | Val Acc: 66.67  |  Test Loss: 1.045 | Tes Acc: 62.66
+INFO >> Epoch: 10  |  Layer: 04  |  Train Loss: 0.680 | Train Acc: 72.19  |  Val Loss: 0.787 | Val Acc: 66.77  |  Test Loss: 1.004 | Tes Acc: 65.06
+INFO >> Epoch: 10  |  Layer: 05  |  Train Loss: 0.658 | Train Acc: 73.40  |  Val Loss: 0.758 | Val Acc: 67.77  |  Test Loss: 0.975 | Tes Acc: 64.53
+INFO >> Epoch: 10  |  Layer: 06  |  Train Loss: 0.637 | Train Acc: 74.48  |  Val Loss: 0.742 | Val Acc: 67.17  |  Test Loss: 0.981 | Tes Acc: 64.26
+INFO >> Epoch: 10  |  Layer: 07  |  Train Loss: 0.632 | Train Acc: 74.30  |  Val Loss: 0.736 | Val Acc: 66.97  |  Test Loss: 0.929 | Tes Acc: 67.02
+INFO >> Epoch: 10  |  Layer: 08  |  Train Loss: 0.622 | Train Acc: 74.27  |  Val Loss: 0.733 | Val Acc: 68.27  |  Test Loss: 0.934 | Tes Acc: 67.29
+INFO >> Epoch: 10  |  Layer: 09  |  Train Loss: 0.622 | Train Acc: 74.22  |  Val Loss: 0.721 | Val Acc: 68.37  |  Test Loss: 0.918 | Tes Acc: 68.45
+INFO >> Epoch: 10  |  Layer: 10  |  Train Loss: 0.582 | Train Acc: 76.62  |  Val Loss: 0.692 | Val Acc: 70.88  |  Test Loss: 0.952 | Tes Acc: 68.72
+INFO >> Epoch: 10  |  Layer: 11  |  Train Loss: 0.585 | Train Acc: 76.18  |  Val Loss: 0.692 | Val Acc: 69.88  |  Test Loss: 0.957 | Tes Acc: 68.45
+INFO >> Epoch: 10  |  Layer: 12  |  Train Loss: 0.587 | Train Acc: 75.97  |  Val Loss: 0.697 | Val Acc: 69.88  |  Test Loss: 0.936 | Tes Acc: 68.36
+INFO >> Epoch: 10  |  Layer: 13  |  Train Loss: 0.574 | Train Acc: 76.12  |  Val Loss: 0.682 | Val Acc: 70.38  |  Test Loss: 0.930 | Tes Acc: 68.09
+INFO >> Epoch: 10  |  Layer: 14  |  Train Loss: 0.566 | Train Acc: 76.59  |  Val Loss: 0.672 | Val Acc: 70.58  |  Test Loss: 0.942 | Tes Acc: 68.45
+INFO >> Epoch: 10  |  Layer: 15  |  Train Loss: 0.561 | Train Acc: 76.91  |  Val Loss: 0.679 | Val Acc: 71.18  |  Test Loss: 0.930 | Tes Acc: 68.72
+INFO >> Epoch: 10  |  Layer: 16  |  Train Loss: 0.563 | Train Acc: 76.85  |  Val Loss: 0.668 | Val Acc: 71.79  |  Test Loss: 0.915 | Tes Acc: 68.09
+INFO >> Epoch: 10  |  Layer: 17  |  Train Loss: 0.561 | Train Acc: 76.38  |  Val Loss: 0.669 | Val Acc: 71.99  |  Test Loss: 0.921 | Tes Acc: 68.54
+INFO >> Epoch: 10  |  Layer: 18  |  Train Loss: 0.579 | Train Acc: 76.47  |  Val Loss: 0.663 | Val Acc: 72.69  |  Test Loss: 0.921 | Tes Acc: 67.65
+INFO >> Epoch: 10  |  Layer: 19  |  Train Loss: 0.572 | Train Acc: 76.82  |  Val Loss: 0.676 | Val Acc: 71.89  |  Test Loss: 0.913 | Tes Acc: 67.20
+INFO >> Epoch: 10  |  Layer: 20  |  Train Loss: 0.572 | Train Acc: 76.71  |  Val Loss: 0.670 | Val Acc: 71.69  |  Test Loss: 0.914 | Tes Acc: 67.83
+INFO >> Epoch: 10  |  Layer: 21  |  Train Loss: 0.572 | Train Acc: 76.82  |  Val Loss: 0.667 | Val Acc: 71.59  |  Test Loss: 0.917 | Tes Acc: 68.18
+INFO >> Epoch: 10  |  Layer: 22  |  Train Loss: 0.585 | Train Acc: 76.30  |  Val Loss: 0.664 | Val Acc: 71.79  |  Test Loss: 0.912 | Tes Acc: 68.27
+INFO >> Epoch: 10  |  Layer: 23  |  Train Loss: 0.582 | Train Acc: 76.27  |  Val Loss: 0.663 | Val Acc: 71.49  |  Test Loss: 0.881 | Tes Acc: 67.74
+INFO >> Epoch: 10  |  Layer: 24  |  Train Loss: 0.593 | Train Acc: 76.06  |  Val Loss: 0.668 | Val Acc: 71.49  |  Test Loss: 0.913 | Tes Acc: 67.83
+INFO >> Epoch: 10  |  Layer: 25  |  Train Loss: 0.584 | Train Acc: 76.38  |  Val Loss: 0.658 | Val Acc: 71.39  |  Test Loss: 0.915 | Tes Acc: 66.93
+
+INFO >> Epoch: 11  |  Layer: 01  |  Train Loss: 0.906 | Train Acc: 61.38  |  Val Loss: 0.855 | Val Acc: 62.85  |  Test Loss: 1.242 | Tes Acc: 54.81
+INFO >> Epoch: 11  |  Layer: 02  |  Train Loss: 0.735 | Train Acc: 69.35  |  Val Loss: 0.803 | Val Acc: 66.16  |  Test Loss: 1.062 | Tes Acc: 62.21
+INFO >> Epoch: 11  |  Layer: 03  |  Train Loss: 0.692 | Train Acc: 71.11  |  Val Loss: 0.767 | Val Acc: 68.88  |  Test Loss: 1.041 | Tes Acc: 63.81
+INFO >> Epoch: 11  |  Layer: 04  |  Train Loss: 0.671 | Train Acc: 72.05  |  Val Loss: 0.745 | Val Acc: 69.18  |  Test Loss: 1.023 | Tes Acc: 64.71
+INFO >> Epoch: 11  |  Layer: 05  |  Train Loss: 0.650 | Train Acc: 72.72  |  Val Loss: 0.732 | Val Acc: 69.28  |  Test Loss: 1.023 | Tes Acc: 64.26
+INFO >> Epoch: 11  |  Layer: 06  |  Train Loss: 0.621 | Train Acc: 74.13  |  Val Loss: 0.701 | Val Acc: 69.98  |  Test Loss: 1.017 | Tes Acc: 64.71
+INFO >> Epoch: 11  |  Layer: 07  |  Train Loss: 0.614 | Train Acc: 74.39  |  Val Loss: 0.686 | Val Acc: 71.49  |  Test Loss: 0.998 | Tes Acc: 65.24
+INFO >> Epoch: 11  |  Layer: 08  |  Train Loss: 0.599 | Train Acc: 74.83  |  Val Loss: 0.681 | Val Acc: 71.89  |  Test Loss: 1.033 | Tes Acc: 65.42
+INFO >> Epoch: 11  |  Layer: 09  |  Train Loss: 0.600 | Train Acc: 74.89  |  Val Loss: 0.677 | Val Acc: 72.29  |  Test Loss: 1.013 | Tes Acc: 66.49
+INFO >> Epoch: 11  |  Layer: 10  |  Train Loss: 0.560 | Train Acc: 77.09  |  Val Loss: 0.655 | Val Acc: 74.00  |  Test Loss: 1.031 | Tes Acc: 67.83
+INFO >> Epoch: 11  |  Layer: 11  |  Train Loss: 0.563 | Train Acc: 77.23  |  Val Loss: 0.655 | Val Acc: 72.89  |  Test Loss: 1.040 | Tes Acc: 67.38
+INFO >> Epoch: 11  |  Layer: 12  |  Train Loss: 0.561 | Train Acc: 77.20  |  Val Loss: 0.655 | Val Acc: 72.69  |  Test Loss: 1.057 | Tes Acc: 67.91
+INFO >> Epoch: 11  |  Layer: 13  |  Train Loss: 0.545 | Train Acc: 77.82  |  Val Loss: 0.643 | Val Acc: 73.59  |  Test Loss: 1.040 | Tes Acc: 68.18
+INFO >> Epoch: 11  |  Layer: 14  |  Train Loss: 0.539 | Train Acc: 78.03  |  Val Loss: 0.642 | Val Acc: 73.90  |  Test Loss: 1.058 | Tes Acc: 67.20
+INFO >> Epoch: 11  |  Layer: 15  |  Train Loss: 0.535 | Train Acc: 78.32  |  Val Loss: 0.648 | Val Acc: 74.30  |  Test Loss: 1.061 | Tes Acc: 66.93
+INFO >> Epoch: 11  |  Layer: 16  |  Train Loss: 0.537 | Train Acc: 78.20  |  Val Loss: 0.641 | Val Acc: 74.50  |  Test Loss: 1.038 | Tes Acc: 67.29
+INFO >> Epoch: 11  |  Layer: 17  |  Train Loss: 0.534 | Train Acc: 78.11  |  Val Loss: 0.652 | Val Acc: 74.70  |  Test Loss: 1.057 | Tes Acc: 66.93
+INFO >> Epoch: 11  |  Layer: 18  |  Train Loss: 0.550 | Train Acc: 77.50  |  Val Loss: 0.661 | Val Acc: 74.50  |  Test Loss: 1.055 | Tes Acc: 66.40
+INFO >> Epoch: 11  |  Layer: 19  |  Train Loss: 0.544 | Train Acc: 77.53  |  Val Loss: 0.665 | Val Acc: 73.90  |  Test Loss: 1.063 | Tes Acc: 66.58
+INFO >> Epoch: 11  |  Layer: 20  |  Train Loss: 0.547 | Train Acc: 77.64  |  Val Loss: 0.657 | Val Acc: 75.20  |  Test Loss: 1.055 | Tes Acc: 66.49
+INFO >> Epoch: 11  |  Layer: 21  |  Train Loss: 0.546 | Train Acc: 77.61  |  Val Loss: 0.666 | Val Acc: 74.30  |  Test Loss: 1.077 | Tes Acc: 65.95
+INFO >> Epoch: 11  |  Layer: 22  |  Train Loss: 0.559 | Train Acc: 77.12  |  Val Loss: 0.660 | Val Acc: 74.00  |  Test Loss: 1.039 | Tes Acc: 66.31
+INFO >> Epoch: 11  |  Layer: 23  |  Train Loss: 0.553 | Train Acc: 77.18  |  Val Loss: 0.656 | Val Acc: 74.10  |  Test Loss: 1.031 | Tes Acc: 66.67
+INFO >> Epoch: 11  |  Layer: 24  |  Train Loss: 0.567 | Train Acc: 76.65  |  Val Loss: 0.661 | Val Acc: 74.20  |  Test Loss: 1.044 | Tes Acc: 66.22
+INFO >> Epoch: 11  |  Layer: 25  |  Train Loss: 0.562 | Train Acc: 77.38  |  Val Loss: 0.654 | Val Acc: 74.30  |  Test Loss: 1.045 | Tes Acc: 66.04
+
+INFO >> Epoch: 12  |  Layer: 01  |  Train Loss: 0.897 | Train Acc: 62.44  |  Val Loss: 0.855 | Val Acc: 61.95  |  Test Loss: 1.079 | Tes Acc: 58.73
+INFO >> Epoch: 12  |  Layer: 02  |  Train Loss: 0.712 | Train Acc: 70.93  |  Val Loss: 0.780 | Val Acc: 65.86  |  Test Loss: 1.008 | Tes Acc: 63.90
+INFO >> Epoch: 12  |  Layer: 03  |  Train Loss: 0.669 | Train Acc: 72.69  |  Val Loss: 0.735 | Val Acc: 69.18  |  Test Loss: 0.987 | Tes Acc: 64.97
+INFO >> Epoch: 12  |  Layer: 04  |  Train Loss: 0.652 | Train Acc: 73.48  |  Val Loss: 0.729 | Val Acc: 68.57  |  Test Loss: 0.945 | Tes Acc: 66.04
+INFO >> Epoch: 12  |  Layer: 05  |  Train Loss: 0.629 | Train Acc: 74.60  |  Val Loss: 0.705 | Val Acc: 69.38  |  Test Loss: 0.937 | Tes Acc: 66.58
+INFO >> Epoch: 12  |  Layer: 06  |  Train Loss: 0.598 | Train Acc: 75.68  |  Val Loss: 0.683 | Val Acc: 69.78  |  Test Loss: 0.919 | Tes Acc: 67.56
+INFO >> Epoch: 12  |  Layer: 07  |  Train Loss: 0.587 | Train Acc: 76.36  |  Val Loss: 0.677 | Val Acc: 69.48  |  Test Loss: 0.919 | Tes Acc: 67.02
+INFO >> Epoch: 12  |  Layer: 08  |  Train Loss: 0.573 | Train Acc: 76.65  |  Val Loss: 0.660 | Val Acc: 70.68  |  Test Loss: 0.950 | Tes Acc: 67.11
+INFO >> Epoch: 12  |  Layer: 09  |  Train Loss: 0.575 | Train Acc: 76.97  |  Val Loss: 0.659 | Val Acc: 71.69  |  Test Loss: 0.950 | Tes Acc: 67.29
+INFO >> Epoch: 12  |  Layer: 10  |  Train Loss: 0.529 | Train Acc: 78.93  |  Val Loss: 0.640 | Val Acc: 72.99  |  Test Loss: 0.957 | Tes Acc: 68.81
+INFO >> Epoch: 12  |  Layer: 11  |  Train Loss: 0.536 | Train Acc: 78.93  |  Val Loss: 0.638 | Val Acc: 73.29  |  Test Loss: 0.982 | Tes Acc: 68.18
+INFO >> Epoch: 12  |  Layer: 12  |  Train Loss: 0.537 | Train Acc: 78.41  |  Val Loss: 0.637 | Val Acc: 72.59  |  Test Loss: 0.977 | Tes Acc: 68.18
+INFO >> Epoch: 12  |  Layer: 13  |  Train Loss: 0.519 | Train Acc: 78.87  |  Val Loss: 0.623 | Val Acc: 74.00  |  Test Loss: 0.958 | Tes Acc: 69.79
+INFO >> Epoch: 12  |  Layer: 14  |  Train Loss: 0.512 | Train Acc: 79.43  |  Val Loss: 0.620 | Val Acc: 74.20  |  Test Loss: 0.984 | Tes Acc: 68.63
+INFO >> Epoch: 12  |  Layer: 15  |  Train Loss: 0.505 | Train Acc: 79.64  |  Val Loss: 0.618 | Val Acc: 75.20  |  Test Loss: 0.978 | Tes Acc: 68.89
+INFO >> Epoch: 12  |  Layer: 16  |  Train Loss: 0.509 | Train Acc: 79.20  |  Val Loss: 0.620 | Val Acc: 75.50  |  Test Loss: 0.952 | Tes Acc: 69.07
+INFO >> Epoch: 12  |  Layer: 17  |  Train Loss: 0.507 | Train Acc: 79.02  |  Val Loss: 0.620 | Val Acc: 75.10  |  Test Loss: 0.968 | Tes Acc: 69.25
+INFO >> Epoch: 12  |  Layer: 18  |  Train Loss: 0.525 | Train Acc: 78.55  |  Val Loss: 0.626 | Val Acc: 74.50  |  Test Loss: 0.939 | Tes Acc: 69.16
+INFO >> Epoch: 12  |  Layer: 19  |  Train Loss: 0.517 | Train Acc: 79.31  |  Val Loss: 0.625 | Val Acc: 74.80  |  Test Loss: 0.958 | Tes Acc: 68.72
+INFO >> Epoch: 12  |  Layer: 20  |  Train Loss: 0.521 | Train Acc: 79.02  |  Val Loss: 0.623 | Val Acc: 74.30  |  Test Loss: 0.939 | Tes Acc: 68.18
+INFO >> Epoch: 12  |  Layer: 21  |  Train Loss: 0.518 | Train Acc: 79.17  |  Val Loss: 0.618 | Val Acc: 75.10  |  Test Loss: 0.951 | Tes Acc: 68.98
+INFO >> Epoch: 12  |  Layer: 22  |  Train Loss: 0.537 | Train Acc: 77.88  |  Val Loss: 0.632 | Val Acc: 75.20  |  Test Loss: 0.937 | Tes Acc: 68.54
+INFO >> Epoch: 12  |  Layer: 23  |  Train Loss: 0.533 | Train Acc: 78.08  |  Val Loss: 0.608 | Val Acc: 75.60  |  Test Loss: 0.901 | Tes Acc: 69.16
+INFO >> Epoch: 12  |  Layer: 24  |  Train Loss: 0.545 | Train Acc: 78.00  |  Val Loss: 0.625 | Val Acc: 74.00  |  Test Loss: 0.926 | Tes Acc: 67.83
+INFO >> Epoch: 12  |  Layer: 25  |  Train Loss: 0.533 | Train Acc: 78.49  |  Val Loss: 0.611 | Val Acc: 75.40  |  Test Loss: 0.936 | Tes Acc: 68.54
+
+INFO >> Epoch: 13  |  Layer: 01  |  Train Loss: 0.876 | Train Acc: 64.14  |  Val Loss: 0.869 | Val Acc: 61.55  |  Test Loss: 1.179 | Tes Acc: 56.51
+INFO >> Epoch: 13  |  Layer: 02  |  Train Loss: 0.696 | Train Acc: 71.58  |  Val Loss: 0.798 | Val Acc: 65.56  |  Test Loss: 1.105 | Tes Acc: 61.14
+INFO >> Epoch: 13  |  Layer: 03  |  Train Loss: 0.653 | Train Acc: 73.28  |  Val Loss: 0.771 | Val Acc: 66.87  |  Test Loss: 1.026 | Tes Acc: 63.28
+INFO >> Epoch: 13  |  Layer: 04  |  Train Loss: 0.638 | Train Acc: 74.16  |  Val Loss: 0.760 | Val Acc: 67.87  |  Test Loss: 1.028 | Tes Acc: 62.83
+INFO >> Epoch: 13  |  Layer: 05  |  Train Loss: 0.611 | Train Acc: 75.27  |  Val Loss: 0.751 | Val Acc: 68.17  |  Test Loss: 0.989 | Tes Acc: 64.53
+INFO >> Epoch: 13  |  Layer: 06  |  Train Loss: 0.573 | Train Acc: 76.30  |  Val Loss: 0.735 | Val Acc: 69.08  |  Test Loss: 0.990 | Tes Acc: 66.22
+INFO >> Epoch: 13  |  Layer: 07  |  Train Loss: 0.567 | Train Acc: 77.03  |  Val Loss: 0.734 | Val Acc: 68.88  |  Test Loss: 1.002 | Tes Acc: 67.11
+INFO >> Epoch: 13  |  Layer: 08  |  Train Loss: 0.554 | Train Acc: 77.20  |  Val Loss: 0.716 | Val Acc: 69.48  |  Test Loss: 1.000 | Tes Acc: 66.76
+INFO >> Epoch: 13  |  Layer: 09  |  Train Loss: 0.558 | Train Acc: 76.47  |  Val Loss: 0.726 | Val Acc: 69.98  |  Test Loss: 1.025 | Tes Acc: 67.20
+INFO >> Epoch: 13  |  Layer: 10  |  Train Loss: 0.511 | Train Acc: 79.02  |  Val Loss: 0.744 | Val Acc: 70.98  |  Test Loss: 1.049 | Tes Acc: 67.65
+INFO >> Epoch: 13  |  Layer: 11  |  Train Loss: 0.514 | Train Acc: 78.61  |  Val Loss: 0.728 | Val Acc: 71.29  |  Test Loss: 1.049 | Tes Acc: 68.27
+INFO >> Epoch: 13  |  Layer: 12  |  Train Loss: 0.515 | Train Acc: 78.64  |  Val Loss: 0.725 | Val Acc: 70.88  |  Test Loss: 1.065 | Tes Acc: 68.63
+INFO >> Epoch: 13  |  Layer: 13  |  Train Loss: 0.495 | Train Acc: 79.37  |  Val Loss: 0.720 | Val Acc: 70.18  |  Test Loss: 1.079 | Tes Acc: 67.91
+INFO >> Epoch: 13  |  Layer: 14  |  Train Loss: 0.490 | Train Acc: 80.02  |  Val Loss: 0.712 | Val Acc: 71.08  |  Test Loss: 1.082 | Tes Acc: 68.36
+INFO >> Epoch: 13  |  Layer: 15  |  Train Loss: 0.485 | Train Acc: 80.11  |  Val Loss: 0.703 | Val Acc: 71.99  |  Test Loss: 1.067 | Tes Acc: 67.29
+INFO >> Epoch: 13  |  Layer: 16  |  Train Loss: 0.488 | Train Acc: 80.43  |  Val Loss: 0.697 | Val Acc: 71.08  |  Test Loss: 1.047 | Tes Acc: 67.38
+INFO >> Epoch: 13  |  Layer: 17  |  Train Loss: 0.482 | Train Acc: 80.37  |  Val Loss: 0.700 | Val Acc: 71.99  |  Test Loss: 1.055 | Tes Acc: 67.56
+INFO >> Epoch: 13  |  Layer: 18  |  Train Loss: 0.503 | Train Acc: 79.64  |  Val Loss: 0.691 | Val Acc: 72.29  |  Test Loss: 1.058 | Tes Acc: 67.74
+INFO >> Epoch: 13  |  Layer: 19  |  Train Loss: 0.496 | Train Acc: 79.90  |  Val Loss: 0.685 | Val Acc: 72.79  |  Test Loss: 1.045 | Tes Acc: 67.38
+INFO >> Epoch: 13  |  Layer: 20  |  Train Loss: 0.499 | Train Acc: 79.78  |  Val Loss: 0.691 | Val Acc: 72.79  |  Test Loss: 1.042 | Tes Acc: 67.20
+INFO >> Epoch: 13  |  Layer: 21  |  Train Loss: 0.498 | Train Acc: 80.02  |  Val Loss: 0.694 | Val Acc: 72.89  |  Test Loss: 1.060 | Tes Acc: 67.20
+INFO >> Epoch: 13  |  Layer: 22  |  Train Loss: 0.515 | Train Acc: 79.11  |  Val Loss: 0.707 | Val Acc: 72.29  |  Test Loss: 1.065 | Tes Acc: 66.49
+INFO >> Epoch: 13  |  Layer: 23  |  Train Loss: 0.504 | Train Acc: 79.70  |  Val Loss: 0.689 | Val Acc: 72.89  |  Test Loss: 1.004 | Tes Acc: 67.65
+INFO >> Epoch: 13  |  Layer: 24  |  Train Loss: 0.522 | Train Acc: 78.73  |  Val Loss: 0.682 | Val Acc: 72.69  |  Test Loss: 1.044 | Tes Acc: 67.20
+INFO >> Epoch: 13  |  Layer: 25  |  Train Loss: 0.513 | Train Acc: 79.49  |  Val Loss: 0.684 | Val Acc: 72.69  |  Test Loss: 1.054 | Tes Acc: 66.58
+
+INFO >> Epoch: 14  |  Layer: 01  |  Train Loss: 0.880 | Train Acc: 62.82  |  Val Loss: 0.867 | Val Acc: 60.34  |  Test Loss: 1.092 | Tes Acc: 59.27
+INFO >> Epoch: 14  |  Layer: 02  |  Train Loss: 0.678 | Train Acc: 72.63  |  Val Loss: 0.799 | Val Acc: 66.67  |  Test Loss: 1.135 | Tes Acc: 59.89
+INFO >> Epoch: 14  |  Layer: 03  |  Train Loss: 0.635 | Train Acc: 74.10  |  Val Loss: 0.771 | Val Acc: 68.07  |  Test Loss: 1.114 | Tes Acc: 60.07
+INFO >> Epoch: 14  |  Layer: 04  |  Train Loss: 0.616 | Train Acc: 74.57  |  Val Loss: 0.786 | Val Acc: 66.47  |  Test Loss: 1.150 | Tes Acc: 59.63
+INFO >> Epoch: 14  |  Layer: 05  |  Train Loss: 0.589 | Train Acc: 75.83  |  Val Loss: 0.777 | Val Acc: 66.67  |  Test Loss: 1.139 | Tes Acc: 58.82
+INFO >> Epoch: 14  |  Layer: 06  |  Train Loss: 0.552 | Train Acc: 77.44  |  Val Loss: 0.741 | Val Acc: 69.58  |  Test Loss: 1.142 | Tes Acc: 61.41
+INFO >> Epoch: 14  |  Layer: 07  |  Train Loss: 0.547 | Train Acc: 77.73  |  Val Loss: 0.779 | Val Acc: 67.57  |  Test Loss: 1.192 | Tes Acc: 59.63
+INFO >> Epoch: 14  |  Layer: 08  |  Train Loss: 0.537 | Train Acc: 78.05  |  Val Loss: 0.744 | Val Acc: 70.38  |  Test Loss: 1.196 | Tes Acc: 59.89
+INFO >> Epoch: 14  |  Layer: 09  |  Train Loss: 0.540 | Train Acc: 78.38  |  Val Loss: 0.759 | Val Acc: 69.48  |  Test Loss: 1.199 | Tes Acc: 60.87
+INFO >> Epoch: 14  |  Layer: 10  |  Train Loss: 0.492 | Train Acc: 80.43  |  Val Loss: 0.759 | Val Acc: 70.28  |  Test Loss: 1.275 | Tes Acc: 61.94
+INFO >> Epoch: 14  |  Layer: 11  |  Train Loss: 0.495 | Train Acc: 79.81  |  Val Loss: 0.731 | Val Acc: 71.08  |  Test Loss: 1.224 | Tes Acc: 62.03
+INFO >> Epoch: 14  |  Layer: 12  |  Train Loss: 0.493 | Train Acc: 80.25  |  Val Loss: 0.747 | Val Acc: 70.88  |  Test Loss: 1.266 | Tes Acc: 61.50
+INFO >> Epoch: 14  |  Layer: 13  |  Train Loss: 0.472 | Train Acc: 81.28  |  Val Loss: 0.726 | Val Acc: 71.49  |  Test Loss: 1.249 | Tes Acc: 62.57
+INFO >> Epoch: 14  |  Layer: 14  |  Train Loss: 0.461 | Train Acc: 81.45  |  Val Loss: 0.730 | Val Acc: 71.49  |  Test Loss: 1.277 | Tes Acc: 63.10
+INFO >> Epoch: 14  |  Layer: 15  |  Train Loss: 0.454 | Train Acc: 81.83  |  Val Loss: 0.711 | Val Acc: 71.89  |  Test Loss: 1.230 | Tes Acc: 62.92
+INFO >> Epoch: 14  |  Layer: 16  |  Train Loss: 0.460 | Train Acc: 81.80  |  Val Loss: 0.703 | Val Acc: 72.29  |  Test Loss: 1.207 | Tes Acc: 62.12
+INFO >> Epoch: 14  |  Layer: 17  |  Train Loss: 0.452 | Train Acc: 81.75  |  Val Loss: 0.715 | Val Acc: 71.99  |  Test Loss: 1.220 | Tes Acc: 63.10
+INFO >> Epoch: 14  |  Layer: 18  |  Train Loss: 0.470 | Train Acc: 80.81  |  Val Loss: 0.717 | Val Acc: 71.69  |  Test Loss: 1.209 | Tes Acc: 62.92
+INFO >> Epoch: 14  |  Layer: 19  |  Train Loss: 0.465 | Train Acc: 81.22  |  Val Loss: 0.694 | Val Acc: 73.09  |  Test Loss: 1.162 | Tes Acc: 64.26
+INFO >> Epoch: 14  |  Layer: 20  |  Train Loss: 0.467 | Train Acc: 80.81  |  Val Loss: 0.702 | Val Acc: 72.49  |  Test Loss: 1.179 | Tes Acc: 63.64
+INFO >> Epoch: 14  |  Layer: 21  |  Train Loss: 0.465 | Train Acc: 80.96  |  Val Loss: 0.713 | Val Acc: 72.59  |  Test Loss: 1.204 | Tes Acc: 63.64
+INFO >> Epoch: 14  |  Layer: 22  |  Train Loss: 0.483 | Train Acc: 80.40  |  Val Loss: 0.692 | Val Acc: 72.79  |  Test Loss: 1.136 | Tes Acc: 64.53
+INFO >> Epoch: 14  |  Layer: 23  |  Train Loss: 0.472 | Train Acc: 80.75  |  Val Loss: 0.716 | Val Acc: 71.39  |  Test Loss: 1.169 | Tes Acc: 63.10
+INFO >> Epoch: 14  |  Layer: 24  |  Train Loss: 0.490 | Train Acc: 79.75  |  Val Loss: 0.703 | Val Acc: 72.09  |  Test Loss: 1.180 | Tes Acc: 63.46
+INFO >> Epoch: 14  |  Layer: 25  |  Train Loss: 0.481 | Train Acc: 80.34  |  Val Loss: 0.694 | Val Acc: 72.49  |  Test Loss: 1.177 | Tes Acc: 63.28
+
+INFO >> Epoch: 15  |  Layer: 01  |  Train Loss: 0.849 | Train Acc: 64.23  |  Val Loss: 0.866 | Val Acc: 63.35  |  Test Loss: 1.241 | Tes Acc: 54.81
+INFO >> Epoch: 15  |  Layer: 02  |  Train Loss: 0.640 | Train Acc: 73.45  |  Val Loss: 0.839 | Val Acc: 64.86  |  Test Loss: 1.236 | Tes Acc: 58.82
+INFO >> Epoch: 15  |  Layer: 03  |  Train Loss: 0.600 | Train Acc: 75.30  |  Val Loss: 0.848 | Val Acc: 64.96  |  Test Loss: 1.237 | Tes Acc: 58.91
+INFO >> Epoch: 15  |  Layer: 04  |  Train Loss: 0.587 | Train Acc: 75.77  |  Val Loss: 0.814 | Val Acc: 65.36  |  Test Loss: 1.181 | Tes Acc: 60.96
+INFO >> Epoch: 15  |  Layer: 05  |  Train Loss: 0.562 | Train Acc: 77.50  |  Val Loss: 0.819 | Val Acc: 66.27  |  Test Loss: 1.171 | Tes Acc: 61.94
+INFO >> Epoch: 15  |  Layer: 06  |  Train Loss: 0.529 | Train Acc: 78.85  |  Val Loss: 0.801 | Val Acc: 66.67  |  Test Loss: 1.189 | Tes Acc: 62.57
+INFO >> Epoch: 15  |  Layer: 07  |  Train Loss: 0.526 | Train Acc: 78.73  |  Val Loss: 0.773 | Val Acc: 68.27  |  Test Loss: 1.175 | Tes Acc: 63.01
+INFO >> Epoch: 15  |  Layer: 08  |  Train Loss: 0.516 | Train Acc: 78.61  |  Val Loss: 0.765 | Val Acc: 67.37  |  Test Loss: 1.224 | Tes Acc: 61.94
+INFO >> Epoch: 15  |  Layer: 09  |  Train Loss: 0.520 | Train Acc: 78.90  |  Val Loss: 0.769 | Val Acc: 67.07  |  Test Loss: 1.182 | Tes Acc: 64.35
+INFO >> Epoch: 15  |  Layer: 10  |  Train Loss: 0.470 | Train Acc: 80.78  |  Val Loss: 0.739 | Val Acc: 69.28  |  Test Loss: 1.208 | Tes Acc: 64.44
+INFO >> Epoch: 15  |  Layer: 11  |  Train Loss: 0.472 | Train Acc: 80.34  |  Val Loss: 0.755 | Val Acc: 68.88  |  Test Loss: 1.232 | Tes Acc: 63.46
+INFO >> Epoch: 15  |  Layer: 12  |  Train Loss: 0.469 | Train Acc: 81.42  |  Val Loss: 0.742 | Val Acc: 69.98  |  Test Loss: 1.207 | Tes Acc: 65.42
+INFO >> Epoch: 15  |  Layer: 13  |  Train Loss: 0.443 | Train Acc: 82.89  |  Val Loss: 0.722 | Val Acc: 71.39  |  Test Loss: 1.184 | Tes Acc: 65.86
+INFO >> Epoch: 15  |  Layer: 14  |  Train Loss: 0.433 | Train Acc: 82.71  |  Val Loss: 0.708 | Val Acc: 71.99  |  Test Loss: 1.186 | Tes Acc: 67.11
+INFO >> Epoch: 15  |  Layer: 15  |  Train Loss: 0.424 | Train Acc: 83.53  |  Val Loss: 0.718 | Val Acc: 71.29  |  Test Loss: 1.173 | Tes Acc: 67.38
+INFO >> Epoch: 15  |  Layer: 16  |  Train Loss: 0.428 | Train Acc: 83.04  |  Val Loss: 0.707 | Val Acc: 72.99  |  Test Loss: 1.144 | Tes Acc: 66.76
+INFO >> Epoch: 15  |  Layer: 17  |  Train Loss: 0.423 | Train Acc: 82.92  |  Val Loss: 0.707 | Val Acc: 72.99  |  Test Loss: 1.133 | Tes Acc: 67.20
+INFO >> Epoch: 15  |  Layer: 18  |  Train Loss: 0.445 | Train Acc: 82.27  |  Val Loss: 0.701 | Val Acc: 72.89  |  Test Loss: 1.126 | Tes Acc: 65.86
+INFO >> Epoch: 15  |  Layer: 19  |  Train Loss: 0.429 | Train Acc: 82.57  |  Val Loss: 0.707 | Val Acc: 73.29  |  Test Loss: 1.137 | Tes Acc: 65.78
+INFO >> Epoch: 15  |  Layer: 20  |  Train Loss: 0.438 | Train Acc: 82.42  |  Val Loss: 0.706 | Val Acc: 74.10  |  Test Loss: 1.124 | Tes Acc: 65.95
+INFO >> Epoch: 15  |  Layer: 21  |  Train Loss: 0.438 | Train Acc: 82.19  |  Val Loss: 0.697 | Val Acc: 74.00  |  Test Loss: 1.152 | Tes Acc: 66.58
+INFO >> Epoch: 15  |  Layer: 22  |  Train Loss: 0.456 | Train Acc: 81.37  |  Val Loss: 0.687 | Val Acc: 73.69  |  Test Loss: 1.104 | Tes Acc: 66.76
+INFO >> Epoch: 15  |  Layer: 23  |  Train Loss: 0.446 | Train Acc: 82.27  |  Val Loss: 0.692 | Val Acc: 73.69  |  Test Loss: 1.088 | Tes Acc: 66.76
+INFO >> Epoch: 15  |  Layer: 24  |  Train Loss: 0.468 | Train Acc: 81.31  |  Val Loss: 0.696 | Val Acc: 73.19  |  Test Loss: 1.123 | Tes Acc: 66.22
+INFO >> Epoch: 15  |  Layer: 25  |  Train Loss: 0.454 | Train Acc: 81.80  |  Val Loss: 0.670 | Val Acc: 73.80  |  Test Loss: 1.105 | Tes Acc: 66.67
+
+INFO >> Epoch: 16  |  Layer: 01  |  Train Loss: 0.837 | Train Acc: 65.60  |  Val Loss: 0.875 | Val Acc: 61.04  |  Test Loss: 1.135 | Tes Acc: 58.29
+INFO >> Epoch: 16  |  Layer: 02  |  Train Loss: 0.621 | Train Acc: 74.22  |  Val Loss: 0.823 | Val Acc: 63.35  |  Test Loss: 1.098 | Tes Acc: 61.14
+INFO >> Epoch: 16  |  Layer: 03  |  Train Loss: 0.576 | Train Acc: 76.59  |  Val Loss: 0.776 | Val Acc: 67.07  |  Test Loss: 1.049 | Tes Acc: 64.08
+INFO >> Epoch: 16  |  Layer: 04  |  Train Loss: 0.558 | Train Acc: 77.85  |  Val Loss: 0.771 | Val Acc: 67.17  |  Test Loss: 1.019 | Tes Acc: 64.71
+INFO >> Epoch: 16  |  Layer: 05  |  Train Loss: 0.533 | Train Acc: 78.61  |  Val Loss: 0.770 | Val Acc: 67.87  |  Test Loss: 0.999 | Tes Acc: 64.97
+INFO >> Epoch: 16  |  Layer: 06  |  Train Loss: 0.494 | Train Acc: 80.16  |  Val Loss: 0.725 | Val Acc: 69.78  |  Test Loss: 1.023 | Tes Acc: 67.02
+INFO >> Epoch: 16  |  Layer: 07  |  Train Loss: 0.494 | Train Acc: 80.78  |  Val Loss: 0.717 | Val Acc: 70.38  |  Test Loss: 1.048 | Tes Acc: 66.84
+INFO >> Epoch: 16  |  Layer: 08  |  Train Loss: 0.485 | Train Acc: 81.13  |  Val Loss: 0.715 | Val Acc: 70.28  |  Test Loss: 1.085 | Tes Acc: 66.04
+INFO >> Epoch: 16  |  Layer: 09  |  Train Loss: 0.490 | Train Acc: 80.43  |  Val Loss: 0.731 | Val Acc: 69.68  |  Test Loss: 1.069 | Tes Acc: 65.69
+INFO >> Epoch: 16  |  Layer: 10  |  Train Loss: 0.436 | Train Acc: 82.98  |  Val Loss: 0.708 | Val Acc: 70.68  |  Test Loss: 1.094 | Tes Acc: 66.40
+INFO >> Epoch: 16  |  Layer: 11  |  Train Loss: 0.442 | Train Acc: 82.60  |  Val Loss: 0.706 | Val Acc: 70.18  |  Test Loss: 1.066 | Tes Acc: 67.20
+INFO >> Epoch: 16  |  Layer: 12  |  Train Loss: 0.442 | Train Acc: 82.30  |  Val Loss: 0.711 | Val Acc: 70.08  |  Test Loss: 1.083 | Tes Acc: 67.74
+INFO >> Epoch: 16  |  Layer: 13  |  Train Loss: 0.411 | Train Acc: 83.39  |  Val Loss: 0.703 | Val Acc: 71.08  |  Test Loss: 1.057 | Tes Acc: 68.36
+INFO >> Epoch: 16  |  Layer: 14  |  Train Loss: 0.403 | Train Acc: 84.09  |  Val Loss: 0.726 | Val Acc: 70.28  |  Test Loss: 1.116 | Tes Acc: 67.20
+INFO >> Epoch: 16  |  Layer: 15  |  Train Loss: 0.396 | Train Acc: 84.27  |  Val Loss: 0.728 | Val Acc: 71.39  |  Test Loss: 1.138 | Tes Acc: 66.31
+INFO >> Epoch: 16  |  Layer: 16  |  Train Loss: 0.400 | Train Acc: 84.03  |  Val Loss: 0.746 | Val Acc: 71.99  |  Test Loss: 1.158 | Tes Acc: 65.69
+INFO >> Epoch: 16  |  Layer: 17  |  Train Loss: 0.392 | Train Acc: 84.32  |  Val Loss: 0.746 | Val Acc: 72.39  |  Test Loss: 1.161 | Tes Acc: 65.06
+INFO >> Epoch: 16  |  Layer: 18  |  Train Loss: 0.416 | Train Acc: 83.09  |  Val Loss: 0.736 | Val Acc: 71.89  |  Test Loss: 1.140 | Tes Acc: 64.71
+INFO >> Epoch: 16  |  Layer: 19  |  Train Loss: 0.405 | Train Acc: 83.68  |  Val Loss: 0.757 | Val Acc: 71.69  |  Test Loss: 1.157 | Tes Acc: 64.17
+INFO >> Epoch: 16  |  Layer: 20  |  Train Loss: 0.407 | Train Acc: 83.74  |  Val Loss: 0.747 | Val Acc: 70.98  |  Test Loss: 1.131 | Tes Acc: 64.62
+INFO >> Epoch: 16  |  Layer: 21  |  Train Loss: 0.410 | Train Acc: 84.18  |  Val Loss: 0.726 | Val Acc: 71.08  |  Test Loss: 1.134 | Tes Acc: 64.71
+INFO >> Epoch: 16  |  Layer: 22  |  Train Loss: 0.427 | Train Acc: 83.12  |  Val Loss: 0.725 | Val Acc: 71.59  |  Test Loss: 1.101 | Tes Acc: 65.24
+INFO >> Epoch: 16  |  Layer: 23  |  Train Loss: 0.414 | Train Acc: 83.65  |  Val Loss: 0.726 | Val Acc: 70.88  |  Test Loss: 1.085 | Tes Acc: 64.80
+INFO >> Epoch: 16  |  Layer: 24  |  Train Loss: 0.438 | Train Acc: 82.22  |  Val Loss: 0.725 | Val Acc: 71.29  |  Test Loss: 1.115 | Tes Acc: 65.60
+INFO >> Epoch: 16  |  Layer: 25  |  Train Loss: 0.423 | Train Acc: 82.98  |  Val Loss: 0.710 | Val Acc: 71.39  |  Test Loss: 1.111 | Tes Acc: 64.88
+
+INFO >> Epoch: 17  |  Layer: 01  |  Train Loss: 0.831 | Train Acc: 65.34  |  Val Loss: 0.842 | Val Acc: 63.65  |  Test Loss: 1.208 | Tes Acc: 56.95
+INFO >> Epoch: 17  |  Layer: 02  |  Train Loss: 0.616 | Train Acc: 74.48  |  Val Loss: 0.820 | Val Acc: 65.76  |  Test Loss: 1.158 | Tes Acc: 60.70
+INFO >> Epoch: 17  |  Layer: 03  |  Train Loss: 0.574 | Train Acc: 76.62  |  Val Loss: 0.785 | Val Acc: 68.07  |  Test Loss: 1.164 | Tes Acc: 61.76
+INFO >> Epoch: 17  |  Layer: 04  |  Train Loss: 0.556 | Train Acc: 76.88  |  Val Loss: 0.773 | Val Acc: 67.47  |  Test Loss: 1.156 | Tes Acc: 62.21
+INFO >> Epoch: 17  |  Layer: 05  |  Train Loss: 0.527 | Train Acc: 79.14  |  Val Loss: 0.757 | Val Acc: 68.88  |  Test Loss: 1.075 | Tes Acc: 64.26
+INFO >> Epoch: 17  |  Layer: 06  |  Train Loss: 0.481 | Train Acc: 80.37  |  Val Loss: 0.742 | Val Acc: 69.48  |  Test Loss: 1.087 | Tes Acc: 65.24
+INFO >> Epoch: 17  |  Layer: 07  |  Train Loss: 0.479 | Train Acc: 80.13  |  Val Loss: 0.726 | Val Acc: 70.08  |  Test Loss: 1.102 | Tes Acc: 65.15
+INFO >> Epoch: 17  |  Layer: 08  |  Train Loss: 0.469 | Train Acc: 80.40  |  Val Loss: 0.723 | Val Acc: 70.78  |  Test Loss: 1.174 | Tes Acc: 65.42
+INFO >> Epoch: 17  |  Layer: 09  |  Train Loss: 0.480 | Train Acc: 80.63  |  Val Loss: 0.728 | Val Acc: 70.58  |  Test Loss: 1.177 | Tes Acc: 64.62
+INFO >> Epoch: 17  |  Layer: 10  |  Train Loss: 0.426 | Train Acc: 83.12  |  Val Loss: 0.709 | Val Acc: 71.39  |  Test Loss: 1.173 | Tes Acc: 66.67
+INFO >> Epoch: 17  |  Layer: 11  |  Train Loss: 0.430 | Train Acc: 82.57  |  Val Loss: 0.708 | Val Acc: 71.39  |  Test Loss: 1.155 | Tes Acc: 66.40
+INFO >> Epoch: 17  |  Layer: 12  |  Train Loss: 0.428 | Train Acc: 82.74  |  Val Loss: 0.710 | Val Acc: 72.09  |  Test Loss: 1.174 | Tes Acc: 66.76
+INFO >> Epoch: 17  |  Layer: 13  |  Train Loss: 0.402 | Train Acc: 84.06  |  Val Loss: 0.697 | Val Acc: 72.89  |  Test Loss: 1.108 | Tes Acc: 67.02
+INFO >> Epoch: 17  |  Layer: 14  |  Train Loss: 0.394 | Train Acc: 84.41  |  Val Loss: 0.709 | Val Acc: 72.89  |  Test Loss: 1.131 | Tes Acc: 67.56
+INFO >> Epoch: 17  |  Layer: 15  |  Train Loss: 0.388 | Train Acc: 84.06  |  Val Loss: 0.707 | Val Acc: 73.59  |  Test Loss: 1.104 | Tes Acc: 67.56
+INFO >> Epoch: 17  |  Layer: 16  |  Train Loss: 0.391 | Train Acc: 84.50  |  Val Loss: 0.699 | Val Acc: 72.99  |  Test Loss: 1.100 | Tes Acc: 67.74
+INFO >> Epoch: 17  |  Layer: 17  |  Train Loss: 0.383 | Train Acc: 84.68  |  Val Loss: 0.719 | Val Acc: 72.29  |  Test Loss: 1.081 | Tes Acc: 67.91
+INFO >> Epoch: 17  |  Layer: 18  |  Train Loss: 0.403 | Train Acc: 84.06  |  Val Loss: 0.693 | Val Acc: 72.59  |  Test Loss: 1.084 | Tes Acc: 66.84
+INFO >> Epoch: 17  |  Layer: 19  |  Train Loss: 0.396 | Train Acc: 84.35  |  Val Loss: 0.710 | Val Acc: 72.09  |  Test Loss: 1.090 | Tes Acc: 67.56
+INFO >> Epoch: 17  |  Layer: 20  |  Train Loss: 0.398 | Train Acc: 84.21  |  Val Loss: 0.721 | Val Acc: 72.59  |  Test Loss: 1.091 | Tes Acc: 67.47
+INFO >> Epoch: 17  |  Layer: 21  |  Train Loss: 0.401 | Train Acc: 84.03  |  Val Loss: 0.703 | Val Acc: 73.09  |  Test Loss: 1.078 | Tes Acc: 67.56
+INFO >> Epoch: 17  |  Layer: 22  |  Train Loss: 0.419 | Train Acc: 83.39  |  Val Loss: 0.694 | Val Acc: 72.49  |  Test Loss: 1.063 | Tes Acc: 67.20
+INFO >> Epoch: 17  |  Layer: 23  |  Train Loss: 0.409 | Train Acc: 83.71  |  Val Loss: 0.697 | Val Acc: 72.39  |  Test Loss: 1.020 | Tes Acc: 68.45
+INFO >> Epoch: 17  |  Layer: 24  |  Train Loss: 0.434 | Train Acc: 82.68  |  Val Loss: 0.688 | Val Acc: 72.79  |  Test Loss: 1.045 | Tes Acc: 67.38
+INFO >> Epoch: 17  |  Layer: 25  |  Train Loss: 0.421 | Train Acc: 83.39  |  Val Loss: 0.669 | Val Acc: 74.00  |  Test Loss: 1.035 | Tes Acc: 66.58
+
+INFO >> Epoch: 18  |  Layer: 01  |  Train Loss: 0.822 | Train Acc: 65.57  |  Val Loss: 0.832 | Val Acc: 64.66  |  Test Loss: 1.169 | Tes Acc: 59.36
+INFO >> Epoch: 18  |  Layer: 02  |  Train Loss: 0.590 | Train Acc: 76.24  |  Val Loss: 0.847 | Val Acc: 65.26  |  Test Loss: 1.227 | Tes Acc: 60.52
+INFO >> Epoch: 18  |  Layer: 03  |  Train Loss: 0.544 | Train Acc: 77.85  |  Val Loss: 0.788 | Val Acc: 68.27  |  Test Loss: 1.186 | Tes Acc: 62.03
+INFO >> Epoch: 18  |  Layer: 04  |  Train Loss: 0.534 | Train Acc: 78.70  |  Val Loss: 0.801 | Val Acc: 66.57  |  Test Loss: 1.173 | Tes Acc: 63.99
+INFO >> Epoch: 18  |  Layer: 05  |  Train Loss: 0.500 | Train Acc: 80.22  |  Val Loss: 0.836 | Val Acc: 65.96  |  Test Loss: 1.200 | Tes Acc: 61.05
+INFO >> Epoch: 18  |  Layer: 06  |  Train Loss: 0.458 | Train Acc: 81.78  |  Val Loss: 0.800 | Val Acc: 68.78  |  Test Loss: 1.219 | Tes Acc: 63.37
+INFO >> Epoch: 18  |  Layer: 07  |  Train Loss: 0.461 | Train Acc: 81.86  |  Val Loss: 0.770 | Val Acc: 69.78  |  Test Loss: 1.179 | Tes Acc: 65.15
+INFO >> Epoch: 18  |  Layer: 08  |  Train Loss: 0.449 | Train Acc: 81.57  |  Val Loss: 0.763 | Val Acc: 70.58  |  Test Loss: 1.258 | Tes Acc: 64.71
+INFO >> Epoch: 18  |  Layer: 09  |  Train Loss: 0.462 | Train Acc: 81.25  |  Val Loss: 0.738 | Val Acc: 70.78  |  Test Loss: 1.186 | Tes Acc: 65.86
+INFO >> Epoch: 18  |  Layer: 10  |  Train Loss: 0.410 | Train Acc: 83.30  |  Val Loss: 0.737 | Val Acc: 72.79  |  Test Loss: 1.275 | Tes Acc: 65.33
+INFO >> Epoch: 18  |  Layer: 11  |  Train Loss: 0.411 | Train Acc: 83.15  |  Val Loss: 0.751 | Val Acc: 71.08  |  Test Loss: 1.304 | Tes Acc: 65.24
+INFO >> Epoch: 18  |  Layer: 12  |  Train Loss: 0.406 | Train Acc: 83.42  |  Val Loss: 0.785 | Val Acc: 70.88  |  Test Loss: 1.353 | Tes Acc: 63.46
+INFO >> Epoch: 18  |  Layer: 13  |  Train Loss: 0.376 | Train Acc: 85.15  |  Val Loss: 0.836 | Val Acc: 69.68  |  Test Loss: 1.465 | Tes Acc: 62.30
+INFO >> Epoch: 18  |  Layer: 14  |  Train Loss: 0.371 | Train Acc: 85.41  |  Val Loss: 0.925 | Val Acc: 68.67  |  Test Loss: 1.594 | Tes Acc: 60.96
+INFO >> Epoch: 18  |  Layer: 15  |  Train Loss: 0.362 | Train Acc: 85.79  |  Val Loss: 0.868 | Val Acc: 69.18  |  Test Loss: 1.502 | Tes Acc: 62.30
+INFO >> Epoch: 18  |  Layer: 16  |  Train Loss: 0.366 | Train Acc: 85.61  |  Val Loss: 0.874 | Val Acc: 69.78  |  Test Loss: 1.515 | Tes Acc: 62.48
+INFO >> Epoch: 18  |  Layer: 17  |  Train Loss: 0.359 | Train Acc: 85.67  |  Val Loss: 0.882 | Val Acc: 69.38  |  Test Loss: 1.502 | Tes Acc: 62.57
+INFO >> Epoch: 18  |  Layer: 18  |  Train Loss: 0.386 | Train Acc: 84.56  |  Val Loss: 0.842 | Val Acc: 69.88  |  Test Loss: 1.451 | Tes Acc: 62.12
+INFO >> Epoch: 18  |  Layer: 19  |  Train Loss: 0.368 | Train Acc: 85.41  |  Val Loss: 0.857 | Val Acc: 70.08  |  Test Loss: 1.450 | Tes Acc: 63.01
+INFO >> Epoch: 18  |  Layer: 20  |  Train Loss: 0.375 | Train Acc: 85.03  |  Val Loss: 0.870 | Val Acc: 69.28  |  Test Loss: 1.479 | Tes Acc: 62.75
+INFO >> Epoch: 18  |  Layer: 21  |  Train Loss: 0.377 | Train Acc: 85.03  |  Val Loss: 0.815 | Val Acc: 70.28  |  Test Loss: 1.434 | Tes Acc: 63.37
+INFO >> Epoch: 18  |  Layer: 22  |  Train Loss: 0.398 | Train Acc: 84.09  |  Val Loss: 0.811 | Val Acc: 69.78  |  Test Loss: 1.381 | Tes Acc: 62.75
+INFO >> Epoch: 18  |  Layer: 23  |  Train Loss: 0.386 | Train Acc: 84.56  |  Val Loss: 0.825 | Val Acc: 69.68  |  Test Loss: 1.377 | Tes Acc: 63.90
+INFO >> Epoch: 18  |  Layer: 24  |  Train Loss: 0.411 | Train Acc: 83.71  |  Val Loss: 0.805 | Val Acc: 69.98  |  Test Loss: 1.386 | Tes Acc: 62.92
+INFO >> Epoch: 18  |  Layer: 25  |  Train Loss: 0.392 | Train Acc: 84.76  |  Val Loss: 0.796 | Val Acc: 70.68  |  Test Loss: 1.373 | Tes Acc: 63.46
+
+INFO >> Epoch: 19  |  Layer: 01  |  Train Loss: 0.814 | Train Acc: 66.63  |  Val Loss: 0.870 | Val Acc: 61.55  |  Test Loss: 1.104 | Tes Acc: 59.36
+INFO >> Epoch: 19  |  Layer: 02  |  Train Loss: 0.578 | Train Acc: 76.91  |  Val Loss: 0.848 | Val Acc: 65.16  |  Test Loss: 1.059 | Tes Acc: 65.15
+INFO >> Epoch: 19  |  Layer: 03  |  Train Loss: 0.531 | Train Acc: 78.79  |  Val Loss: 0.850 | Val Acc: 64.36  |  Test Loss: 1.039 | Tes Acc: 66.13
+INFO >> Epoch: 19  |  Layer: 04  |  Train Loss: 0.523 | Train Acc: 79.20  |  Val Loss: 0.808 | Val Acc: 66.77  |  Test Loss: 1.026 | Tes Acc: 67.29
+INFO >> Epoch: 19  |  Layer: 05  |  Train Loss: 0.491 | Train Acc: 80.37  |  Val Loss: 0.830 | Val Acc: 66.67  |  Test Loss: 0.983 | Tes Acc: 67.47
+INFO >> Epoch: 19  |  Layer: 06  |  Train Loss: 0.449 | Train Acc: 82.86  |  Val Loss: 0.836 | Val Acc: 66.77  |  Test Loss: 1.078 | Tes Acc: 68.09
+INFO >> Epoch: 19  |  Layer: 07  |  Train Loss: 0.445 | Train Acc: 83.27  |  Val Loss: 0.804 | Val Acc: 67.67  |  Test Loss: 1.068 | Tes Acc: 67.56
+INFO >> Epoch: 19  |  Layer: 08  |  Train Loss: 0.434 | Train Acc: 83.45  |  Val Loss: 0.826 | Val Acc: 68.67  |  Test Loss: 1.125 | Tes Acc: 66.40
+INFO >> Epoch: 19  |  Layer: 09  |  Train Loss: 0.446 | Train Acc: 82.80  |  Val Loss: 0.835 | Val Acc: 68.88  |  Test Loss: 1.071 | Tes Acc: 67.11
+INFO >> Epoch: 19  |  Layer: 10  |  Train Loss: 0.393 | Train Acc: 84.91  |  Val Loss: 0.796 | Val Acc: 69.98  |  Test Loss: 1.142 | Tes Acc: 67.74
+INFO >> Epoch: 19  |  Layer: 11  |  Train Loss: 0.391 | Train Acc: 84.62  |  Val Loss: 0.812 | Val Acc: 70.08  |  Test Loss: 1.151 | Tes Acc: 68.72
+INFO >> Epoch: 19  |  Layer: 12  |  Train Loss: 0.392 | Train Acc: 84.47  |  Val Loss: 0.778 | Val Acc: 69.68  |  Test Loss: 1.173 | Tes Acc: 68.72
+INFO >> Epoch: 19  |  Layer: 13  |  Train Loss: 0.361 | Train Acc: 85.97  |  Val Loss: 0.777 | Val Acc: 70.48  |  Test Loss: 1.207 | Tes Acc: 68.09
+INFO >> Epoch: 19  |  Layer: 14  |  Train Loss: 0.362 | Train Acc: 85.79  |  Val Loss: 0.742 | Val Acc: 71.69  |  Test Loss: 1.080 | Tes Acc: 67.65
+INFO >> Epoch: 19  |  Layer: 15  |  Train Loss: 0.359 | Train Acc: 86.17  |  Val Loss: 0.753 | Val Acc: 72.59  |  Test Loss: 1.122 | Tes Acc: 67.74
+INFO >> Epoch: 19  |  Layer: 16  |  Train Loss: 0.363 | Train Acc: 86.70  |  Val Loss: 0.723 | Val Acc: 73.90  |  Test Loss: 1.119 | Tes Acc: 67.38
+INFO >> Epoch: 19  |  Layer: 17  |  Train Loss: 0.355 | Train Acc: 86.52  |  Val Loss: 0.751 | Val Acc: 72.59  |  Test Loss: 1.104 | Tes Acc: 67.65
+INFO >> Epoch: 19  |  Layer: 18  |  Train Loss: 0.390 | Train Acc: 85.53  |  Val Loss: 0.728 | Val Acc: 73.29  |  Test Loss: 1.094 | Tes Acc: 67.83
+INFO >> Epoch: 19  |  Layer: 19  |  Train Loss: 0.361 | Train Acc: 86.49  |  Val Loss: 0.750 | Val Acc: 72.49  |  Test Loss: 1.084 | Tes Acc: 67.29
+INFO >> Epoch: 19  |  Layer: 20  |  Train Loss: 0.370 | Train Acc: 86.26  |  Val Loss: 0.753 | Val Acc: 72.89  |  Test Loss: 1.105 | Tes Acc: 68.09
+INFO >> Epoch: 19  |  Layer: 21  |  Train Loss: 0.374 | Train Acc: 85.50  |  Val Loss: 0.760 | Val Acc: 72.29  |  Test Loss: 1.115 | Tes Acc: 68.36
+INFO >> Epoch: 19  |  Layer: 22  |  Train Loss: 0.397 | Train Acc: 84.79  |  Val Loss: 0.740 | Val Acc: 72.19  |  Test Loss: 1.060 | Tes Acc: 68.81
+INFO >> Epoch: 19  |  Layer: 23  |  Train Loss: 0.391 | Train Acc: 84.82  |  Val Loss: 0.717 | Val Acc: 73.39  |  Test Loss: 1.031 | Tes Acc: 69.88
+INFO >> Epoch: 19  |  Layer: 24  |  Train Loss: 0.413 | Train Acc: 84.53  |  Val Loss: 0.733 | Val Acc: 72.39  |  Test Loss: 1.065 | Tes Acc: 68.63
+INFO >> Epoch: 19  |  Layer: 25  |  Train Loss: 0.389 | Train Acc: 84.97  |  Val Loss: 0.712 | Val Acc: 73.80  |  Test Loss: 1.026 | Tes Acc: 69.34
+
+INFO >> Epoch: 20  |  Layer: 01  |  Train Loss: 0.794 | Train Acc: 66.80  |  Val Loss: 0.845 | Val Acc: 62.85  |  Test Loss: 1.107 | Tes Acc: 59.98
+INFO >> Epoch: 20  |  Layer: 02  |  Train Loss: 0.552 | Train Acc: 77.64  |  Val Loss: 0.802 | Val Acc: 66.37  |  Test Loss: 1.200 | Tes Acc: 60.78
+INFO >> Epoch: 20  |  Layer: 03  |  Train Loss: 0.507 | Train Acc: 79.70  |  Val Loss: 0.785 | Val Acc: 68.27  |  Test Loss: 1.184 | Tes Acc: 62.12
+INFO >> Epoch: 20  |  Layer: 04  |  Train Loss: 0.499 | Train Acc: 79.67  |  Val Loss: 0.790 | Val Acc: 67.47  |  Test Loss: 1.188 | Tes Acc: 63.55
+INFO >> Epoch: 20  |  Layer: 05  |  Train Loss: 0.475 | Train Acc: 81.07  |  Val Loss: 0.740 | Val Acc: 69.18  |  Test Loss: 1.059 | Tes Acc: 65.42
+INFO >> Epoch: 20  |  Layer: 06  |  Train Loss: 0.436 | Train Acc: 82.89  |  Val Loss: 0.724 | Val Acc: 70.18  |  Test Loss: 1.144 | Tes Acc: 65.60
+INFO >> Epoch: 20  |  Layer: 07  |  Train Loss: 0.433 | Train Acc: 83.04  |  Val Loss: 0.732 | Val Acc: 69.88  |  Test Loss: 1.106 | Tes Acc: 66.40
+INFO >> Epoch: 20  |  Layer: 08  |  Train Loss: 0.425 | Train Acc: 82.92  |  Val Loss: 0.743 | Val Acc: 70.68  |  Test Loss: 1.111 | Tes Acc: 66.22
+INFO >> Epoch: 20  |  Layer: 09  |  Train Loss: 0.440 | Train Acc: 81.86  |  Val Loss: 0.717 | Val Acc: 71.18  |  Test Loss: 1.077 | Tes Acc: 65.42
+INFO >> Epoch: 20  |  Layer: 10  |  Train Loss: 0.371 | Train Acc: 84.94  |  Val Loss: 0.715 | Val Acc: 72.89  |  Test Loss: 1.157 | Tes Acc: 67.56
+INFO >> Epoch: 20  |  Layer: 11  |  Train Loss: 0.375 | Train Acc: 85.03  |  Val Loss: 0.705 | Val Acc: 72.69  |  Test Loss: 1.164 | Tes Acc: 67.29
+INFO >> Epoch: 20  |  Layer: 12  |  Train Loss: 0.379 | Train Acc: 84.53  |  Val Loss: 0.699 | Val Acc: 73.90  |  Test Loss: 1.206 | Tes Acc: 68.36
+INFO >> Epoch: 20  |  Layer: 13  |  Train Loss: 0.334 | Train Acc: 86.49  |  Val Loss: 0.705 | Val Acc: 73.49  |  Test Loss: 1.221 | Tes Acc: 68.63
+INFO >> Epoch: 20  |  Layer: 14  |  Train Loss: 0.330 | Train Acc: 86.61  |  Val Loss: 0.727 | Val Acc: 73.39  |  Test Loss: 1.254 | Tes Acc: 67.02
+INFO >> Epoch: 20  |  Layer: 15  |  Train Loss: 0.320 | Train Acc: 86.99  |  Val Loss: 0.708 | Val Acc: 74.50  |  Test Loss: 1.192 | Tes Acc: 68.89
+INFO >> Epoch: 20  |  Layer: 16  |  Train Loss: 0.322 | Train Acc: 87.43  |  Val Loss: 0.704 | Val Acc: 75.10  |  Test Loss: 1.168 | Tes Acc: 68.81
+INFO >> Epoch: 20  |  Layer: 17  |  Train Loss: 0.325 | Train Acc: 87.46  |  Val Loss: 0.725 | Val Acc: 74.70  |  Test Loss: 1.212 | Tes Acc: 68.09
+INFO >> Epoch: 20  |  Layer: 18  |  Train Loss: 0.339 | Train Acc: 86.90  |  Val Loss: 0.695 | Val Acc: 75.20  |  Test Loss: 1.129 | Tes Acc: 69.07
+INFO >> Epoch: 20  |  Layer: 19  |  Train Loss: 0.330 | Train Acc: 86.82  |  Val Loss: 0.710 | Val Acc: 74.60  |  Test Loss: 1.186 | Tes Acc: 68.45
+INFO >> Epoch: 20  |  Layer: 20  |  Train Loss: 0.335 | Train Acc: 86.84  |  Val Loss: 0.729 | Val Acc: 73.80  |  Test Loss: 1.164 | Tes Acc: 68.81
+INFO >> Epoch: 20  |  Layer: 21  |  Train Loss: 0.341 | Train Acc: 86.26  |  Val Loss: 0.702 | Val Acc: 74.00  |  Test Loss: 1.161 | Tes Acc: 69.61
+INFO >> Epoch: 20  |  Layer: 22  |  Train Loss: 0.355 | Train Acc: 86.05  |  Val Loss: 0.690 | Val Acc: 74.20  |  Test Loss: 1.115 | Tes Acc: 68.45
+INFO >> Epoch: 20  |  Layer: 23  |  Train Loss: 0.344 | Train Acc: 86.67  |  Val Loss: 0.698 | Val Acc: 73.49  |  Test Loss: 1.053 | Tes Acc: 69.70
+INFO >> Epoch: 20  |  Layer: 24  |  Train Loss: 0.372 | Train Acc: 84.73  |  Val Loss: 0.691 | Val Acc: 73.19  |  Test Loss: 1.086 | Tes Acc: 69.07
+INFO >> Epoch: 20  |  Layer: 25  |  Train Loss: 0.352 | Train Acc: 85.91  |  Val Loss: 0.675 | Val Acc: 74.60  |  Test Loss: 1.095 | Tes Acc: 68.89
+
+INFO >> Epoch: 21  |  Layer: 01  |  Train Loss: 0.788 | Train Acc: 67.68  |  Val Loss: 0.943 | Val Acc: 58.43  |  Test Loss: 1.271 | Tes Acc: 56.33
+INFO >> Epoch: 21  |  Layer: 02  |  Train Loss: 0.536 | Train Acc: 78.76  |  Val Loss: 0.888 | Val Acc: 63.15  |  Test Loss: 1.210 | Tes Acc: 59.98
+INFO >> Epoch: 21  |  Layer: 03  |  Train Loss: 0.476 | Train Acc: 81.48  |  Val Loss: 0.847 | Val Acc: 66.87  |  Test Loss: 1.126 | Tes Acc: 65.51
+INFO >> Epoch: 21  |  Layer: 04  |  Train Loss: 0.475 | Train Acc: 81.54  |  Val Loss: 0.825 | Val Acc: 66.16  |  Test Loss: 1.129 | Tes Acc: 65.78
+INFO >> Epoch: 21  |  Layer: 05  |  Train Loss: 0.437 | Train Acc: 82.68  |  Val Loss: 0.851 | Val Acc: 65.36  |  Test Loss: 1.099 | Tes Acc: 65.42
+INFO >> Epoch: 21  |  Layer: 06  |  Train Loss: 0.393 | Train Acc: 84.91  |  Val Loss: 0.838 | Val Acc: 66.37  |  Test Loss: 1.184 | Tes Acc: 66.76
+INFO >> Epoch: 21  |  Layer: 07  |  Train Loss: 0.399 | Train Acc: 84.38  |  Val Loss: 0.825 | Val Acc: 67.27  |  Test Loss: 1.227 | Tes Acc: 65.78
+INFO >> Epoch: 21  |  Layer: 08  |  Train Loss: 0.388 | Train Acc: 84.59  |  Val Loss: 0.818 | Val Acc: 67.47  |  Test Loss: 1.275 | Tes Acc: 66.13
+INFO >> Epoch: 21  |  Layer: 09  |  Train Loss: 0.407 | Train Acc: 83.45  |  Val Loss: 0.807 | Val Acc: 68.07  |  Test Loss: 1.268 | Tes Acc: 65.33
+INFO >> Epoch: 21  |  Layer: 10  |  Train Loss: 0.337 | Train Acc: 86.64  |  Val Loss: 0.868 | Val Acc: 68.17  |  Test Loss: 1.238 | Tes Acc: 66.22
+INFO >> Epoch: 21  |  Layer: 11  |  Train Loss: 0.340 | Train Acc: 86.49  |  Val Loss: 0.918 | Val Acc: 66.87  |  Test Loss: 1.261 | Tes Acc: 66.04
+INFO >> Epoch: 21  |  Layer: 12  |  Train Loss: 0.343 | Train Acc: 86.79  |  Val Loss: 0.887 | Val Acc: 67.77  |  Test Loss: 1.269 | Tes Acc: 65.95
+INFO >> Epoch: 21  |  Layer: 13  |  Train Loss: 0.308 | Train Acc: 88.46  |  Val Loss: 0.933 | Val Acc: 68.37  |  Test Loss: 1.289 | Tes Acc: 67.29
+INFO >> Epoch: 21  |  Layer: 14  |  Train Loss: 0.301 | Train Acc: 88.40  |  Val Loss: 0.968 | Val Acc: 68.57  |  Test Loss: 1.321 | Tes Acc: 65.42
+INFO >> Epoch: 21  |  Layer: 15  |  Train Loss: 0.294 | Train Acc: 88.78  |  Val Loss: 0.962 | Val Acc: 68.78  |  Test Loss: 1.314 | Tes Acc: 64.53
+INFO >> Epoch: 21  |  Layer: 16  |  Train Loss: 0.297 | Train Acc: 88.46  |  Val Loss: 1.025 | Val Acc: 67.27  |  Test Loss: 1.346 | Tes Acc: 63.19
+INFO >> Epoch: 21  |  Layer: 17  |  Train Loss: 0.294 | Train Acc: 89.22  |  Val Loss: 1.024 | Val Acc: 67.77  |  Test Loss: 1.286 | Tes Acc: 64.08
+INFO >> Epoch: 21  |  Layer: 18  |  Train Loss: 0.321 | Train Acc: 87.96  |  Val Loss: 1.064 | Val Acc: 65.66  |  Test Loss: 1.309 | Tes Acc: 63.37
+INFO >> Epoch: 21  |  Layer: 19  |  Train Loss: 0.310 | Train Acc: 88.46  |  Val Loss: 1.156 | Val Acc: 65.36  |  Test Loss: 1.294 | Tes Acc: 62.75
+INFO >> Epoch: 21  |  Layer: 20  |  Train Loss: 0.313 | Train Acc: 88.10  |  Val Loss: 1.067 | Val Acc: 66.37  |  Test Loss: 1.304 | Tes Acc: 63.64
+INFO >> Epoch: 21  |  Layer: 21  |  Train Loss: 0.317 | Train Acc: 88.08  |  Val Loss: 1.101 | Val Acc: 65.26  |  Test Loss: 1.321 | Tes Acc: 63.46
+INFO >> Epoch: 21  |  Layer: 22  |  Train Loss: 0.336 | Train Acc: 87.37  |  Val Loss: 0.997 | Val Acc: 66.57  |  Test Loss: 1.307 | Tes Acc: 62.75
+INFO >> Epoch: 21  |  Layer: 23  |  Train Loss: 0.334 | Train Acc: 86.99  |  Val Loss: 0.979 | Val Acc: 66.87  |  Test Loss: 1.276 | Tes Acc: 63.37
+INFO >> Epoch: 21  |  Layer: 24  |  Train Loss: 0.359 | Train Acc: 85.73  |  Val Loss: 0.922 | Val Acc: 67.67  |  Test Loss: 1.302 | Tes Acc: 62.39
+INFO >> Epoch: 21  |  Layer: 25  |  Train Loss: 0.342 | Train Acc: 87.05  |  Val Loss: 0.965 | Val Acc: 67.87  |  Test Loss: 1.298 | Tes Acc: 63.28
+
+INFO >> Epoch: 22  |  Layer: 01  |  Train Loss: 0.782 | Train Acc: 67.65  |  Val Loss: 0.889 | Val Acc: 61.14  |  Test Loss: 1.246 | Tes Acc: 55.61
+INFO >> Epoch: 22  |  Layer: 02  |  Train Loss: 0.522 | Train Acc: 79.11  |  Val Loss: 0.819 | Val Acc: 67.87  |  Test Loss: 1.123 | Tes Acc: 62.30
+INFO >> Epoch: 22  |  Layer: 03  |  Train Loss: 0.470 | Train Acc: 80.75  |  Val Loss: 0.848 | Val Acc: 67.97  |  Test Loss: 1.130 | Tes Acc: 64.08
+INFO >> Epoch: 22  |  Layer: 04  |  Train Loss: 0.467 | Train Acc: 80.81  |  Val Loss: 0.804 | Val Acc: 67.57  |  Test Loss: 1.144 | Tes Acc: 64.53
+INFO >> Epoch: 22  |  Layer: 05  |  Train Loss: 0.433 | Train Acc: 82.27  |  Val Loss: 0.799 | Val Acc: 68.88  |  Test Loss: 1.117 | Tes Acc: 63.64
+INFO >> Epoch: 22  |  Layer: 06  |  Train Loss: 0.386 | Train Acc: 84.97  |  Val Loss: 0.781 | Val Acc: 70.18  |  Test Loss: 1.202 | Tes Acc: 64.62
+INFO >> Epoch: 22  |  Layer: 07  |  Train Loss: 0.398 | Train Acc: 84.00  |  Val Loss: 0.765 | Val Acc: 69.18  |  Test Loss: 1.172 | Tes Acc: 65.42
+INFO >> Epoch: 22  |  Layer: 08  |  Train Loss: 0.378 | Train Acc: 85.17  |  Val Loss: 0.762 | Val Acc: 69.88  |  Test Loss: 1.232 | Tes Acc: 65.33
+INFO >> Epoch: 22  |  Layer: 09  |  Train Loss: 0.397 | Train Acc: 84.03  |  Val Loss: 0.758 | Val Acc: 70.68  |  Test Loss: 1.148 | Tes Acc: 67.02
+INFO >> Epoch: 22  |  Layer: 10  |  Train Loss: 0.325 | Train Acc: 86.84  |  Val Loss: 0.772 | Val Acc: 70.78  |  Test Loss: 1.188 | Tes Acc: 66.58
+INFO >> Epoch: 22  |  Layer: 11  |  Train Loss: 0.330 | Train Acc: 86.17  |  Val Loss: 0.751 | Val Acc: 71.69  |  Test Loss: 1.152 | Tes Acc: 67.65
+INFO >> Epoch: 22  |  Layer: 12  |  Train Loss: 0.326 | Train Acc: 86.79  |  Val Loss: 0.771 | Val Acc: 71.08  |  Test Loss: 1.174 | Tes Acc: 68.89
+INFO >> Epoch: 22  |  Layer: 13  |  Train Loss: 0.289 | Train Acc: 88.13  |  Val Loss: 0.792 | Val Acc: 72.39  |  Test Loss: 1.217 | Tes Acc: 68.89
+INFO >> Epoch: 22  |  Layer: 14  |  Train Loss: 0.293 | Train Acc: 88.10  |  Val Loss: 0.847 | Val Acc: 72.49  |  Test Loss: 1.187 | Tes Acc: 67.56
+INFO >> Epoch: 22  |  Layer: 15  |  Train Loss: 0.285 | Train Acc: 88.49  |  Val Loss: 0.843 | Val Acc: 72.99  |  Test Loss: 1.205 | Tes Acc: 67.47
+INFO >> Epoch: 22  |  Layer: 16  |  Train Loss: 0.289 | Train Acc: 88.10  |  Val Loss: 0.845 | Val Acc: 73.09  |  Test Loss: 1.185 | Tes Acc: 67.29
+INFO >> Epoch: 22  |  Layer: 17  |  Train Loss: 0.277 | Train Acc: 89.28  |  Val Loss: 0.869 | Val Acc: 71.99  |  Test Loss: 1.194 | Tes Acc: 67.11
+INFO >> Epoch: 22  |  Layer: 18  |  Train Loss: 0.310 | Train Acc: 87.99  |  Val Loss: 0.778 | Val Acc: 73.19  |  Test Loss: 1.145 | Tes Acc: 68.09
+INFO >> Epoch: 22  |  Layer: 19  |  Train Loss: 0.307 | Train Acc: 87.93  |  Val Loss: 0.833 | Val Acc: 71.39  |  Test Loss: 1.177 | Tes Acc: 66.31
+INFO >> Epoch: 22  |  Layer: 20  |  Train Loss: 0.303 | Train Acc: 88.05  |  Val Loss: 0.821 | Val Acc: 72.49  |  Test Loss: 1.173 | Tes Acc: 67.38
+INFO >> Epoch: 22  |  Layer: 21  |  Train Loss: 0.307 | Train Acc: 88.25  |  Val Loss: 0.811 | Val Acc: 71.69  |  Test Loss: 1.185 | Tes Acc: 67.83
+INFO >> Epoch: 22  |  Layer: 22  |  Train Loss: 0.320 | Train Acc: 87.64  |  Val Loss: 0.813 | Val Acc: 71.49  |  Test Loss: 1.130 | Tes Acc: 67.56
+INFO >> Epoch: 22  |  Layer: 23  |  Train Loss: 0.310 | Train Acc: 87.99  |  Val Loss: 0.788 | Val Acc: 72.99  |  Test Loss: 1.080 | Tes Acc: 68.45
+INFO >> Epoch: 22  |  Layer: 24  |  Train Loss: 0.345 | Train Acc: 86.87  |  Val Loss: 0.809 | Val Acc: 71.59  |  Test Loss: 1.132 | Tes Acc: 67.29
+INFO >> Epoch: 22  |  Layer: 25  |  Train Loss: 0.321 | Train Acc: 87.64  |  Val Loss: 0.795 | Val Acc: 72.09  |  Test Loss: 1.106 | Tes Acc: 67.74
+
+INFO >> Epoch: 23  |  Layer: 01  |  Train Loss: 0.750 | Train Acc: 69.79  |  Val Loss: 0.880 | Val Acc: 62.05  |  Test Loss: 1.217 | Tes Acc: 57.49
+INFO >> Epoch: 23  |  Layer: 02  |  Train Loss: 0.468 | Train Acc: 80.78  |  Val Loss: 0.880 | Val Acc: 62.95  |  Test Loss: 1.206 | Tes Acc: 64.71
+INFO >> Epoch: 23  |  Layer: 03  |  Train Loss: 0.416 | Train Acc: 83.80  |  Val Loss: 0.828 | Val Acc: 67.67  |  Test Loss: 1.210 | Tes Acc: 64.88
+INFO >> Epoch: 23  |  Layer: 04  |  Train Loss: 0.420 | Train Acc: 83.68  |  Val Loss: 0.815 | Val Acc: 68.37  |  Test Loss: 1.142 | Tes Acc: 67.38
+INFO >> Epoch: 23  |  Layer: 05  |  Train Loss: 0.378 | Train Acc: 85.15  |  Val Loss: 0.869 | Val Acc: 67.57  |  Test Loss: 1.116 | Tes Acc: 67.38
+INFO >> Epoch: 23  |  Layer: 06  |  Train Loss: 0.338 | Train Acc: 86.70  |  Val Loss: 0.856 | Val Acc: 69.38  |  Test Loss: 1.256 | Tes Acc: 68.09
+INFO >> Epoch: 23  |  Layer: 07  |  Train Loss: 0.350 | Train Acc: 86.11  |  Val Loss: 0.810 | Val Acc: 70.08  |  Test Loss: 1.207 | Tes Acc: 66.40
+INFO >> Epoch: 23  |  Layer: 08  |  Train Loss: 0.334 | Train Acc: 86.99  |  Val Loss: 0.792 | Val Acc: 70.98  |  Test Loss: 1.269 | Tes Acc: 67.20
+INFO >> Epoch: 23  |  Layer: 09  |  Train Loss: 0.355 | Train Acc: 86.11  |  Val Loss: 0.768 | Val Acc: 70.38  |  Test Loss: 1.179 | Tes Acc: 67.83
+INFO >> Epoch: 23  |  Layer: 10  |  Train Loss: 0.289 | Train Acc: 88.78  |  Val Loss: 0.774 | Val Acc: 72.69  |  Test Loss: 1.241 | Tes Acc: 69.25
+INFO >> Epoch: 23  |  Layer: 11  |  Train Loss: 0.289 | Train Acc: 88.54  |  Val Loss: 0.776 | Val Acc: 71.08  |  Test Loss: 1.261 | Tes Acc: 68.63
+INFO >> Epoch: 23  |  Layer: 12  |  Train Loss: 0.290 | Train Acc: 88.81  |  Val Loss: 0.771 | Val Acc: 71.39  |  Test Loss: 1.269 | Tes Acc: 68.63
+INFO >> Epoch: 23  |  Layer: 13  |  Train Loss: 0.256 | Train Acc: 90.57  |  Val Loss: 0.806 | Val Acc: 72.89  |  Test Loss: 1.316 | Tes Acc: 69.61
+INFO >> Epoch: 23  |  Layer: 14  |  Train Loss: 0.257 | Train Acc: 90.54  |  Val Loss: 0.824 | Val Acc: 71.69  |  Test Loss: 1.332 | Tes Acc: 69.07
+INFO >> Epoch: 23  |  Layer: 15  |  Train Loss: 0.250 | Train Acc: 90.95  |  Val Loss: 0.819 | Val Acc: 71.18  |  Test Loss: 1.326 | Tes Acc: 69.25
+INFO >> Epoch: 23  |  Layer: 16  |  Train Loss: 0.250 | Train Acc: 90.71  |  Val Loss: 0.827 | Val Acc: 71.99  |  Test Loss: 1.329 | Tes Acc: 69.07
+INFO >> Epoch: 23  |  Layer: 17  |  Train Loss: 0.241 | Train Acc: 91.09  |  Val Loss: 0.850 | Val Acc: 72.19  |  Test Loss: 1.305 | Tes Acc: 68.72
+INFO >> Epoch: 23  |  Layer: 18  |  Train Loss: 0.267 | Train Acc: 89.89  |  Val Loss: 0.797 | Val Acc: 73.09  |  Test Loss: 1.202 | Tes Acc: 69.07
+INFO >> Epoch: 23  |  Layer: 19  |  Train Loss: 0.260 | Train Acc: 89.92  |  Val Loss: 0.804 | Val Acc: 73.69  |  Test Loss: 1.281 | Tes Acc: 68.63
+INFO >> Epoch: 23  |  Layer: 20  |  Train Loss: 0.257 | Train Acc: 90.18  |  Val Loss: 0.831 | Val Acc: 73.29  |  Test Loss: 1.275 | Tes Acc: 69.16
+INFO >> Epoch: 23  |  Layer: 21  |  Train Loss: 0.263 | Train Acc: 90.13  |  Val Loss: 0.801 | Val Acc: 73.29  |  Test Loss: 1.271 | Tes Acc: 69.79
+INFO >> Epoch: 23  |  Layer: 22  |  Train Loss: 0.278 | Train Acc: 89.92  |  Val Loss: 0.780 | Val Acc: 72.59  |  Test Loss: 1.211 | Tes Acc: 68.54
+INFO >> Epoch: 23  |  Layer: 23  |  Train Loss: 0.272 | Train Acc: 89.66  |  Val Loss: 0.786 | Val Acc: 72.59  |  Test Loss: 1.123 | Tes Acc: 69.96
+INFO >> Epoch: 23  |  Layer: 24  |  Train Loss: 0.303 | Train Acc: 88.78  |  Val Loss: 0.764 | Val Acc: 72.39  |  Test Loss: 1.192 | Tes Acc: 68.36
+INFO >> Epoch: 23  |  Layer: 25  |  Train Loss: 0.284 | Train Acc: 89.33  |  Val Loss: 0.763 | Val Acc: 73.19  |  Test Loss: 1.157 | Tes Acc: 69.16
+
+INFO >> Epoch: 24  |  Layer: 01  |  Train Loss: 0.749 | Train Acc: 69.32  |  Val Loss: 0.858 | Val Acc: 63.65  |  Test Loss: 1.256 | Tes Acc: 58.29
+INFO >> Epoch: 24  |  Layer: 02  |  Train Loss: 0.482 | Train Acc: 80.78  |  Val Loss: 0.845 | Val Acc: 65.76  |  Test Loss: 1.289 | Tes Acc: 59.54
+INFO >> Epoch: 24  |  Layer: 03  |  Train Loss: 0.424 | Train Acc: 83.09  |  Val Loss: 0.818 | Val Acc: 68.57  |  Test Loss: 1.295 | Tes Acc: 61.41
+INFO >> Epoch: 24  |  Layer: 04  |  Train Loss: 0.445 | Train Acc: 82.19  |  Val Loss: 0.784 | Val Acc: 68.57  |  Test Loss: 1.239 | Tes Acc: 63.90
+INFO >> Epoch: 24  |  Layer: 05  |  Train Loss: 0.394 | Train Acc: 84.18  |  Val Loss: 0.820 | Val Acc: 68.57  |  Test Loss: 1.191 | Tes Acc: 64.35
+INFO >> Epoch: 24  |  Layer: 06  |  Train Loss: 0.359 | Train Acc: 85.64  |  Val Loss: 0.842 | Val Acc: 68.57  |  Test Loss: 1.289 | Tes Acc: 63.37
+INFO >> Epoch: 24  |  Layer: 07  |  Train Loss: 0.359 | Train Acc: 86.05  |  Val Loss: 0.785 | Val Acc: 70.88  |  Test Loss: 1.249 | Tes Acc: 64.44
+INFO >> Epoch: 24  |  Layer: 08  |  Train Loss: 0.350 | Train Acc: 86.35  |  Val Loss: 0.766 | Val Acc: 70.78  |  Test Loss: 1.324 | Tes Acc: 64.80
+INFO >> Epoch: 24  |  Layer: 09  |  Train Loss: 0.366 | Train Acc: 84.85  |  Val Loss: 0.766 | Val Acc: 71.18  |  Test Loss: 1.329 | Tes Acc: 64.88
+INFO >> Epoch: 24  |  Layer: 10  |  Train Loss: 0.298 | Train Acc: 88.25  |  Val Loss: 0.798 | Val Acc: 72.89  |  Test Loss: 1.439 | Tes Acc: 66.04
+INFO >> Epoch: 24  |  Layer: 11  |  Train Loss: 0.302 | Train Acc: 88.02  |  Val Loss: 0.831 | Val Acc: 71.49  |  Test Loss: 1.493 | Tes Acc: 64.88
+INFO >> Epoch: 24  |  Layer: 12  |  Train Loss: 0.297 | Train Acc: 88.02  |  Val Loss: 0.804 | Val Acc: 71.79  |  Test Loss: 1.442 | Tes Acc: 65.42
+INFO >> Epoch: 24  |  Layer: 13  |  Train Loss: 0.255 | Train Acc: 90.01  |  Val Loss: 0.848 | Val Acc: 72.19  |  Test Loss: 1.418 | Tes Acc: 66.40
+INFO >> Epoch: 24  |  Layer: 14  |  Train Loss: 0.257 | Train Acc: 89.86  |  Val Loss: 0.885 | Val Acc: 71.08  |  Test Loss: 1.377 | Tes Acc: 65.78
+INFO >> Epoch: 24  |  Layer: 15  |  Train Loss: 0.247 | Train Acc: 90.48  |  Val Loss: 0.857 | Val Acc: 72.69  |  Test Loss: 1.376 | Tes Acc: 66.93
+INFO >> Epoch: 24  |  Layer: 16  |  Train Loss: 0.236 | Train Acc: 91.47  |  Val Loss: 0.849 | Val Acc: 72.99  |  Test Loss: 1.363 | Tes Acc: 67.74
+INFO >> Epoch: 24  |  Layer: 17  |  Train Loss: 0.246 | Train Acc: 90.39  |  Val Loss: 0.914 | Val Acc: 72.29  |  Test Loss: 1.354 | Tes Acc: 66.31
+INFO >> Epoch: 24  |  Layer: 18  |  Train Loss: 0.259 | Train Acc: 90.10  |  Val Loss: 0.848 | Val Acc: 73.69  |  Test Loss: 1.342 | Tes Acc: 66.31
+INFO >> Epoch: 24  |  Layer: 19  |  Train Loss: 0.249 | Train Acc: 90.89  |  Val Loss: 0.865 | Val Acc: 73.59  |  Test Loss: 1.334 | Tes Acc: 67.20
+INFO >> Epoch: 24  |  Layer: 20  |  Train Loss: 0.253 | Train Acc: 90.07  |  Val Loss: 0.860 | Val Acc: 73.49  |  Test Loss: 1.361 | Tes Acc: 67.74
+INFO >> Epoch: 24  |  Layer: 21  |  Train Loss: 0.260 | Train Acc: 90.07  |  Val Loss: 0.841 | Val Acc: 73.29  |  Test Loss: 1.397 | Tes Acc: 67.56
+INFO >> Epoch: 24  |  Layer: 22  |  Train Loss: 0.268 | Train Acc: 89.66  |  Val Loss: 0.822 | Val Acc: 72.79  |  Test Loss: 1.333 | Tes Acc: 67.11
+INFO >> Epoch: 24  |  Layer: 23  |  Train Loss: 0.264 | Train Acc: 90.21  |  Val Loss: 0.803 | Val Acc: 73.49  |  Test Loss: 1.244 | Tes Acc: 68.36
+INFO >> Epoch: 24  |  Layer: 24  |  Train Loss: 0.292 | Train Acc: 88.75  |  Val Loss: 0.784 | Val Acc: 73.09  |  Test Loss: 1.300 | Tes Acc: 67.29
+INFO >> Epoch: 24  |  Layer: 25  |  Train Loss: 0.271 | Train Acc: 89.39  |  Val Loss: 0.801 | Val Acc: 74.70  |  Test Loss: 1.261 | Tes Acc: 67.65
+
+INFO >> Epoch: 25  |  Layer: 01  |  Train Loss: 0.736 | Train Acc: 69.67  |  Val Loss: 0.838 | Val Acc: 63.45  |  Test Loss: 1.218 | Tes Acc: 59.89
+INFO >> Epoch: 25  |  Layer: 02  |  Train Loss: 0.427 | Train Acc: 83.15  |  Val Loss: 0.836 | Val Acc: 66.57  |  Test Loss: 1.360 | Tes Acc: 59.63
+INFO >> Epoch: 25  |  Layer: 03  |  Train Loss: 0.387 | Train Acc: 84.65  |  Val Loss: 0.823 | Val Acc: 69.58  |  Test Loss: 1.398 | Tes Acc: 62.83
+INFO >> Epoch: 25  |  Layer: 04  |  Train Loss: 0.392 | Train Acc: 84.44  |  Val Loss: 0.840 | Val Acc: 68.27  |  Test Loss: 1.355 | Tes Acc: 63.90
+INFO >> Epoch: 25  |  Layer: 05  |  Train Loss: 0.347 | Train Acc: 86.52  |  Val Loss: 0.836 | Val Acc: 69.48  |  Test Loss: 1.247 | Tes Acc: 64.88
+INFO >> Epoch: 25  |  Layer: 06  |  Train Loss: 0.305 | Train Acc: 88.19  |  Val Loss: 0.843 | Val Acc: 68.98  |  Test Loss: 1.352 | Tes Acc: 64.80
+INFO >> Epoch: 25  |  Layer: 07  |  Train Loss: 0.315 | Train Acc: 87.84  |  Val Loss: 0.832 | Val Acc: 68.98  |  Test Loss: 1.267 | Tes Acc: 65.78
+INFO >> Epoch: 25  |  Layer: 08  |  Train Loss: 0.306 | Train Acc: 88.13  |  Val Loss: 0.852 | Val Acc: 69.78  |  Test Loss: 1.318 | Tes Acc: 66.22
+INFO >> Epoch: 25  |  Layer: 09  |  Train Loss: 0.326 | Train Acc: 86.67  |  Val Loss: 0.828 | Val Acc: 69.98  |  Test Loss: 1.225 | Tes Acc: 66.40
+INFO >> Epoch: 25  |  Layer: 10  |  Train Loss: 0.265 | Train Acc: 89.07  |  Val Loss: 0.866 | Val Acc: 70.68  |  Test Loss: 1.406 | Tes Acc: 66.13
+INFO >> Epoch: 25  |  Layer: 11  |  Train Loss: 0.268 | Train Acc: 89.51  |  Val Loss: 0.857 | Val Acc: 71.39  |  Test Loss: 1.397 | Tes Acc: 66.58
+INFO >> Epoch: 25  |  Layer: 12  |  Train Loss: 0.265 | Train Acc: 89.60  |  Val Loss: 0.858 | Val Acc: 71.69  |  Test Loss: 1.473 | Tes Acc: 67.47
+INFO >> Epoch: 25  |  Layer: 13  |  Train Loss: 0.233 | Train Acc: 91.06  |  Val Loss: 0.878 | Val Acc: 72.79  |  Test Loss: 1.500 | Tes Acc: 66.67
+INFO >> Epoch: 25  |  Layer: 14  |  Train Loss: 0.228 | Train Acc: 91.27  |  Val Loss: 0.866 | Val Acc: 73.49  |  Test Loss: 1.502 | Tes Acc: 66.67
+INFO >> Epoch: 25  |  Layer: 15  |  Train Loss: 0.229 | Train Acc: 91.68  |  Val Loss: 0.906 | Val Acc: 72.59  |  Test Loss: 1.671 | Tes Acc: 66.13
+INFO >> Epoch: 25  |  Layer: 16  |  Train Loss: 0.237 | Train Acc: 91.15  |  Val Loss: 0.849 | Val Acc: 73.59  |  Test Loss: 1.581 | Tes Acc: 65.51
+INFO >> Epoch: 25  |  Layer: 17  |  Train Loss: 0.223 | Train Acc: 91.53  |  Val Loss: 0.893 | Val Acc: 73.69  |  Test Loss: 1.524 | Tes Acc: 66.40
+INFO >> Epoch: 25  |  Layer: 18  |  Train Loss: 0.249 | Train Acc: 90.27  |  Val Loss: 0.853 | Val Acc: 74.00  |  Test Loss: 1.510 | Tes Acc: 66.58
+INFO >> Epoch: 25  |  Layer: 19  |  Train Loss: 0.234 | Train Acc: 91.30  |  Val Loss: 0.865 | Val Acc: 74.30  |  Test Loss: 1.550 | Tes Acc: 65.78
+INFO >> Epoch: 25  |  Layer: 20  |  Train Loss: 0.242 | Train Acc: 90.59  |  Val Loss: 0.873 | Val Acc: 72.59  |  Test Loss: 1.522 | Tes Acc: 66.76
+INFO >> Epoch: 25  |  Layer: 21  |  Train Loss: 0.242 | Train Acc: 90.51  |  Val Loss: 0.856 | Val Acc: 73.59  |  Test Loss: 1.575 | Tes Acc: 66.93
+INFO >> Epoch: 25  |  Layer: 22  |  Train Loss: 0.256 | Train Acc: 90.01  |  Val Loss: 0.839 | Val Acc: 73.39  |  Test Loss: 1.470 | Tes Acc: 66.76
+INFO >> Epoch: 25  |  Layer: 23  |  Train Loss: 0.249 | Train Acc: 90.45  |  Val Loss: 0.848 | Val Acc: 73.59  |  Test Loss: 1.410 | Tes Acc: 68.27
+INFO >> Epoch: 25  |  Layer: 24  |  Train Loss: 0.282 | Train Acc: 89.28  |  Val Loss: 0.870 | Val Acc: 71.89  |  Test Loss: 1.522 | Tes Acc: 66.76
+INFO >> Epoch: 25  |  Layer: 25  |  Train Loss: 0.263 | Train Acc: 89.89  |  Val Loss: 0.828 | Val Acc: 73.69  |  Test Loss: 1.433 | Tes Acc: 68.18
+
+INFO >> Epoch: 26  |  Layer: 01  |  Train Loss: 0.714 | Train Acc: 70.82  |  Val Loss: 0.847 | Val Acc: 61.65  |  Test Loss: 1.167 | Tes Acc: 61.14
+INFO >> Epoch: 26  |  Layer: 02  |  Train Loss: 0.409 | Train Acc: 84.03  |  Val Loss: 0.962 | Val Acc: 63.86  |  Test Loss: 1.259 | Tes Acc: 64.35
+INFO >> Epoch: 26  |  Layer: 03  |  Train Loss: 0.364 | Train Acc: 86.67  |  Val Loss: 0.976 | Val Acc: 64.46  |  Test Loss: 1.384 | Tes Acc: 64.53
+INFO >> Epoch: 26  |  Layer: 04  |  Train Loss: 0.382 | Train Acc: 85.17  |  Val Loss: 0.875 | Val Acc: 67.37  |  Test Loss: 1.319 | Tes Acc: 66.58
+INFO >> Epoch: 26  |  Layer: 05  |  Train Loss: 0.328 | Train Acc: 87.87  |  Val Loss: 0.908 | Val Acc: 67.77  |  Test Loss: 1.286 | Tes Acc: 66.22
+INFO >> Epoch: 26  |  Layer: 06  |  Train Loss: 0.305 | Train Acc: 88.49  |  Val Loss: 0.925 | Val Acc: 69.08  |  Test Loss: 1.408 | Tes Acc: 66.04
+INFO >> Epoch: 26  |  Layer: 07  |  Train Loss: 0.319 | Train Acc: 87.43  |  Val Loss: 0.879 | Val Acc: 68.57  |  Test Loss: 1.342 | Tes Acc: 66.58
+INFO >> Epoch: 26  |  Layer: 08  |  Train Loss: 0.307 | Train Acc: 87.37  |  Val Loss: 0.875 | Val Acc: 69.98  |  Test Loss: 1.383 | Tes Acc: 67.74
+INFO >> Epoch: 26  |  Layer: 09  |  Train Loss: 0.329 | Train Acc: 86.84  |  Val Loss: 0.808 | Val Acc: 71.39  |  Test Loss: 1.291 | Tes Acc: 67.29
+INFO >> Epoch: 26  |  Layer: 10  |  Train Loss: 0.270 | Train Acc: 89.42  |  Val Loss: 0.900 | Val Acc: 71.59  |  Test Loss: 1.480 | Tes Acc: 66.76
+INFO >> Epoch: 26  |  Layer: 11  |  Train Loss: 0.254 | Train Acc: 89.75  |  Val Loss: 0.881 | Val Acc: 70.88  |  Test Loss: 1.440 | Tes Acc: 68.09
+INFO >> Epoch: 26  |  Layer: 12  |  Train Loss: 0.269 | Train Acc: 89.48  |  Val Loss: 0.990 | Val Acc: 69.68  |  Test Loss: 1.565 | Tes Acc: 66.76
+INFO >> Epoch: 26  |  Layer: 13  |  Train Loss: 0.240 | Train Acc: 90.48  |  Val Loss: 1.008 | Val Acc: 70.48  |  Test Loss: 1.641 | Tes Acc: 67.38
+INFO >> Epoch: 26  |  Layer: 14  |  Train Loss: 0.219 | Train Acc: 91.50  |  Val Loss: 1.106 | Val Acc: 69.38  |  Test Loss: 1.490 | Tes Acc: 66.22
+INFO >> Epoch: 26  |  Layer: 15  |  Train Loss: 0.224 | Train Acc: 91.44  |  Val Loss: 1.104 | Val Acc: 69.18  |  Test Loss: 1.588 | Tes Acc: 66.40
+INFO >> Epoch: 26  |  Layer: 16  |  Train Loss: 0.215 | Train Acc: 91.94  |  Val Loss: 1.221 | Val Acc: 68.07  |  Test Loss: 1.675 | Tes Acc: 64.62
+INFO >> Epoch: 26  |  Layer: 17  |  Train Loss: 0.212 | Train Acc: 91.74  |  Val Loss: 1.153 | Val Acc: 69.28  |  Test Loss: 1.436 | Tes Acc: 66.04
+INFO >> Epoch: 26  |  Layer: 18  |  Train Loss: 0.224 | Train Acc: 91.27  |  Val Loss: 1.141 | Val Acc: 70.18  |  Test Loss: 1.529 | Tes Acc: 65.69
+INFO >> Epoch: 26  |  Layer: 19  |  Train Loss: 0.225 | Train Acc: 91.59  |  Val Loss: 1.182 | Val Acc: 69.68  |  Test Loss: 1.579 | Tes Acc: 65.86
+INFO >> Epoch: 26  |  Layer: 20  |  Train Loss: 0.227 | Train Acc: 91.33  |  Val Loss: 1.228 | Val Acc: 67.97  |  Test Loss: 1.885 | Tes Acc: 64.80
+INFO >> Epoch: 26  |  Layer: 21  |  Train Loss: 0.231 | Train Acc: 91.50  |  Val Loss: 1.238 | Val Acc: 68.37  |  Test Loss: 1.863 | Tes Acc: 63.99
+INFO >> Epoch: 26  |  Layer: 22  |  Train Loss: 0.235 | Train Acc: 90.77  |  Val Loss: 1.023 | Val Acc: 71.39  |  Test Loss: 1.501 | Tes Acc: 66.22
+INFO >> Epoch: 26  |  Layer: 23  |  Train Loss: 0.232 | Train Acc: 90.80  |  Val Loss: 1.033 | Val Acc: 70.38  |  Test Loss: 1.373 | Tes Acc: 67.74
+INFO >> Epoch: 26  |  Layer: 24  |  Train Loss: 0.254 | Train Acc: 89.98  |  Val Loss: 1.024 | Val Acc: 69.68  |  Test Loss: 1.421 | Tes Acc: 66.84
+INFO >> Epoch: 26  |  Layer: 25  |  Train Loss: 0.234 | Train Acc: 91.06  |  Val Loss: 1.071 | Val Acc: 69.58  |  Test Loss: 1.363 | Tes Acc: 66.93
+
+INFO >> Epoch: 27  |  Layer: 01  |  Train Loss: 0.702 | Train Acc: 71.40  |  Val Loss: 0.877 | Val Acc: 62.95  |  Test Loss: 1.204 | Tes Acc: 60.52
+INFO >> Epoch: 27  |  Layer: 02  |  Train Loss: 0.388 | Train Acc: 85.06  |  Val Loss: 0.916 | Val Acc: 64.16  |  Test Loss: 1.389 | Tes Acc: 60.34
+INFO >> Epoch: 27  |  Layer: 03  |  Train Loss: 0.339 | Train Acc: 86.87  |  Val Loss: 0.871 | Val Acc: 68.67  |  Test Loss: 1.395 | Tes Acc: 63.01
+INFO >> Epoch: 27  |  Layer: 04  |  Train Loss: 0.345 | Train Acc: 86.49  |  Val Loss: 0.887 | Val Acc: 66.37  |  Test Loss: 1.419 | Tes Acc: 63.73
+INFO >> Epoch: 27  |  Layer: 05  |  Train Loss: 0.298 | Train Acc: 88.72  |  Val Loss: 0.886 | Val Acc: 68.57  |  Test Loss: 1.300 | Tes Acc: 64.71
+INFO >> Epoch: 27  |  Layer: 06  |  Train Loss: 0.267 | Train Acc: 89.69  |  Val Loss: 0.927 | Val Acc: 68.27  |  Test Loss: 1.425 | Tes Acc: 64.53
+INFO >> Epoch: 27  |  Layer: 07  |  Train Loss: 0.282 | Train Acc: 89.60  |  Val Loss: 0.858 | Val Acc: 70.48  |  Test Loss: 1.389 | Tes Acc: 65.15
+INFO >> Epoch: 27  |  Layer: 08  |  Train Loss: 0.264 | Train Acc: 90.21  |  Val Loss: 0.835 | Val Acc: 70.48  |  Test Loss: 1.390 | Tes Acc: 66.31
+INFO >> Epoch: 27  |  Layer: 09  |  Train Loss: 0.280 | Train Acc: 88.92  |  Val Loss: 0.846 | Val Acc: 69.68  |  Test Loss: 1.403 | Tes Acc: 66.04
+INFO >> Epoch: 27  |  Layer: 10  |  Train Loss: 0.231 | Train Acc: 90.77  |  Val Loss: 0.885 | Val Acc: 71.59  |  Test Loss: 1.544 | Tes Acc: 66.93
+INFO >> Epoch: 27  |  Layer: 11  |  Train Loss: 0.228 | Train Acc: 91.39  |  Val Loss: 0.897 | Val Acc: 72.09  |  Test Loss: 1.565 | Tes Acc: 66.76
+INFO >> Epoch: 27  |  Layer: 12  |  Train Loss: 0.231 | Train Acc: 91.39  |  Val Loss: 0.924 | Val Acc: 70.88  |  Test Loss: 1.627 | Tes Acc: 66.76
+INFO >> Epoch: 27  |  Layer: 13  |  Train Loss: 0.202 | Train Acc: 92.88  |  Val Loss: 0.907 | Val Acc: 72.69  |  Test Loss: 1.638 | Tes Acc: 68.36
+INFO >> Epoch: 27  |  Layer: 14  |  Train Loss: 0.200 | Train Acc: 92.65  |  Val Loss: 0.938 | Val Acc: 71.39  |  Test Loss: 1.580 | Tes Acc: 67.56
+INFO >> Epoch: 27  |  Layer: 15  |  Train Loss: 0.209 | Train Acc: 92.47  |  Val Loss: 0.916 | Val Acc: 73.09  |  Test Loss: 1.603 | Tes Acc: 66.76
+INFO >> Epoch: 27  |  Layer: 16  |  Train Loss: 0.212 | Train Acc: 92.35  |  Val Loss: 0.901 | Val Acc: 72.79  |  Test Loss: 1.605 | Tes Acc: 67.11
+INFO >> Epoch: 27  |  Layer: 17  |  Train Loss: 0.198 | Train Acc: 92.59  |  Val Loss: 0.987 | Val Acc: 72.79  |  Test Loss: 1.543 | Tes Acc: 66.49
+INFO >> Epoch: 27  |  Layer: 18  |  Train Loss: 0.232 | Train Acc: 91.18  |  Val Loss: 0.941 | Val Acc: 72.39  |  Test Loss: 1.626 | Tes Acc: 65.24
+INFO >> Epoch: 27  |  Layer: 19  |  Train Loss: 0.232 | Train Acc: 91.27  |  Val Loss: 0.945 | Val Acc: 72.89  |  Test Loss: 1.674 | Tes Acc: 65.95
+INFO >> Epoch: 27  |  Layer: 20  |  Train Loss: 0.233 | Train Acc: 91.00  |  Val Loss: 0.907 | Val Acc: 72.89  |  Test Loss: 1.636 | Tes Acc: 66.49
+INFO >> Epoch: 27  |  Layer: 21  |  Train Loss: 0.241 | Train Acc: 90.83  |  Val Loss: 0.929 | Val Acc: 71.59  |  Test Loss: 1.739 | Tes Acc: 64.88
+INFO >> Epoch: 27  |  Layer: 22  |  Train Loss: 0.233 | Train Acc: 91.30  |  Val Loss: 0.855 | Val Acc: 73.09  |  Test Loss: 1.390 | Tes Acc: 68.36
+INFO >> Epoch: 27  |  Layer: 23  |  Train Loss: 0.225 | Train Acc: 91.30  |  Val Loss: 0.880 | Val Acc: 72.19  |  Test Loss: 1.429 | Tes Acc: 67.56
+INFO >> Epoch: 27  |  Layer: 24  |  Train Loss: 0.262 | Train Acc: 90.07  |  Val Loss: 0.856 | Val Acc: 71.89  |  Test Loss: 1.556 | Tes Acc: 66.04
+INFO >> Epoch: 27  |  Layer: 25  |  Train Loss: 0.228 | Train Acc: 91.44  |  Val Loss: 0.844 | Val Acc: 73.69  |  Test Loss: 1.453 | Tes Acc: 67.11
+
+INFO >> Epoch: 28  |  Layer: 01  |  Train Loss: 0.691 | Train Acc: 72.11  |  Val Loss: 0.865 | Val Acc: 63.35  |  Test Loss: 1.095 | Tes Acc: 60.78
+INFO >> Epoch: 28  |  Layer: 02  |  Train Loss: 0.366 | Train Acc: 86.11  |  Val Loss: 0.976 | Val Acc: 64.86  |  Test Loss: 1.300 | Tes Acc: 64.44
+INFO >> Epoch: 28  |  Layer: 03  |  Train Loss: 0.343 | Train Acc: 86.76  |  Val Loss: 0.905 | Val Acc: 68.78  |  Test Loss: 1.409 | Tes Acc: 64.97
+INFO >> Epoch: 28  |  Layer: 04  |  Train Loss: 0.342 | Train Acc: 86.14  |  Val Loss: 0.885 | Val Acc: 68.47  |  Test Loss: 1.338 | Tes Acc: 66.84
+INFO >> Epoch: 28  |  Layer: 05  |  Train Loss: 0.303 | Train Acc: 88.10  |  Val Loss: 0.902 | Val Acc: 69.38  |  Test Loss: 1.253 | Tes Acc: 66.04
+INFO >> Epoch: 28  |  Layer: 06  |  Train Loss: 0.302 | Train Acc: 87.72  |  Val Loss: 0.880 | Val Acc: 69.68  |  Test Loss: 1.397 | Tes Acc: 65.95
+INFO >> Epoch: 28  |  Layer: 07  |  Train Loss: 0.297 | Train Acc: 88.19  |  Val Loss: 0.854 | Val Acc: 70.58  |  Test Loss: 1.355 | Tes Acc: 66.93
+INFO >> Epoch: 28  |  Layer: 08  |  Train Loss: 0.267 | Train Acc: 89.48  |  Val Loss: 0.855 | Val Acc: 71.99  |  Test Loss: 1.404 | Tes Acc: 67.20
+INFO >> Epoch: 28  |  Layer: 09  |  Train Loss: 0.281 | Train Acc: 89.01  |  Val Loss: 0.844 | Val Acc: 70.98  |  Test Loss: 1.282 | Tes Acc: 68.18
+INFO >> Epoch: 28  |  Layer: 10  |  Train Loss: 0.205 | Train Acc: 92.24  |  Val Loss: 0.936 | Val Acc: 71.89  |  Test Loss: 1.377 | Tes Acc: 69.79
+INFO >> Epoch: 28  |  Layer: 11  |  Train Loss: 0.211 | Train Acc: 92.03  |  Val Loss: 0.930 | Val Acc: 71.18  |  Test Loss: 1.355 | Tes Acc: 68.72
+INFO >> Epoch: 28  |  Layer: 12  |  Train Loss: 0.197 | Train Acc: 92.73  |  Val Loss: 1.030 | Val Acc: 69.58  |  Test Loss: 1.336 | Tes Acc: 69.43
+INFO >> Epoch: 28  |  Layer: 13  |  Train Loss: 0.166 | Train Acc: 94.17  |  Val Loss: 0.986 | Val Acc: 70.98  |  Test Loss: 1.510 | Tes Acc: 69.88
+INFO >> Epoch: 28  |  Layer: 14  |  Train Loss: 0.171 | Train Acc: 93.82  |  Val Loss: 1.085 | Val Acc: 71.39  |  Test Loss: 1.342 | Tes Acc: 69.61
+INFO >> Epoch: 28  |  Layer: 15  |  Train Loss: 0.168 | Train Acc: 94.40  |  Val Loss: 1.401 | Val Acc: 67.17  |  Test Loss: 1.451 | Tes Acc: 66.67
+INFO >> Epoch: 28  |  Layer: 16  |  Train Loss: 0.167 | Train Acc: 94.14  |  Val Loss: 1.180 | Val Acc: 70.08  |  Test Loss: 1.414 | Tes Acc: 67.74
+INFO >> Epoch: 28  |  Layer: 17  |  Train Loss: 0.169 | Train Acc: 94.11  |  Val Loss: 1.278 | Val Acc: 68.47  |  Test Loss: 1.381 | Tes Acc: 67.47
+INFO >> Epoch: 28  |  Layer: 18  |  Train Loss: 0.185 | Train Acc: 93.47  |  Val Loss: 1.054 | Val Acc: 72.39  |  Test Loss: 1.250 | Tes Acc: 68.27
+INFO >> Epoch: 28  |  Layer: 19  |  Train Loss: 0.184 | Train Acc: 93.85  |  Val Loss: 1.052 | Val Acc: 71.69  |  Test Loss: 1.288 | Tes Acc: 68.36
+INFO >> Epoch: 28  |  Layer: 20  |  Train Loss: 0.188 | Train Acc: 93.44  |  Val Loss: 1.235 | Val Acc: 67.47  |  Test Loss: 1.515 | Tes Acc: 67.20
+INFO >> Epoch: 28  |  Layer: 21  |  Train Loss: 0.189 | Train Acc: 93.91  |  Val Loss: 1.207 | Val Acc: 67.97  |  Test Loss: 1.483 | Tes Acc: 66.76
+INFO >> Epoch: 28  |  Layer: 22  |  Train Loss: 0.196 | Train Acc: 92.97  |  Val Loss: 1.024 | Val Acc: 70.38  |  Test Loss: 1.327 | Tes Acc: 69.88
+INFO >> Epoch: 28  |  Layer: 23  |  Train Loss: 0.200 | Train Acc: 93.06  |  Val Loss: 0.947 | Val Acc: 73.59  |  Test Loss: 1.270 | Tes Acc: 70.68
+INFO >> Epoch: 28  |  Layer: 24  |  Train Loss: 0.226 | Train Acc: 91.97  |  Val Loss: 0.897 | Val Acc: 72.19  |  Test Loss: 1.270 | Tes Acc: 70.14
+INFO >> Epoch: 28  |  Layer: 25  |  Train Loss: 0.199 | Train Acc: 93.06  |  Val Loss: 1.030 | Val Acc: 70.98  |  Test Loss: 1.213 | Tes Acc: 69.16
+
+INFO >> Epoch: 29  |  Layer: 01  |  Train Loss: 0.697 | Train Acc: 71.73  |  Val Loss: 0.849 | Val Acc: 63.05  |  Test Loss: 1.223 | Tes Acc: 58.82
+INFO >> Epoch: 29  |  Layer: 02  |  Train Loss: 0.341 | Train Acc: 86.87  |  Val Loss: 1.104 | Val Acc: 61.45  |  Test Loss: 1.506 | Tes Acc: 59.80
+INFO >> Epoch: 29  |  Layer: 03  |  Train Loss: 0.306 | Train Acc: 88.05  |  Val Loss: 1.007 | Val Acc: 67.27  |  Test Loss: 1.520 | Tes Acc: 62.57
+INFO >> Epoch: 29  |  Layer: 04  |  Train Loss: 0.312 | Train Acc: 87.75  |  Val Loss: 0.949 | Val Acc: 66.16  |  Test Loss: 1.476 | Tes Acc: 64.88
+INFO >> Epoch: 29  |  Layer: 05  |  Train Loss: 0.256 | Train Acc: 90.62  |  Val Loss: 0.969 | Val Acc: 67.67  |  Test Loss: 1.436 | Tes Acc: 63.46
+INFO >> Epoch: 29  |  Layer: 06  |  Train Loss: 0.230 | Train Acc: 91.62  |  Val Loss: 0.981 | Val Acc: 68.67  |  Test Loss: 1.649 | Tes Acc: 61.41
+INFO >> Epoch: 29  |  Layer: 07  |  Train Loss: 0.246 | Train Acc: 90.95  |  Val Loss: 0.910 | Val Acc: 68.67  |  Test Loss: 1.565 | Tes Acc: 62.12
+INFO >> Epoch: 29  |  Layer: 08  |  Train Loss: 0.233 | Train Acc: 91.24  |  Val Loss: 0.919 | Val Acc: 68.57  |  Test Loss: 1.652 | Tes Acc: 62.39
+INFO >> Epoch: 29  |  Layer: 09  |  Train Loss: 0.243 | Train Acc: 91.03  |  Val Loss: 0.955 | Val Acc: 68.47  |  Test Loss: 1.507 | Tes Acc: 63.99
+INFO >> Epoch: 29  |  Layer: 10  |  Train Loss: 0.185 | Train Acc: 93.38  |  Val Loss: 0.985 | Val Acc: 71.08  |  Test Loss: 1.621 | Tes Acc: 66.49
+INFO >> Epoch: 29  |  Layer: 11  |  Train Loss: 0.183 | Train Acc: 93.47  |  Val Loss: 0.989 | Val Acc: 70.28  |  Test Loss: 1.662 | Tes Acc: 66.22
+INFO >> Epoch: 29  |  Layer: 12  |  Train Loss: 0.185 | Train Acc: 93.26  |  Val Loss: 0.975 | Val Acc: 71.49  |  Test Loss: 1.665 | Tes Acc: 67.83
+INFO >> Epoch: 29  |  Layer: 13  |  Train Loss: 0.165 | Train Acc: 94.26  |  Val Loss: 1.031 | Val Acc: 71.59  |  Test Loss: 1.774 | Tes Acc: 66.76
+INFO >> Epoch: 29  |  Layer: 14  |  Train Loss: 0.163 | Train Acc: 94.52  |  Val Loss: 1.094 | Val Acc: 69.88  |  Test Loss: 1.693 | Tes Acc: 67.02
+INFO >> Epoch: 29  |  Layer: 15  |  Train Loss: 0.190 | Train Acc: 93.03  |  Val Loss: 1.098 | Val Acc: 69.38  |  Test Loss: 1.723 | Tes Acc: 66.49
+INFO >> Epoch: 29  |  Layer: 16  |  Train Loss: 0.179 | Train Acc: 93.41  |  Val Loss: 1.043 | Val Acc: 71.69  |  Test Loss: 1.691 | Tes Acc: 66.67
+INFO >> Epoch: 29  |  Layer: 17  |  Train Loss: 0.178 | Train Acc: 93.11  |  Val Loss: 1.088 | Val Acc: 70.58  |  Test Loss: 1.646 | Tes Acc: 66.67
+INFO >> Epoch: 29  |  Layer: 18  |  Train Loss: 0.187 | Train Acc: 93.26  |  Val Loss: 1.080 | Val Acc: 70.68  |  Test Loss: 1.642 | Tes Acc: 65.69
+INFO >> Epoch: 29  |  Layer: 19  |  Train Loss: 0.174 | Train Acc: 93.96  |  Val Loss: 1.047 | Val Acc: 71.59  |  Test Loss: 1.607 | Tes Acc: 66.04
+INFO >> Epoch: 29  |  Layer: 20  |  Train Loss: 0.191 | Train Acc: 93.00  |  Val Loss: 1.055 | Val Acc: 71.69  |  Test Loss: 1.713 | Tes Acc: 66.31
+INFO >> Epoch: 29  |  Layer: 21  |  Train Loss: 0.185 | Train Acc: 93.29  |  Val Loss: 1.040 | Val Acc: 70.28  |  Test Loss: 1.630 | Tes Acc: 66.49
+INFO >> Epoch: 29  |  Layer: 22  |  Train Loss: 0.184 | Train Acc: 93.32  |  Val Loss: 0.962 | Val Acc: 72.49  |  Test Loss: 1.530 | Tes Acc: 67.91
+INFO >> Epoch: 29  |  Layer: 23  |  Train Loss: 0.177 | Train Acc: 93.76  |  Val Loss: 0.977 | Val Acc: 72.09  |  Test Loss: 1.476 | Tes Acc: 68.36
+INFO >> Epoch: 29  |  Layer: 24  |  Train Loss: 0.212 | Train Acc: 92.35  |  Val Loss: 0.912 | Val Acc: 72.19  |  Test Loss: 1.509 | Tes Acc: 67.29
+INFO >> Epoch: 29  |  Layer: 25  |  Train Loss: 0.181 | Train Acc: 93.55  |  Val Loss: 0.960 | Val Acc: 71.99  |  Test Loss: 1.436 | Tes Acc: 68.09
+
+INFO >> Epoch: 30  |  Layer: 01  |  Train Loss: 0.675 | Train Acc: 71.78  |  Val Loss: 0.858 | Val Acc: 64.16  |  Test Loss: 1.320 | Tes Acc: 59.00
+INFO >> Epoch: 30  |  Layer: 02  |  Train Loss: 0.337 | Train Acc: 86.38  |  Val Loss: 1.031 | Val Acc: 65.16  |  Test Loss: 1.406 | Tes Acc: 63.81
+INFO >> Epoch: 30  |  Layer: 03  |  Train Loss: 0.306 | Train Acc: 87.72  |  Val Loss: 1.069 | Val Acc: 65.86  |  Test Loss: 1.514 | Tes Acc: 64.08
+INFO >> Epoch: 30  |  Layer: 04  |  Train Loss: 0.314 | Train Acc: 86.96  |  Val Loss: 0.987 | Val Acc: 65.16  |  Test Loss: 1.362 | Tes Acc: 66.67
+INFO >> Epoch: 30  |  Layer: 05  |  Train Loss: 0.241 | Train Acc: 90.89  |  Val Loss: 1.110 | Val Acc: 67.07  |  Test Loss: 1.378 | Tes Acc: 65.42
+INFO >> Epoch: 30  |  Layer: 06  |  Train Loss: 0.226 | Train Acc: 91.44  |  Val Loss: 1.113 | Val Acc: 68.78  |  Test Loss: 1.558 | Tes Acc: 64.26
+INFO >> Epoch: 30  |  Layer: 07  |  Train Loss: 0.235 | Train Acc: 90.89  |  Val Loss: 0.968 | Val Acc: 68.78  |  Test Loss: 1.391 | Tes Acc: 67.20
+INFO >> Epoch: 30  |  Layer: 08  |  Train Loss: 0.217 | Train Acc: 91.91  |  Val Loss: 1.018 | Val Acc: 69.68  |  Test Loss: 1.479 | Tes Acc: 66.31
+INFO >> Epoch: 30  |  Layer: 09  |  Train Loss: 0.235 | Train Acc: 90.86  |  Val Loss: 1.002 | Val Acc: 70.18  |  Test Loss: 1.361 | Tes Acc: 66.58
+INFO >> Epoch: 30  |  Layer: 10  |  Train Loss: 0.184 | Train Acc: 92.97  |  Val Loss: 1.179 | Val Acc: 67.97  |  Test Loss: 1.500 | Tes Acc: 67.29
+INFO >> Epoch: 30  |  Layer: 11  |  Train Loss: 0.192 | Train Acc: 92.32  |  Val Loss: 1.072 | Val Acc: 71.39  |  Test Loss: 1.487 | Tes Acc: 67.65
+INFO >> Epoch: 30  |  Layer: 12  |  Train Loss: 0.193 | Train Acc: 92.50  |  Val Loss: 0.991 | Val Acc: 70.48  |  Test Loss: 1.544 | Tes Acc: 68.63
+INFO >> Epoch: 30  |  Layer: 13  |  Train Loss: 0.156 | Train Acc: 94.20  |  Val Loss: 1.089 | Val Acc: 71.08  |  Test Loss: 1.668 | Tes Acc: 69.07
+INFO >> Epoch: 30  |  Layer: 14  |  Train Loss: 0.165 | Train Acc: 94.02  |  Val Loss: 1.031 | Val Acc: 73.49  |  Test Loss: 1.662 | Tes Acc: 68.81
+INFO >> Epoch: 30  |  Layer: 15  |  Train Loss: 0.181 | Train Acc: 93.23  |  Val Loss: 1.028 | Val Acc: 72.69  |  Test Loss: 1.678 | Tes Acc: 65.69
+INFO >> Epoch: 30  |  Layer: 16  |  Train Loss: 0.177 | Train Acc: 93.17  |  Val Loss: 1.005 | Val Acc: 74.00  |  Test Loss: 1.589 | Tes Acc: 68.18
+INFO >> Epoch: 30  |  Layer: 17  |  Train Loss: 0.174 | Train Acc: 93.11  |  Val Loss: 1.114 | Val Acc: 71.89  |  Test Loss: 1.527 | Tes Acc: 67.20
+INFO >> Epoch: 30  |  Layer: 18  |  Train Loss: 0.210 | Train Acc: 91.27  |  Val Loss: 0.911 | Val Acc: 73.59  |  Test Loss: 1.514 | Tes Acc: 68.27
+INFO >> Epoch: 30  |  Layer: 19  |  Train Loss: 0.224 | Train Acc: 90.83  |  Val Loss: 0.988 | Val Acc: 74.00  |  Test Loss: 1.831 | Tes Acc: 66.76
+INFO >> Epoch: 30  |  Layer: 20  |  Train Loss: 0.200 | Train Acc: 92.29  |  Val Loss: 1.131 | Val Acc: 70.98  |  Test Loss: 1.570 | Tes Acc: 66.40
+INFO >> Epoch: 30  |  Layer: 21  |  Train Loss: 0.197 | Train Acc: 92.56  |  Val Loss: 1.016 | Val Acc: 71.49  |  Test Loss: 1.583 | Tes Acc: 66.76
+INFO >> Epoch: 30  |  Layer: 22  |  Train Loss: 0.202 | Train Acc: 92.06  |  Val Loss: 1.050 | Val Acc: 71.59  |  Test Loss: 1.481 | Tes Acc: 68.98
+INFO >> Epoch: 30  |  Layer: 23  |  Train Loss: 0.212 | Train Acc: 91.56  |  Val Loss: 1.052 | Val Acc: 70.98  |  Test Loss: 1.459 | Tes Acc: 67.47
+INFO >> Epoch: 30  |  Layer: 24  |  Train Loss: 0.222 | Train Acc: 91.09  |  Val Loss: 0.983 | Val Acc: 71.79  |  Test Loss: 1.421 | Tes Acc: 68.98
+INFO >> Epoch: 30  |  Layer: 25  |  Train Loss: 0.207 | Train Acc: 91.68  |  Val Loss: 0.934 | Val Acc: 73.69  |  Test Loss: 1.492 | Tes Acc: 69.07
+
+
+
+INFO >> Time Taken: 4:08:02
+
+INFO >> Layer: 01  |  Best Val Acc: 64.66  |  Best Test Acc: 59.36
+INFO >> Layer: 02  |  Best Val Acc: 67.87  |  Best Test Acc: 62.30
+INFO >> Layer: 03  |  Best Val Acc: 69.58  |  Best Test Acc: 62.83
+INFO >> Layer: 04  |  Best Val Acc: 69.18  |  Best Test Acc: 64.71
+INFO >> Layer: 05  |  Best Val Acc: 69.48  |  Best Test Acc: 64.88
+INFO >> Layer: 06  |  Best Val Acc: 70.18  |  Best Test Acc: 65.60
+INFO >> Layer: 07  |  Best Val Acc: 71.49  |  Best Test Acc: 65.24
+INFO >> Layer: 08  |  Best Val Acc: 71.99  |  Best Test Acc: 67.20
+INFO >> Layer: 09  |  Best Val Acc: 72.29  |  Best Test Acc: 66.49
+INFO >> Layer: 10  |  Best Val Acc: 74.00  |  Best Test Acc: 67.83
+INFO >> Layer: 11  |  Best Val Acc: 73.29  |  Best Test Acc: 68.18
+INFO >> Layer: 12  |  Best Val Acc: 73.90  |  Best Test Acc: 68.36
+INFO >> Layer: 13  |  Best Val Acc: 74.00  |  Best Test Acc: 69.79
+INFO >> Layer: 14  |  Best Val Acc: 74.20  |  Best Test Acc: 68.63
+INFO >> Layer: 15  |  Best Val Acc: 75.20  |  Best Test Acc: 68.89
+INFO >> Layer: 16  |  Best Val Acc: 75.50  |  Best Test Acc: 69.07
+INFO >> Layer: 17  |  Best Val Acc: 75.10  |  Best Test Acc: 69.25
+INFO >> Layer: 18  |  Best Val Acc: 75.20  |  Best Test Acc: 69.07
+INFO >> Layer: 19  |  Best Val Acc: 74.80  |  Best Test Acc: 68.72
+INFO >> Layer: 20  |  Best Val Acc: 75.20  |  Best Test Acc: 66.49
+INFO >> Layer: 21  |  Best Val Acc: 75.10  |  Best Test Acc: 68.98
+INFO >> Layer: 22  |  Best Val Acc: 75.20  |  Best Test Acc: 68.54
+INFO >> Layer: 23  |  Best Val Acc: 75.60  |  Best Test Acc: 69.16
+INFO >> Layer: 24  |  Best Val Acc: 74.20  |  Best Test Acc: 66.22
+INFO >> Layer: 25  |  Best Val Acc: 75.40  |  Best Test Acc: 68.54
+
+DEBUG >> Last state saved
+INFO >> Mixing Weights (softmax): 
+1.0
+[0.17904716730117798, 0.8209528923034668]
+[0.11347952485084534, 0.26939019560813904, 0.6171303391456604]
+[0.11459425836801529, 0.16158470511436462, 0.35694819688796997, 0.3668728172779083]
+[0.0804174542427063, 0.12377575039863586, 0.18044431507587433, 0.23610350489616394, 0.37925899028778076]
+[0.07101768255233765, 0.09461960196495056, 0.12276732176542282, 0.14633826911449432, 0.22729934751987457, 0.33795782923698425]
+[0.05481037124991417, 0.0815919041633606, 0.09926903247833252, 0.10790804773569107, 0.15848688781261444, 0.22084279358386993, 0.27709099650382996]
+[0.05286688357591629, 0.0695418044924736, 0.08547329157590866, 0.08912406116724014, 0.11284219473600388, 0.1460200548171997, 0.20567409694194794, 0.23845753073692322]
+[0.050765134394168854, 0.05937686562538147, 0.07485939562320709, 0.08372406661510468, 0.08702471107244492, 0.10563160479068756, 0.1441960483789444, 0.19561050832271576, 0.19881169497966766]
+[0.043160729110240936, 0.05350596457719803, 0.06772984564304352, 0.07642490416765213, 0.0748552456498146, 0.0785769671201706, 0.1041439101099968, 0.15688955783843994, 0.17162863910198212, 0.17308415472507477]
+[0.04086236283183098, 0.05181596800684929, 0.06005937233567238, 0.07304734736680984, 0.06725788116455078, 0.0684763565659523, 0.09018207341432571, 0.12889869511127472, 0.143352672457695, 0.1571773737668991, 0.11886989325284958]
+[0.043007537722587585, 0.04813671484589577, 0.05410785600543022, 0.06632794439792633, 0.06067940220236778, 0.057277850806713104, 0.07756831496953964, 0.11152157187461853, 0.11923157423734665, 0.1328478902578354, 0.10737626999616623, 0.12191702425479889]
+[0.0377475805580616, 0.04487469792366028, 0.051338423043489456, 0.06229538843035698, 0.05653418228030205, 0.0517091378569603, 0.0705195739865303, 0.09928906708955765, 0.10326522588729858, 0.10805448144674301, 0.09506618976593018, 0.11109152436256409, 0.10821450501680374]
+[0.03360192850232124, 0.04147942364215851, 0.04638967290520668, 0.057947251945734024, 0.052863724529743195, 0.04828412085771561, 0.06071556359529495, 0.08363048732280731, 0.08869234472513199, 0.08642122149467468, 0.07696115970611572, 0.09687693417072296, 0.10866310447454453, 0.11747302860021591]
+[0.03205937147140503, 0.04215892404317856, 0.04484160616993904, 0.05578598752617836, 0.049059413373470306, 0.04495098441839218, 0.056753531098365784, 0.07757768034934998, 0.08254595100879669, 0.075252965092659, 0.0706629678606987, 0.08279870450496674, 0.094728484749794, 0.11119642108678818, 0.07962700724601746]
+[0.029797326773405075, 0.03875339776277542, 0.04322556033730507, 0.053335100412368774, 0.04783177375793457, 0.04431745782494545, 0.054811425507068634, 0.07264763116836548, 0.07868733257055283, 0.06916740536689758, 0.06345809996128082, 0.07253329455852509, 0.08498299866914749, 0.10116641968488693, 0.07745229452848434, 0.06783242523670197]
+[0.028112975880503654, 0.03601275011897087, 0.04133429005742073, 0.05074811726808548, 0.04677283763885498, 0.04483134299516678, 0.05214260518550873, 0.06933736801147461, 0.07511579990386963, 0.06495613604784012, 0.05987243354320526, 0.0674063116312027, 0.07931306213140488, 0.09344317764043808, 0.07196898758411407, 0.06756240874528885, 0.05106940120458603]
+[0.02261766605079174, 0.03330547362565994, 0.037214308977127075, 0.04752681031823158, 0.04579811170697212, 0.044744376093149185, 0.05096909776329994, 0.06531026214361191, 0.07191687077283859, 0.06219227984547615, 0.060080915689468384, 0.06465347111225128, 0.07677825540304184, 0.09372340887784958, 0.069308802485466, 0.06603415310382843, 0.051034580916166306, 0.03679116070270538]
+[0.023134995251893997, 0.03142765909433365, 0.03607078269124031, 0.0457070916891098, 0.04248081147670746, 0.0416143462061882, 0.04771120473742485, 0.0600505992770195, 0.06846215575933456, 0.060671430081129074, 0.0557120218873024, 0.06198461353778839, 0.0788402259349823, 0.09343402087688446, 0.06596524268388748, 0.06448367238044739, 0.049417272210121155, 0.03796463832259178, 0.03486722335219383]
+[0.02377069741487503, 0.03145913779735565, 0.03695392236113548, 0.044923435896635056, 0.04170439764857292, 0.04007263109087944, 0.04745462164282799, 0.05710292607545853, 0.06619594991207123, 0.05848786234855652, 0.055455878376960754, 0.05970368534326553, 0.0724322572350502, 0.08604169636964798, 0.06267357617616653, 0.06304911524057388, 0.04741509258747101, 0.03700470179319382, 0.035497646778821945, 0.032600753009319305]
+[0.022051654756069183, 0.029276853427290916, 0.035323821008205414, 0.04331231862306595, 0.04086118936538696, 0.03798181563615799, 0.04506176710128784, 0.05591890215873718, 0.06897030770778656, 0.05458071827888489, 0.053519513458013535, 0.057863250374794006, 0.07109227031469345, 0.08185962587594986, 0.06060950085520744, 0.059517551213502884, 0.04753577709197998, 0.037008196115493774, 0.03517777472734451, 0.033403169363737106, 0.029074018821120262]
+[0.020437322556972504, 0.027801766991615295, 0.03398531302809715, 0.04053036868572235, 0.038896117359399796, 0.03636949136853218, 0.04362664744257927, 0.055101893842220306, 0.06916075944900513, 0.053512584418058395, 0.05424895137548447, 0.05926564708352089, 0.06665529310703278, 0.07973317801952362, 0.05687076225876808, 0.05763887241482735, 0.0462668277323246, 0.036740247160196304, 0.033317893743515015, 0.034368570894002914, 0.029038727283477783, 0.02643274888396263]
+[0.019476285204291344, 0.025794751942157745, 0.03253641724586487, 0.03979341685771942, 0.03841566666960716, 0.03684668242931366, 0.04279515892267227, 0.05423843115568161, 0.06643257290124893, 0.04933920130133629, 0.05269384756684303, 0.05742408335208893, 0.06508422642946243, 0.08085090667009354, 0.05801955610513687, 0.05567547678947449, 0.044953763484954834, 0.035721100866794586, 0.03359932079911232, 0.03287377953529358, 0.028350718319416046, 0.025581978261470795, 0.023502659052610397]
+[0.017765548080205917, 0.024967262521386147, 0.031152553856372833, 0.03924211114645004, 0.03831145912408829, 0.037473008036613464, 0.042526740580797195, 0.05223121866583824, 0.06537795066833496, 0.04833274707198143, 0.050232723355293274, 0.05616506189107895, 0.06581254303455353, 0.07951506972312927, 0.05577338859438896, 0.05650396645069122, 0.04530639201402664, 0.035065390169620514, 0.032571569085121155, 0.0336759090423584, 0.028165165334939957, 0.02481064572930336, 0.0235070139169693, 0.015514558181166649]
+[0.015588040463626385, 0.023198047652840614, 0.02928534708917141, 0.036073584109544754, 0.03668338060379028, 0.03769756108522415, 0.04202292114496231, 0.053825702518224716, 0.06304053217172623, 0.05115792900323868, 0.054468344897031784, 0.05566912889480591, 0.07107321918010712, 0.07396428287029266, 0.05460711941123009, 0.05255216360092163, 0.04389074817299843, 0.03452923148870468, 0.03334205597639084, 0.03220053389668465, 0.026019103825092316, 0.02303795889019966, 0.020742254331707954, 0.013126815669238567, 0.02220400609076023]
+
+
+INFO >> History saved (./history/v1.5/IEMOCAP/FX_WAV2VEC2_LARGE_CLF_CM_PROBING_DENSE/Run2/history.pt)

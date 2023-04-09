@@ -8,6 +8,7 @@ import datetime
 from tqdm import tqdm
 from time import sleep
 from copy import deepcopy
+from models import CumulativeProbingLinear, CumulativeProbingDense
 from models import GE2E, Dense, ProbingModel, ProbingDense
 from tqdm.contrib.logging import logging_redirect_tqdm
 from utils import DotDict, NoFmtLog, get_logger, log_levels
@@ -25,15 +26,14 @@ VERSION = '1.5'
 FX_MODELS = ['WAV2VEC2_BASE','WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M',
         'HUBERT_BASE', 'HUBERT_LARGE', 
-        'WAV2VEC2_ASR_LARGE_960H', 'HUBERT_ASR_LARGE'
-        ]
+        'WAV2VEC2_ASR_LARGE_960H', 'HUBERT_ASR_LARGE'  ]
         
 FX_MODEL_MAP = {'WAV2VEC2_BASE':'WAV2VEC2_BASE','WAV2VEC2_LARGE':'WAV2VEC2_LARGE',
         'WAV2VEC2_LARGE_XLSR':'WAV2VEC2_XLSR53','WAV2VEC2_LARGE_XLSR300M':'WAV2VEC2_XLSR_300M',
         'HUBERT_BASE':'HUBERT_BASE', 'HUBERT_LARGE':'HUBERT_LARGE',
         'WAV2VEC2_ASR_LARGE_960H':'WAV2VEC2_ASR_LARGE_960H', 'HUBERT_ASR_LARGE':'HUBERT_ASR_LARGE'}
 
-CLF_MODELS = ['DENSE','PROBING','PROBING_DENSE']
+CLF_MODELS = ['DENSE','PROBING','PROBING_DENSE', 'CM_PROBING_LINEAR', 'CM_PROBING_DENSE']
 
 DATASETS = ['AESDD','CaFE','EmoDB','EMOVO','IEMOCAP','RAVDESS','ShEMO']
 
@@ -126,6 +126,10 @@ class Trainer:
             model = ProbingModel(self.config.fx_model, len(self.dataset_info.label_map))
         elif self.config.clf_model == 'PROBING_DENSE':
             model = ProbingDense(self.config.fx_model, len(self.dataset_info.label_map), self.device)
+        elif self.config.clf_model == 'CM_PROBING_DENSE':
+            model = CumulativeProbingDense(self.config.fx_model, len(self.dataset_info.label_map), 1, self.device)
+        elif self.config.clf_model == 'CM_PROBING_LINEAR':
+            model = CumulativeProbingLinear(self.config.fx_model, len(self.dataset_info.label_map), 1)
         elif self.config.clf_model == 'DENSE':
             model = Dense(self.config.fx_model, len(self.dataset_info.label_map), self.device)
            
@@ -165,8 +169,6 @@ class Trainer:
             test_dataset = GPUMemoryModeClassifierDataset(self.config.fx_model, self.data_dir, self.dataset_info, 'test')
             train_dataset = GPUMemoryModeClassifierDataset(self.config.fx_model, self.data_dir, self.dataset_info, 'train')
             val_dataset = GPUMemoryModeClassifierDataset(self.config.fx_model, self.data_dir, self.dataset_info, 'validation')
-
-
 
         train_batch_size = 32
         test_batch_size = 32
@@ -408,7 +410,6 @@ class Trainer:
                 acc_metrics[layer].update(output, batch[2])
 
                 progress_bar.update(1)
-        
         progress_bar.refresh()
 
         accuracies = []
@@ -453,7 +454,6 @@ class Trainer:
                     acc_metrics[layer].update(output, batch[2])
 
                     progress_bar.update(1)
-        
         progress_bar.refresh()
 
         accuracies = []
@@ -497,12 +497,18 @@ class Trainer:
             self.logger.info('Training Classifier')
             self.no_fmt_log()
 
-            if self.config.clf_model=='PROBING' or self.config.clf_model=='PROBING_DENSE': #and self.config.fx_model!='GE2E':
+            if 'PROBING' in self.config.clf_model: #and self.config.fx_model!='GE2E':
                 models, optimizers = [], []
                 if 'BASE' in self.config.fx_model: num_layers = 13
                 elif 'LARGE' in self.config.fx_model:  num_layers = 25
-                for _ in range(num_layers):
-                    model = deepcopy(self.clf_model)
+                for layer in range(1,num_layers+1):
+                    if 'CM_PROBING' in self.config.clf_model:
+                        if 'DENSE' in self.config.clf_model:
+                            model = CumulativeProbingDense(self.config.fx_model, len(self.dataset_info.label_map), layer, self.device)
+                        elif 'LINEAR' in self.config.clf_model:
+                            model = CumulativeProbingLinear(self.config.fx_model, len(self.dataset_info.label_map), layer)
+                        model.to(self.device)
+                    else: model = deepcopy(self.clf_model)
                     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
                     models.append(model)
                     optimizers.append(optimizer)
@@ -521,10 +527,9 @@ class Trainer:
                 optimizer = torch.optim.Adam(self.clf_model.parameters(), lr=0.001)
                 best_model = DotDict(val_acc=-1, test_acc=0)
                 
-
             for epoch in range(1,self.config.epochs+1):
                 
-                if self.config.clf_model=='PROBING' or self.config.clf_model=='PROBING_DENSE': #and self.config.fx_model!='GE2E':
+                if 'PROBING' in self.config.clf_model: #and self.config.fx_model!='GE2E':
                     train_loss, train_acc = self._gpu_probing_train(models, self.clf_dataloaders.train, optimizers, criterion, train_pbar)
                     val_loss, val_acc = self._gpu_probing_test(models, self.clf_dataloaders.validation, criterion, val_pbar)
                     test_loss, test_acc = self._gpu_probing_test(models, self.clf_dataloaders.test, criterion, test_pbar)
@@ -532,9 +537,8 @@ class Trainer:
                     epoch_pbar.update(1)
 
                     for layer in range(num_layers):
-                        pretty_space = ' '*(2-len(str(layer+1)))
-                        self.logger.info('Epoch: %s  |  Layer: %s%s  |  Train Loss: %.3f | Train Acc: %.2f  |  Val Loss: %.3f | Val Acc: %.2f  |  Test Loss: %.3f | Tes Acc: %.2f' \
-                                    %(epoch, pretty_space, layer+1, train_loss[layer], train_acc[layer], val_loss[layer], val_acc[layer], test_loss[layer], test_acc[layer]))
+                        self.logger.info('Epoch: %s  |  Layer: %02d  |  Train Loss: %.3f | Train Acc: %.2f  |  Val Loss: %.3f | Val Acc: %.2f  |  Test Loss: %.3f | Tes Acc: %.2f' \
+                                    %(epoch, layer+1, train_loss[layer], train_acc[layer], val_loss[layer], val_acc[layer], test_loss[layer], test_acc[layer]))
                         if val_acc[layer] > best_model.val_acc[layer]:
                             best_model.val_acc[layer] = val_acc[layer]
                             best_model.test_acc[layer] = test_acc[layer]
@@ -592,19 +596,17 @@ class Trainer:
         self.logger.info(f'Time Taken: {epoch_pbar.format_interval(time_taken)}')
         self.no_fmt_log()
 
-        if self.config.clf_model=='PROBING' or self.config.clf_model=='PROBING_DENSE': #and self.config.fx_model!='GE2E':
+        if 'PROBING' in self.config.clf_model: #and self.config.fx_model!='GE2E':
             
             for layer in range(num_layers):
-                pretty_space = ' '*(2-len(str(layer+1)))
-                self.logger.info('Layer: %s%s  |  Best Val Acc: %.2f  |  Best Test Acc: %.2f' \
-                                    %(pretty_space, layer+1, best_model.val_acc[layer], best_model.test_acc[layer]))
+                self.logger.info('Layer: %02d  |  Best Val Acc: %.2f  |  Best Test Acc: %.2f' \
+                                    %(layer+1, best_model.val_acc[layer], best_model.test_acc[layer]))
             self.no_fmt_log()
 
             # Save last state
             last_state_path = os.path.join(self.weights_dir, 'last_states.pt')
             states=[]
-            for layer in range(num_layers):
-                
+            for layer in range(num_layers): 
                 state = dict(
                     epoch=epoch,
                     val_acc=val_acc[layer],
@@ -614,6 +616,15 @@ class Trainer:
                 states.append(state)
             torch.save(states,last_state_path)
             self.logger.debug(f'Last state saved')
+
+            if 'CM_PROBING' in  self.config.clf_model: 
+                mixing_weights=[]
+                for layer in range(num_layers):
+                    mixing_weights.append(models[layer].prob_weights.squeeze().tolist())
+                p_mx_w = '\n'.join([str(w) for w in mixing_weights])
+                self.logger.info(f'Mixing Weights (softmax): \n{p_mx_w}\n')
+                mx_weight_path = os.path.join(self.history_dir, 'mx_weights.pt')
+                torch.save(mixing_weights,mx_weight_path)
         else:
             self.logger.info(f'Best Val Acc : {best_model.val_acc} | Best Test Acc : {best_model.test_acc}')
             self.no_fmt_log()
@@ -621,9 +632,11 @@ class Trainer:
             # Agg weights
             if self.config.fx_model != 'GE2E' and self.config.clf_model == 'DENSE':
                 agg_weights = ' '.join([str(weight[0]) for weight in self.clf_model.aggr.state_dict()['weight'][0].detach().cpu().tolist()])
+                self.no_fmt_log()
                 self.logger.info(f'Agg. Weights : \n{agg_weights}\n')
                 agg_weight_path = os.path.join(self.history_dir, 'agg_weights.pt')
                 torch.save(agg_weights,agg_weight_path)
+            
 
             # Save last state
             last_state_path = os.path.join(self.weights_dir, 'last_state.pt')
@@ -695,18 +708,18 @@ if __name__ == '__main__':
     # Test
     if args.run_name =='test':
 
-        args.dataset = 'EMOVO'
+        args.dataset = 'CaFE'
         # args.fx_model = 'HUBERT_BASE'
         #' ['WAV2VEC2_BASE','WAV2VEC2_LARGE','WAV2VEC2_LARGE_XLSR','WAV2VEC2_LARGE_XLSR300M','HUBERT_BASE','HUBERT_LARGE','WAV2VEC2_ASR_LARGE_960H', 'HUBERT_ASR_LARGE']
         args.fx_model = 'WAV2VEC2_ASR_LARGE_960H'
-        args.clf_model = 'DENSE'
+        args.clf_model = 'CM_PROBING_DENSE'
         args.extract_mode ='gpu_memory'
         args.history_dir = './test/history'
         args.weights_dir = './test/weights'
-        args.log_level='debug'
-        args.num_workers=3
+        args.log_level = 'debug'
+        args.num_workers = 3
 
-        args.epochs = 1
+        args.epochs = 2
 
         os.system('rm -rf ./test')
         os.system('mkdir test')
