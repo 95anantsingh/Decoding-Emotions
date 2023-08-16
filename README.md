@@ -1,0 +1,6 @@
+## Abstract
+Recent advancements in transformer-based speech representation models have greatly transformed speech processing. However, there has been limited research conducted on evaluating these models for speech emotion recognition (SER) across multiple languages and examining their internal representations. This article addresses these gaps by presenting a comprehensive benchmark for SER with eight speech representation models and six different languages. We conducted probing experiments to gain insights into inner workings of these models for SER. We find that using features from a single optimal layer of a speech model reduces the error rate by 32\% on average across seven datasets when compared to systems where features from all layers of speech models are used. We also achieve state-of-the-art results for German and Persian languages.  Our probing results indicate that the middle layers of speech models capture the most important emotional information for speech emotion recognition.
+
+## Downloads
+
+Download data and weights from - https://drive.google.com/drive/folders/1HW7R1ng7FLrYXnvjpHcQk7-ujyyX-8du?usp=sharing
